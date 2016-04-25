@@ -3,3 +3,8 @@ alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep -E "stat
 alias q="exit"
 alias gitl="git log --all --decorate --oneline --graph"
 alias gits="git status"
+alias count="ls -l | wc -l"
+
+if [ -d "$HOME/dropbox/py"  ] ; then
+    PATH="$PATH:$HOME/dropbox/py"
+fi
