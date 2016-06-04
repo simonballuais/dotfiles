@@ -1,3 +1,4 @@
 inoremap <S-Tab> <Esc>
 nnoremap <S-Space> <C-]>
 nnoremap <S-BS> <C-O>
+nnoremap é w
