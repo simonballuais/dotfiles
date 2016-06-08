@@ -18,4 +18,5 @@ sudo apt-get --assume-yes install\
     vim-gtk\
     vim-gnome\
     vim-athena\
+    htop\
     steam
