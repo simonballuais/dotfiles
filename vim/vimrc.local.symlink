@@ -1,1 +1,10 @@
 inoremap <S-Tab> <Esc>
+
+nnoremap c h
+nnoremap h c
+nnoremap t j
+nnoremap j t
+nnoremap s k
+nnoremap k s
+nnoremap r l
+nnoremap l r
