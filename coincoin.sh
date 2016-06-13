@@ -19,4 +19,5 @@ sudo apt-get --assume-yes install\
     vim-gnome\
     vim-athena\
     htop\
+    nmap\
     steam

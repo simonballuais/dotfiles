@@ -1,13 +1,28 @@
 let mapleader = ","
 
-inoremap <S-Tab> <Esc>
+nnoremap <tab> <c-i>
+nnoremap <s-tab> <c-o>
+
+nnoremap <c-tab> :bnext<CR>
+nnoremap <c-s-tab> :bprevious<CR>
+
 nnoremap <S-Space> <C-]>
 nnoremap <S-BS> <C-O>
+
+nnoremap t j
+nnoremap s k
+
 nnoremap é w
 nnoremap É W
 nnoremap dé dw
 nnoremap yé yw
 nnoremap cé cw
+nnoremap caé caw
+nnoremap cié cis
+nnoremap daé daw
+nnoremap dié dis
+nnoremap yaé yaw
+nnoremap yié yis
 
 inoremap <c-U> <esc>viwUea
 nnoremap <c-U> <esc>bveUel
@@ -24,9 +39,18 @@ autocmd FileType javascript nnoremap <buffer> <leader>c I//<esc>
 autocmd FileType python     nnoremap <buffer> <leader>c I#<esc>
 
 onoremap p i(
-onoremap ib i[
+onoremap ib i(
 
 onoremap lp :<c-u>normal! F)vi(<cr>
 onoremap np :<c-u>normal! f(vi)<cr>
 onoremap lb :<c-u>normal! F]vi[<cr>
 onoremap nb :<c-u>normal! f[vi]<cr>
+onoremap lc :<c-u>normal! F}vi{<cr>
+onoremap nc :<c-u>normal! f{vi}<cr>
+
+inoremap rst <esc>
+inoremap lkj <esc>
+
+set nobackup
+set noswapfile
+set pastetoggle=F12
