@@ -14,4 +14,9 @@ sudo apt-get --assume-yes install\
     python3-pip\
     dropbox\
     python-gpgme\
+    vim-nox\
+    vim-gtk\
+    vim-gnome\
+    vim-athena\
+    htop\
     steam

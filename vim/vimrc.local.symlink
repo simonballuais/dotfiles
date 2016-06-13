@@ -1,10 +1,32 @@
-inoremap <S-Tab> <Esc>
+let mapleader = ","
 
-nnoremap c h
-nnoremap h c
-nnoremap t j
-nnoremap j t
-nnoremap s k
-nnoremap k s
-nnoremap r l
-nnoremap l r
+inoremap <S-Tab> <Esc>
+nnoremap <S-Space> <C-]>
+nnoremap <S-BS> <C-O>
+nnoremap é w
+nnoremap É W
+nnoremap dé dw
+nnoremap yé yw
+nnoremap cé cw
+
+inoremap <c-U> <esc>viwUea
+nnoremap <c-U> <esc>bveUel
+
+nnoremap <leader>ev :vsplit ~/.dotfiles/vim/vimrc.local.symlink<cr>
+nnoremap <leader>sv :source ~/.dotfiles/vim/vimrc.local.symlink<cr>
+
+iabbrev @@ simon.ballu@gmail.com
+
+nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
+
+autocmd FileType javascript nnoremap <buffer> <leader>c I//<esc>
+autocmd FileType python     nnoremap <buffer> <leader>c I#<esc>
+
+onoremap p i(
+onoremap ib i[
+
+onoremap lp :<c-u>normal! F)vi(<cr>
+onoremap np :<c-u>normal! f(vi)<cr>
+onoremap lb :<c-u>normal! F]vi[<cr>
+onoremap nb :<c-u>normal! f[vi]<cr>
