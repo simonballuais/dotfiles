@@ -6,6 +6,7 @@ alias gits="git status"
 alias count="ls -l | wc -l"
 alias kek="ssh -p 80 simon@86.253.104.184"
 alias eb="vi ~/.bashrc"
+alias g="git"
 
 if [ -d "$HOME/dropbox/py"  ] ; then
     PATH="$PATH:$HOME/dropbox/py"
