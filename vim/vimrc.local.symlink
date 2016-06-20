@@ -54,3 +54,5 @@ inoremap lkj <esc>
 set nobackup
 set noswapfile
 set pastetoggle=F12
+
+set nofoldenable
