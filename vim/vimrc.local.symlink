@@ -3,11 +3,8 @@ let mapleader = ","
 nnoremap <tab> <c-i>
 nnoremap <s-tab> <c-o>
 
-nnoremap <c-tab> :bnext<CR>
-nnoremap <c-s-tab> :bprevious<CR>
-
-nnoremap <S-Space> <C-]>
-nnoremap <S-BS> <C-O>
+nnoremap S <C-]>
+nnoremap R <C-[>
 
 nnoremap t j
 nnoremap s k
