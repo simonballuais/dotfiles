@@ -6,8 +6,7 @@ nnoremap <s-tab> <c-o>
 nnoremap <c-tab> :bnext<CR>
 nnoremap <c-s-tab> :bprevious<CR>
 
-nnoremap <S-Space> <C-]>
-nnoremap <S-BS> <C-O>
+nnoremap S <C-]>
 
 nnoremap t j
 nnoremap s k
@@ -48,8 +47,8 @@ onoremap nb :<c-u>normal! f[vi]<cr>
 onoremap lc :<c-u>normal! F}vi{<cr>
 onoremap nc :<c-u>normal! f{vi}<cr>
 
-inoremap rst <esc>
 inoremap lkj <esc>
+inoremap gq <esc>
 
 set nobackup
 set noswapfile
