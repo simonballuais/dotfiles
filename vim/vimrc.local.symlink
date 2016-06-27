@@ -10,6 +10,8 @@ nnoremap S <C-]>
 
 nnoremap t j
 nnoremap s k
+vnoremap t j
+vnoremap s k
 
 nnoremap é w
 nnoremap É W
@@ -22,6 +24,9 @@ nnoremap daé daw
 nnoremap dié dis
 nnoremap yaé yaw
 nnoremap yié yis
+
+nnoremap $ *
+nnoremap * $
 
 inoremap <c-U> <esc>viwUea
 nnoremap <c-U> <esc>bveUel
