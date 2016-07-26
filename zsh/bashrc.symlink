@@ -5,9 +5,11 @@ alias gitl="git log --all --decorate --oneline --graph"
 alias gits="git status"
 alias count="ls -l | wc -l"
 alias kek="ssh -p 80 simon@86.253.104.184"
-alias eb="vi ~/.bashrc"
+alias eb="vim ~/.bashrc"
+alias ev="vim ~/.vimrc"
 alias g="git"
 alias ct="ctags -r"
+alias sss="source ~/.bashrc"
 
 if [ -d "$HOME/dropbox/py"  ] ; then
     PATH="$PATH:$HOME/dropbox/py"
