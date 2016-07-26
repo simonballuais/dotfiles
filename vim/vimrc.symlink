@@ -17,6 +17,9 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'kien/ctrlp.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'spf13/PIV'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'Konfekt/FastFold'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -196,7 +199,7 @@ filetype plugin indent on    " required
         function! s:my_cr_function()
           "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
           " For no inserting <CR> key.
-          return pumvisible() ? "\<C-y>" : ""
+          return pumvisible() ? "\<C-y><TAB>" : "\<TAB>"
         endfunction
         " <TAB>: completion.
         "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -207,7 +210,7 @@ filetype plugin indent on    " required
         "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
         " AutoComplPop like behavior.
-        "let g:neocomplete#enable_auto_select = 1
+        let g:neocomplete#enable_auto_select = 1
 
         " Enable omni completion.
         autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -227,6 +230,28 @@ filetype plugin indent on    " required
         " For perlomni.vim setting.
         " https://github.com/c9s/perlomni.vim
         let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+    " }
+
+    " NeoSnippet {
+
+        " Plugin key-mappings.
+        imap <C-t>     <Plug>(neosnippet_expand_or_jump)
+        smap <C-t>     <Plug>(neosnippet_expand_or_jump)
+        xmap <C-t>     <Plug>(neosnippet_expand_target)
+
+        " SuperTab like snippets behavior.
+        "imap <expr><TAB>
+        " \ pumvisible() ? "\<C-n>" :
+        " \ neosnippet#expandable_or_jumpable() ?
+        " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+        imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+        " For conceal markers.
+        if has('conceal')
+          set conceallevel=2 concealcursor=niv
+        endif
+
     " }
 
     nnoremap S <C-]>
@@ -287,5 +312,5 @@ filetype plugin indent on    " required
 
     inoremap <c-r> <Plug>(snipMateNextOrTrigger)
     let g:spf13_no_omni_complete = 1
-
+    
 " }
