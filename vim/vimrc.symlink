@@ -45,7 +45,6 @@ filetype plugin indent on    " required
     endif
 
     set history=1000                    " Store a ton of history (default is 20)
-    set spell                           " Spell checking on
     set hidden                          " Allow buffer switching without saving
     set iskeyword-=.                    " '.' is an end of word designator
     set iskeyword-=#                    " '#' is an end of word designator
@@ -71,22 +70,14 @@ filetype plugin indent on    " required
     " }
 
     " Vim UI {
-        if !exists('g:override_spf13_bundles') && filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
-            let g:solarized_termcolors=256
-            let g:solarized_termtrans=1
-            let g:solarized_contrast="normal"
-            let g:solarized_visibility="normal"
-            color solarized             " Load a colorscheme
-        endif
 
+        color monokai
         set tabpagemax=15               " Only show 15 tabs
         set showmode                    " Display the current mode
-
         set cursorline                  " Highlight current line
 
         highlight clear SignColumn      " SignColumn should match background
         highlight clear LineNr          " Current line number row will have same background color in relative mode
-        "highlight clear CursorLineNr    " Remove highlight color from current line number
 
         if has('cmdline_info')
             set ruler                   " Show the ruler
@@ -195,14 +186,14 @@ filetype plugin indent on    " required
 
         " Recommended key-mappings.
         " <CR>: close popup and save indent.
-        inoremap <silent> <TAB> <C-r>=<SID>my_cr_function()<CR>
-        function! s:my_cr_function()
+        "inoremap <silent> <TAB> <C-r>=<SID>my_cr_function()<CR>
+        "function! s:my_cr_function()
           "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
           " For no inserting <CR> key.
-          return pumvisible() ? "\<C-y><TAB>" : "\<TAB>"
-        endfunction
+          "return pumvisible() ? "\<C-y><TAB>" : "\<TAB>"
+        "endfunction
         " <TAB>: completion.
-        "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+        inoremap <expr><s-tab>  pumvisible() ? "\<C-y>" : "\<Space>"
         " <C-h>, <BS>: close popup and delete backword char.
         inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
         inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
@@ -252,6 +243,8 @@ filetype plugin indent on    " required
           set conceallevel=2 concealcursor=niv
         endif
 
+        let g:neosnippet#snippets_directory='~/.dotfiles/vim/snippets'
+
     " }
 
     nnoremap S <C-]>
@@ -280,6 +273,7 @@ filetype plugin indent on    " required
     nnoremap <c-U> <esc>bveUel
 
     nnoremap <leader>ev :vsplit ~/.dotfiles/vim/vimrc.symlink<cr>
+    nnoremap <leader>es :vsplit ~/.vim/bundle/neosnippet-snippets/neosnippets/php.snip<cr>
     nnoremap <leader>sv :source ~/.dotfiles/vim/vimrc.symlink<cr>
 
     iabbrev @@ simon.ballu@gmail.com
@@ -308,9 +302,13 @@ filetype plugin indent on    " required
     set noswapfile
     set pastetoggle=F12
 
+    au WinEnter * set nofen
+    au WinLeave * set nofen
     set nofoldenable
+    set foldmethod=manual
 
     inoremap <c-r> <Plug>(snipMateNextOrTrigger)
     let g:spf13_no_omni_complete = 1
-    
+
 " }
+
