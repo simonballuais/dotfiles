@@ -1,21 +1,168 @@
+snippet     php
+    <?php
+    ${0}
+    ?>
+
 snippet     pf
-abbr        public function
-    public function ${1}(${2})
+options     indent
+    public function ${1:functionName}(${2})
     {
-        ${3}
+        ${0}
     }
 
 snippet     for
-abbr        for
-    for($i = 0; $i < ${1}; $i++)
+options     indent
+    for($i = 0; $i < ${1:y}; $i++)
     {
-        ${2}
+        ${0}
     }
 
 snippet     route
-abbr        route
+options     indent
     /**
-     * @Route("${1}")
-        */
-    ${2}
+     * @Route("${1:route/to/match}")
+    */
+    ${0}
+
+snippet     droute
+options     indent
+    /**
+     * @Route("${1:route/to/match}", defaults={${2:defaults}})
+    */
+    ${0}
+
+snippet     nroute
+options     indent
+    /**
+     * @Route("${1:route/to/match}", name="${2:name}")
+    */
+    ${0}
+
+snippet     class
+    class ${1:className}
+    {
+        ${0}
+    }
+
+snippet     classe
+    class ${1:className} extends ${2:parentClass}
+    {
+        ${0}
+    }
+
+snippet     controller
+    <?php
+    namespace AppBundle\Controller;
+
+    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+    use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+    use Symfony\Component\HttpFoundation\Request;
+    use Symfony\Component\HttpFoundation\Response;
+
+
+    /**
+     * Class ${1:MyController}
+     * @package ${2:AppBundle\Controller\Admin}
+     */
+    class $1 extends Controller
+    {
+        ${0}
+    }
+    ?>
+
+
+
+
+snippet     entity
+options     indent
+    /**
+     * @ORM\Entity
+     * @ORM\Table(name="${1:tableName}")
+     */
+    class ${2:className}
+    {
+        ${0}
+    }
+
+snippet     column
+options     indent
+    /**
+     * @ORM\Column(type="${1:columnType}")
+     */
+    private $${2:attributeName};
+
+snippet     pk
+options     indent
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    ${0}
+
+snippet     mto
+options     indent
+    /**
+     * @ORM\ManyToOne(targetEntity="${1}", inversedBy="${2}")
+     * @ORM\JoinColumn(name="${3}", referencedColumnName="${4}")
+     */
+     private $${5};
+
+snippet     otm
+options     indent
+    /**
+     * @ORM\OneToMany(targetEntity="${1}", mappedBy="${2}")
+     */
+    private $${3};
+    $this->$3 = new ArrayCollection();
+    ${0}
+
+snippet     oto
+    /**
+     * @OneToOne(targetEntity="${1}", mappedBy="${2}")
+     */
+    private $${3};
+    ${0}
+
+snippet     join
+     /**
+     * @OneToOne(targetEntity="${1}", inversedBy="${2}")
+     * @JoinColumn(name="${3}", referencedColumnName="${4}")
+     */
+    private $${5};
+    ${0}
+
+
+
+
+snippet     udoctrine
+    use Doctrine\ORM\Mapping as ORM;
+    ${0}
+
+snippet     uresponse
+    use Symfony\Component\HttpFoundation\Response;
+    ${0}
+
+snippet     uroute
+    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+    ${0}
+
+snippet     ucontroller
+    use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+    ${0}
+
+snippet     urequest
+    use Symfony\Component\HttpFoundation\Request;
+    ${0}
+
+snippet     uform
+    use Symfony\Component\Form\Extension\Core\Type\TextType;
+    use Symfony\Component\Form\Extension\Core\Type\DateType;
+    use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+    ${0}
+
+snippet     uarray
+    use Doctrine\Common\Collections\ArrayCollection;
+    ${0}
 

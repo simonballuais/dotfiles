@@ -134,7 +134,7 @@ filetype plugin indent on    " required
         " To disable the stripping of whitespace, add the following to your
         " .vimrc.before.local file:
         "   let g:spf13_keep_trailing_whitespace = 1
-        autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
+        "autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
         "autocmd FileType go autocmd BufWritePre <buffer> Fmt
         autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
         autocmd FileType haskell,puppet,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
@@ -273,7 +273,8 @@ filetype plugin indent on    " required
     nnoremap <c-U> <esc>bveUel
 
     nnoremap <leader>ev :vsplit ~/.dotfiles/vim/vimrc.symlink<cr>
-    nnoremap <leader>es :vsplit ~/.vim/bundle/neosnippet-snippets/neosnippets/php.snip<cr>
+    nnoremap <leader>es :vsplit ~/.dotfiles/vim/snippets/php.snip<cr>
+    nnoremap <leader>ets :vsplit ~/.dotfiles/vim/snippets/twig.snip<cr>
     nnoremap <leader>sv :source ~/.dotfiles/vim/vimrc.symlink<cr>
 
     iabbrev @@ simon.ballu@gmail.com
@@ -294,6 +295,8 @@ filetype plugin indent on    " required
     onoremap nb :<c-u>normal! f[vi]<cr>
     onoremap lc :<c-u>normal! F}vi{<cr>
     onoremap nc :<c-u>normal! f{vi}<cr>
+    onoremap l' :<c-u>normal! F'vi'<cr>
+    onoremap n' :<c-u>normal! f'vi'<cr>
 
     inoremap lkj <esc>
     inoremap gq <esc>
