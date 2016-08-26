@@ -298,6 +298,8 @@ filetype plugin indent on    " required
     onoremap l' :<c-u>normal! F'vi'<cr>
     onoremap n' :<c-u>normal! f'vi'<cr>
 
+    nnoremap T i<cr><esc>
+
     inoremap lkj <esc>
     inoremap gq <esc>
 
