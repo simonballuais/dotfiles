@@ -300,6 +300,13 @@ filetype plugin indent on    " required
 
     nnoremap T i<cr><esc>
 
+    nnoremap ( F(
+    nnoremap ) f)
+    nnoremap { F{
+    nnoremap } f}
+    nnoremap [ F[
+    nnoremap ] f]
+
     inoremap lkj <esc>
     inoremap gq <esc>
 

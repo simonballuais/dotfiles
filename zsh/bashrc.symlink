@@ -11,6 +11,7 @@ alias ev="vim ~/.vimrc"
 alias g="git"
 alias ct="ctags -r"
 alias sss="source ~/.bashrc"
+alias tt="tree -L 3"
 
 if [ -d "$HOME/dropbox/py"  ] ; then
     PATH="$PATH:$HOME/dropbox/py"

@@ -4,13 +4,13 @@ options     indent
 
 snippet     sblock
 options     indent
-    {% block ${1} %}${2}{% endblock %}
+    {% block ${1} %}${2}{% endblock $1 %}
 
 snippet     block
 options     indent
     {% block ${1} %}
         ${2}
-    {% endblock %}
+    {% endblock $1 %}
 
 snippet     for
 options     indent
@@ -55,3 +55,6 @@ snippet     h3
 options     indent
     <h3>${0}</h3>
 
+snippet     link
+options     indent
+    <link rel="${1}" href="{{ asset('${2}') }} />
