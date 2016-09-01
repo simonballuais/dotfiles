@@ -160,11 +160,11 @@ filetype plugin indent on    " required
         " Disable AutoComplPop.
         let g:acp_enableAtStartup = 0
         " Use neocomplete.
-        let g:neocomplete#enable_at_startup = 1
+        let g:neocomplete#enable_at_startup = 0
         " Use smartcase.
         let g:neocomplete#enable_smart_case = 1
         " Set minimum syntax keyword length.
-        let g:neocomplete#sources#syntax#min_keyword_length = 2
+        " let g:neocomplete#sources#syntax#min_keyword_length = 2
         let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
         " Define dictionary.
@@ -214,7 +214,7 @@ filetype plugin indent on    " required
         if !exists('g:neocomplete#sources#omni#input_patterns')
           let g:neocomplete#sources#omni#input_patterns = {}
         endif
-        let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+        "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
         "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
         "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
@@ -307,6 +307,8 @@ filetype plugin indent on    " required
     nnoremap [ F[
     nnoremap ] f]
 
+    nnoremap E <c-]>
+
     inoremap lkj <esc>
     inoremap gq <esc>
 
@@ -318,6 +320,8 @@ filetype plugin indent on    " required
     au WinLeave * set nofen
     set nofoldenable
     set foldmethod=manual
+
+    set tags=./tags;/home/simon/Dropbox/codingZ/php/game/
 
     inoremap <c-r> <Plug>(snipMateNextOrTrigger)
     let g:spf13_no_omni_complete = 1

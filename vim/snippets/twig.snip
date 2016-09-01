@@ -38,6 +38,16 @@ snippet     aa
 options     indent
     <a href="{{ path('${1}') }}">${0}</a>
 
+snippet     aaa
+options     indent
+    <a href="${1}"${2}>${0}</a>
+
+
+snippet     ul
+options     indent
+    <ul>
+        ${0}
+    </ul>
 
 snippet     br
 options     indent
@@ -57,4 +67,31 @@ options     indent
 
 snippet     link
 options     indent
-    <link rel="${1}" href="{{ asset('${2}') }} />
+    <link rel="${1}" href="{{ asset('${2}') }}" />
+
+snippet     table
+abbr        table
+options     indent
+    <table>
+        ${0}
+    </table>
+
+snippet     tr
+options     indent
+    <tr>
+        ${0}
+    </tr>
+
+snippet     th
+options     indent
+    <th>${0}</th>
+
+snippet     td
+options     indent
+    <td>${0}</td>
+
+snippet     fform
+options     indent
+    {{ form_start(${1}) }}
+        <input type="submit" value="${2}" />
+    {{ form_end($1) }}

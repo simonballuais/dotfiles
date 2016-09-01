@@ -10,10 +10,48 @@ options     indent
         ${0}
     }
 
+snippet     psf
+options     indent
+    public static function ${1:functionName}(${2})
+    {
+        ${0}
+    }
+
+snippet     ctor
+options     indent
+    public function __construct(${1})
+    {
+        ${0}
+    }
+
+snippet     ps
+options     indent
+    public static $${1};
+
+snippet     pu
+options     indent
+    public $${1};
+
+snippet     pr
+options     indent
+    private $${1};
+
 snippet     for
 options     indent
-    for($i = 0; $i < ${1:y}; $i++)
+    for ($i = ${1:0}; $i < ${2:max}; $i++)
     {
+        ${0}
+    }
+
+snippet     fore
+options     indent
+    foreach ($${1} as $${2}) {
+        ${0}
+    }
+
+snippet     if
+options     indent
+    if (${1}) {
         ${0}
     }
 
@@ -36,6 +74,11 @@ options     indent
     /**
      * @Route("${1:route/to/match}", name="${2:name}")
     */
+    ${0}
+
+snippet     em
+options     indent
+    $em = $this->getDoctrine()->getManager();
     ${0}
 
 snippet     class
@@ -88,6 +131,13 @@ snippet     column
 options     indent
     /**
      * @ORM\Column(type="${1:columnType}")
+     */
+    private $${2:attributeName};
+
+snippet     scolumn
+options     indent
+    /**
+     * @ORM\Column(type="string", length=${1})
      */
     private $${2:attributeName};
 
@@ -165,4 +215,22 @@ snippet     uform
 snippet     uarray
     use Doctrine\Common\Collections\ArrayCollection;
     ${0}
+
+snippet     unotification
+    use Avanzu\AdminThemeBundle\Model\NotificationInterface as ThemeNotification;
+
+snippet     uuser
+    use Symfony\Component\Security\Core\User\UserInterface;
+
+snippet     ns
+options     indent
+    namespace ${0};
+
+snippet     flash
+options     indent
+        $this->get('session')->getFlashBag()->add(
+            '${1}',
+            '${2}'
+        );
+        ${0}
 
