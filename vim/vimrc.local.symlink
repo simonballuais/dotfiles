@@ -24,6 +24,8 @@ nnoremap daé daw
 nnoremap dié dis
 nnoremap yaé yaw
 nnoremap yié yis
+inoremap <c-é> <c-w>
+inoremap <c-É> <c-W>
 
 nnoremap $ *
 nnoremap * $
@@ -60,3 +62,4 @@ set noswapfile
 set pastetoggle=F12
 
 set nofoldenable
+set wrap
