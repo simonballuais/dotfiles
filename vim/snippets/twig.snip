@@ -1,0 +1,60 @@
+snippet     asset
+options     indent
+    {{ asset('${1}') }}${2}
+
+snippet     sblock
+options     indent
+    {% block ${1} %}${2}{% endblock $1 %}
+
+snippet     block
+options     indent
+    {% block ${1} %}
+        ${2}
+    {% endblock $1 %}
+
+snippet     for
+options     indent
+    {% for ${1} in ${2} %}
+        ${3}
+    {% endfor %}
+
+snippet     %%
+options     indent
+    {% ${1} %}
+
+snippet     {{
+options     indent
+    {{ ${1} }}
+
+snippet     ttag
+options     indent
+    <${1} ${2}>${0}</$1>
+
+snippet     tag
+options     indent
+    <${1}>${0}</$1>
+
+snippet     aa
+options     indent
+    <a href="{{ path('${1}') }}">${0}</a>
+
+
+snippet     br
+options     indent
+    <br />${0}
+
+snippet     h1
+options     indent
+    <h1>${0}</h1>
+
+snippet     h2
+options     indent
+    <h2>${0}</h2>
+
+snippet     h3
+options     indent
+    <h3>${0}</h3>
+
+snippet     link
+options     indent
+    <link rel="${1}" href="{{ asset('${2}') }} />
