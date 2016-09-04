@@ -95,3 +95,7 @@ options     indent
     {{ form_start(${1}) }}
         <input type="submit" value="${2}" />
     {{ form_end($1) }}
+
+snippet     log
+options     indent
+    $this->get('logger')->info('${0}');
