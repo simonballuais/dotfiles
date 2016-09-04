@@ -152,5 +152,11 @@ then
   fi
 fi
 
+echo '  Linking GIMP shortcut file'
+for D in ~/.gimp*; do
+    rm "$D/menurc" || true
+    ln -s ~/.dotfiles/gimp/menurc "$D/menurc"
+done
+
 echo ''
 echo '  All installed!'
