@@ -1,4 +1,5 @@
 let mapleader = ","
+let maplocalleader = "à"
 
 " Vundle {
 
@@ -20,6 +21,8 @@ Plugin 'spf13/PIV'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Konfekt/FastFold'
+Plugin 'othree/xml.vim'
+Plugin 'Townk/vim-autoclose'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -311,6 +314,8 @@ filetype plugin indent on    " required
 
     inoremap lkj <esc>
     inoremap gq <esc>
+
+    nnoremap + %
 
     set nobackup
     set noswapfile
