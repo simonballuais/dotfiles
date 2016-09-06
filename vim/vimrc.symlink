@@ -23,6 +23,7 @@ Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Konfekt/FastFold'
 Plugin 'othree/xml.vim'
 Plugin 'Townk/vim-autoclose'
+Plugin 'shawncplus/phpcomplete.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -163,7 +164,7 @@ filetype plugin indent on    " required
         " Disable AutoComplPop.
         let g:acp_enableAtStartup = 0
         " Use neocomplete.
-        let g:neocomplete#enable_at_startup = 0
+        let g:neocomplete#enable_at_startup = 1
         " Use smartcase.
         let g:neocomplete#enable_smart_case = 1
         " Set minimum syntax keyword length.
@@ -317,16 +318,23 @@ filetype plugin indent on    " required
 
     nnoremap + %
 
+    nnoremap Y y$
+
     set nobackup
     set noswapfile
     set pastetoggle=F12
 
     au WinEnter * set nofen
     au WinLeave * set nofen
+
     set nofoldenable
     set foldmethod=manual
-
     set tags=./tags;/home/simon/Dropbox/codingZ/php/game/
+    set virtualedit=all
+    set wildmenu
+    set wildmode=list:longest,full
+    set scrolljump=5
+    set scrolloff=3
 
     inoremap <c-r> <Plug>(snipMateNextOrTrigger)
     let g:spf13_no_omni_complete = 1

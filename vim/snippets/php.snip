@@ -36,6 +36,22 @@ snippet     pr
 options     indent
     private $${1};
 
+snippet     gs
+options     indent
+    private $${1};
+
+    public get$1()
+    {
+        return $this->$1;
+    }
+
+    public set$1($$1)
+    {
+        $this->$1 * $$1;
+        return $this;
+    }
+    ${0}
+
 snippet     for
 options     indent
     for ($i = ${1:0}; $i < ${2:max}; $i++)
