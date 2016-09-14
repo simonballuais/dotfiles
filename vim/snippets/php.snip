@@ -26,15 +26,15 @@ options     indent
 
 snippet     ps
 options     indent
-    public static $${1};
+    public static $${0};
 
 snippet     pu
 options     indent
-    public $${1};
+    public $${0};
 
 snippet     pr
 options     indent
-    private $${1};
+    private $${0};
 
 snippet     gs
 options     indent
@@ -74,23 +74,20 @@ options     indent
 snippet     route
 options     indent
     /**
-     * @Route("${1:route/to/match}")
+     * @Route("${0:route/to/match}")
     */
-    ${0}
 
 snippet     droute
 options     indent
     /**
      * @Route("${1:route/to/match}", defaults={${2:defaults}})
     */
-    ${0}
 
 snippet     nroute
 options     indent
     /**
      * @Route("${1:route/to/match}", name="${2:name}")
     */
-    ${0}
 
 snippet     em
 options     indent
@@ -128,9 +125,6 @@ snippet     controller
         ${0}
     }
     ?>
-
-
-
 
 snippet     entity
 options     indent
@@ -245,10 +239,9 @@ options     indent
 snippet     flash
 options     indent
         $this->get('session')->getFlashBag()->add(
-            '${1}',
-            '${2}'
+            '${0}',
+            '${1}'
         );
-        ${0}
 
 snippet     log
 options     indent
@@ -257,4 +250,14 @@ options     indent
 snippet     vd
 options     indent
     var_dump(${0});
+
+snippet     em
+options     indent
+    $em = $this->getDoctrine()->getManager();
+
+snippet     repo
+options     indent
+    $em = $this->getDoctrine()->getManager();
+    $repo = $em->getRepository("${0}");
+
 

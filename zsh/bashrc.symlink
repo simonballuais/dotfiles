@@ -15,6 +15,7 @@ alias php="php5"
 alias t="tree -L 2"
 alias tt="tree -L 3"
 alias ttt="tree -L 4"
+alias m="mkdir"
 
 if [ -d "$HOME/dropbox/py"  ] ; then
     PATH="$PATH:$HOME/dropbox/py"
