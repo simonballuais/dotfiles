@@ -40,14 +40,14 @@ snippet     gs
 options     indent
     private $${1};
 
-    public get$1()
+    public function get$1()
     {
         return $this->$1;
     }
 
-    public set$1($$1)
+    public function set$1($$1)
     {
-        $this->$1 * $$1;
+        $this->$1 = $$1;
         return $this;
     }
     ${0}
@@ -87,6 +87,14 @@ snippet     nroute
 options     indent
     /**
      * @Route("${1:route/to/match}", name="${2:name}")
+    */
+
+snippet     eroute
+options     indent
+    /**
+     * @Route("${1:route/to/match}",
+     *        options = { "expose": true },
+     *        name="${2:name}")
     */
 
 snippet     em

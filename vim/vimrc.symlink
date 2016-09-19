@@ -330,7 +330,6 @@ filetype plugin indent on    " required
     set nofoldenable
     set foldmethod=manual
     set tags=./tags;/home/simon/Dropbox/codingZ/php/game/
-    set virtualedit=all
     set wildmenu
     set wildmode=list:longest,full
     set scrolljump=5
