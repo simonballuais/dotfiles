@@ -160,7 +160,6 @@ done
 
 # Packages
 sudo add-apt-repository ppa:me-davidsansome/clementine
-sudo add-apt-repository ppa:gstreamer-developers/ppa
 
 sudo apt-get update
 
