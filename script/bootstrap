@@ -159,7 +159,7 @@ for D in ~/.gimp*; do
 done
 
 # Packages
-sudo add-apt-repository ppa:me-davidsansome/clementine --assume-yes
+sudo add-apt-repository ppa:me-davidsansome/clementine --yes
 
 sudo apt-get update
 
