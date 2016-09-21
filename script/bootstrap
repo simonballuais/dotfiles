@@ -193,12 +193,12 @@ sudo cp ~/.dotfiles/keyboard/fr /usr/share/X11/xkb/symbols | true
 # VIM
 sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common | true
 sudo apt-get build-dep vim-gnome | true
-sudo apt-get install liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev
+sudo apt-get install liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev --assume-yes
 
 sudo rm -rf /usr/local/share/vim | true
 sudo rm /usr/bin/vim | true
-sudo mkdir /usr/include/lua5.1/include
-sudo mv /usr/include/lua5.1/*.h /usr/include/lua5.1/include/
+sudo mkdir /usr/include/lua5.1/include | true
+sudo mv /usr/include/lua5.1/*.h /usr/include/lua5.1/include/ | true
 sudo ln -s /usr/bin/luajit-2.0.0-beta9 /usr/bin/luajit | true
 
 cd ~
@@ -222,7 +222,7 @@ make
 sudo make install
 
 # Purge
-sudo aptitude purge banshee brasero brasero-common brasero-cdrkit hexchat hexchat-common espaeak espeak-data libespeak1 libsonic0 libspeechd2 python3-speechd speech-dispatcher speech-dispatcher-audio-plugins gnome-orca virtualbox-guest-utils virtualbox-guest-dkms virtualbox-guest-x11 adobe-flash-properties-gtk mate-screensaver mate-screensaver-common  tomboy toshset brltty printer-driver-c2esp printer-driver-min12xxw printer-driver-ptouch printer-driver-sag-gdi printer-driver-splix printer-driver-brlaser mono-runtime-common avahi-daemon xscreensaver-data-extra xscreensaver-data xscreensaver-gl-extra xscreensaver-gl java-common xplayer pix pix-data
+sudo aptitude purge banshee brasero brasero-common brasero-cdrkit hexchat hexchat-common espaeak espeak-data libespeak1 libsonic0 libspeechd2 python3-speechd speech-dispatcher speech-dispatcher-audio-plugins gnome-orca virtualbox-guest-utils virtualbox-guest-dkms virtualbox-guest-x11 adobe-flash-properties-gtk mate-screensaver mate-screensaver-common  tomboy toshset brltty printer-driver-c2esp printer-driver-min12xxw printer-driver-ptouch printer-driver-sag-gdi printer-driver-splix printer-driver-brlaser mono-runtime-common avahi-daemon xscreensaver-data-extra xscreensaver-data xscreensaver-gl-extra xscreensaver-gl java-common xplayer pix pix-data | true
 
 echo ''
 echo '  All installed!'
