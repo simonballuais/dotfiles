@@ -159,7 +159,7 @@ for D in ~/.gimp*; do
 done
 
 # Packages
-sudo add-apt-repository ppa:me-davidsansome/clementine
+sudo add-apt-repository ppa:me-davidsansome/clementine --assume-yes
 
 sudo apt-get update
 
@@ -187,16 +187,16 @@ sudo apt-get --assume-yes install\
     audacity compiz compizconfig-settings-manager compiz-fusion-bcop compiz-plugins-default compiz-plugins-extra compiz-plugins-main compiz-plugins-main-default smart-notifier gsmartcontrol
 
 # Keyboard layout
-sudo cp ~/.dotfiles/keyboard/evdev.xml /usr/share/X11/xkb/rules
-sudo cp ~/.dotfiles/keyboard/fr /usr/share/X11/xkb/symbols
+sudo cp ~/.dotfiles/keyboard/evdev.xml /usr/share/X11/xkb/rules | true
+sudo cp ~/.dotfiles/keyboard/fr /usr/share/X11/xkb/symbols | true
 
 # VIM
-sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common
-sudo apt-get build-dep vim-gnome
+sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common | true
+sudo apt-get build-dep vim-gnome | true
 sudo apt-get install liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev
 
-sudo rm -rf /usr/local/share/vim
-sudo rm /usr/bin/vim
+sudo rm -rf /usr/local/share/vim | true
+sudo rm /usr/bin/vim | true
 sudo mkdir /usr/include/lua5.1/include
 sudo mv /usr/include/lua5.1/*.h /usr/include/lua5.1/include/
 sudo ln -s /usr/bin/luajit-2.0.0-beta9 /usr/bin/luajit
