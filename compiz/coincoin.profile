@@ -534,7 +534,7 @@ s0_click_to_focus = true
 s0_raise_on_click = true
 s0_autoraise = false
 s0_autoraise_delay = 500
-s0_focus_prevention_level = 1
+s0_focus_prevention_level = 0
 s0_focus_prevention_match = !(class=Polkit-gnome-authentication-agent-1) & !(class=MintMenu.py)
 s0_close_window_key = <Alt>F4
 s0_close_window_button = Disabled
@@ -736,12 +736,12 @@ s0_close_matches = ((type=Normal  | Notification | Utility | DropdownMenu  | Dia
 s0_close_options = ;;;
 s0_close_random_effects = 
 s0_minimize_effects = animation:Magic Lamp;
-s0_minimize_durations = 200;
+s0_minimize_durations = 350;
 s0_minimize_matches = (type=Normal | Dialog | ModalDialog | Unknown);
 s0_minimize_options = ;
 s0_minimize_random_effects = animation:Fade;
 s0_unminimize_effects = animation:Magic Lamp;
-s0_unminimize_durations = 300;
+s0_unminimize_durations = 350;
 s0_unminimize_matches = (type=Normal | Dialog | ModalDialog | Unknown);
 s0_unminimize_options = ;
 s0_unminimize_random_effects = animation:Zoom;
@@ -1129,9 +1129,9 @@ s0_initiate_edge =
 s0_initiate_all_key = Disabled
 s0_initiate_all_button = Disabled
 s0_initiate_all_edge = 
-s0_next_key = <Alt>Tab
+s0_next_key = <Shift><Alt>Tab
 s0_next_button = Disabled
-s0_prev_key = <Shift><Alt>Tab
+s0_prev_key = <Alt>Tab
 s0_prev_button = Disabled
 s0_next_all_key = <Alt><Super>Tab
 s0_next_all_button = Disabled
