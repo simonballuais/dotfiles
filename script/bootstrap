@@ -158,9 +158,9 @@ for D in ~/.gimp*; do
     ln -s ~/.dotfiles/gimp/menurc "$D/menurc" || true
 done
 
-# Packages
-sudo add-apt-repository ppa:me-davidsansome/clementine --yes
+exit
 
+# Packages
 sudo apt-get update
 
 sudo apt-get --assume-yes install\
@@ -189,25 +189,6 @@ sudo apt-get --assume-yes install\
 # Keyboard layout
 sudo cp ~/.dotfiles/keyboard/evdev.xml /usr/share/X11/xkb/rules | true
 sudo cp ~/.dotfiles/keyboard/fr /usr/share/X11/xkb/symbols | true
-
-# Natural scrolling
-sudo echo 'Section "InputClass"' >> /usr/share/X11/xorg.conf.d/60-synaptics-options.conf | true
-sudo echo '      Identifier "touchpad natural scrolling settings"' >> /usr/share/X11/xorg.conf.d/60-synaptics-options.conf | true
-sudo echo '      Driver "synaptics"' >> /usr/share/X11/xorg.conf.d/60-synaptics-options.conf | true
-sudo echo '      MatchIsTouchpad "on"' >> /usr/share/X11/xorg.conf.d/60-synaptics-options.conf | true
-sudo echo '      MatchDevicePath "dev/input/event*"' >> /usr/share/X11/xorg.conf.d/60-synaptics-options.conf | true
-sudo echo '      Option "VertScrollDelta" "-35"' >> /usr/share/X11/xorg.conf.d/60-synaptics-options.conf | true
-sudo echo '      Option "HorizScrollDelta" "-35"' >> /usr/share/X11/xorg.conf.d/60-synaptics-options.conf | true
-sudo echo 'EndSection' >> /usr/share/X11/xorg.conf.d/60-synaptics-options.conf | true
-
-sudo echo 'Section "InputClass"' >> /usr/share/X11/xorg.conf.d/50-synaptics-options.conf | true
-sudo echo '      Identifier "touchpad natural scrolling settings"' >> /usr/share/X11/xorg.conf.d/50-synaptics-options.conf | true
-sudo echo '      Driver "synaptics"' >> /usr/share/X11/xorg.conf.d/50-synaptics-options.conf | true
-sudo echo '      MatchIsTouchpad "on"' >> /usr/share/X11/xorg.conf.d/50-synaptics-options.conf | true
-sudo echo '      MatchDevicePath "dev/input/event*"' >> /usr/share/X11/xorg.conf.d/50-synaptics-options.conf | true
-sudo echo '      Option "VertScrollDelta" "-35"' >> /usr/share/X11/xorg.conf.d/50-synaptics-options.conf | true
-sudo echo '      Option "HorizScrollDelta" "-35"' >> /usr/share/X11/xorg.conf.d/50-synaptics-options.conf | true
-sudo echo 'EndSection' >> /usr/share/X11/xorg.conf.d/50-synaptics-options.conf | true
 
 # VIM
 sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common | true

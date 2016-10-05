@@ -1,22 +1,2 @@
-alias vi="vim"
-alias py='python3'
-alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep -E "state|to\ full|percentage"'
-alias q="exit"
-alias gitl="git log --all --decorate --oneline --graph"
-alias gits="git status"
-alias count="ls -l | wc -l"
-alias kek="ssh -p 80 simon@86.253.104.184"
-alias eb="vim ~/.bashrc"
-alias ev="vim ~/.vimrc"
-alias g="git"
-alias s="source ~/.bashrc"
-alias ct="ctags -R --fields=+aimlS --languages=php"
-alias php="php5"
-alias t="tree -L 2"
-alias tt="tree -L 3"
-alias ttt="tree -L 4"
-alias m="mkdir"
-
-if [ -d "$HOME/dropbox/py"  ] ; then
-    PATH="$PATH:$HOME/dropbox/py"
-fi
+source ~/.profile
+zsh

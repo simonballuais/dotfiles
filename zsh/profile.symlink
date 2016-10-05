@@ -1,0 +1,40 @@
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+
+alias vi="vim"
+alias py='python3'
+alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep -E "state|to\ full|percentage"'
+alias q="exit"
+alias gitl="git log --all --decorate --oneline --graph"
+alias gits="git status"
+alias count="ls -l | wc -l"
+alias kek="ssh -p 80 simon@86.253.104.184"
+alias eb="vim ~/.profile"
+alias ev="vim ~/.vimrc"
+alias g="git"
+alias s="source ~/.bashrc"
+alias ct="ctags -R --fields=+aimlS --languages=php"
+alias php="php5"
+alias t="tree -L 2"
+alias tt="tree -L 3"
+alias ttt="tree -L 4"
+alias m="mkdir"
+alias l="ls -al --color=auto"
+
+
+if [ -d "$HOME/dropbox/py"  ] ; then
+    PATH="$PATH:$HOME/dropbox/py"
+fi
