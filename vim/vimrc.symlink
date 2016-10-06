@@ -251,6 +251,12 @@ filetype plugin indent on    " required
 
     " }
 
+    " ctrlp {
+        let g:ctrlp_custom_ignore = {
+          \ 'dir':  'vendor',
+          \ }
+    " }
+
     nnoremap S <C-]>
 
     nnoremap t j

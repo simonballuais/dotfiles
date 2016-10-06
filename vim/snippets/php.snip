@@ -75,18 +75,21 @@ snippet     route
 options     indent
     /**
      * @Route("${0:route/to/match}")
+     * @Method({"GET"})
     */
 
 snippet     droute
 options     indent
     /**
      * @Route("${1:route/to/match}", defaults={${2:defaults}})
+     * @Method({"GET"})
     */
 
 snippet     nroute
 options     indent
     /**
      * @Route("${1:route/to/match}", name="${2:name}")
+     * @Method({"GET"})
     */
 
 snippet     eroute
@@ -95,6 +98,7 @@ options     indent
      * @Route("${1:route/to/match}",
      *        options = { "expose": true },
      *        name="${2:name}")
+     * @Method({"GET"})
     */
 
 snippet     em
