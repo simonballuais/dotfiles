@@ -21,6 +21,7 @@ alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep -E "stat
 alias q="exit"
 alias gitl="git log --all --decorate --oneline --graph"
 alias gits="git status"
+alias gitc="git checkout"
 alias count="ls -l | wc -l"
 alias kek="ssh -p 80 simon@86.253.104.184"
 alias eb="vim ~/.profile"
@@ -33,7 +34,6 @@ alias tt="tree -L 3"
 alias ttt="tree -L 4"
 alias m="mkdir"
 alias l="ls -al --color=auto"
-alias bower="/usr/bin/bower"
 
 
 
