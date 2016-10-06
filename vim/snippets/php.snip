@@ -205,7 +205,7 @@ options     indent
 snippet     mto
 options     indent
     /**
-     * @ORM\ManyToOne(targetEntity="${1}", inversedBy="${2}")
+     * @ORM\ManyToOne(targetEntity="${1}", inversedBy="${2}", cascade={"persist"})
      * @ORM\JoinColumn(name="${3}", referencedColumnName="${4}")
      */
      private $${5};
@@ -213,7 +213,7 @@ options     indent
 snippet     otm
 options     indent
     /**
-     * @ORM\OneToMany(targetEntity="${1}", mappedBy="${2}")
+     * @ORM\OneToMany(targetEntity="${1}", mappedBy="${2}", cascade={"persist"})
      */
     private $${3};
     $this->$3 = new ArrayCollection();

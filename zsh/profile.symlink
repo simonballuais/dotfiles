@@ -33,6 +33,8 @@ alias tt="tree -L 3"
 alias ttt="tree -L 4"
 alias m="mkdir"
 alias l="ls -al --color=auto"
+alias bower="/usr/bin/bower"
+
 
 
 if [ -d "$HOME/dropbox/py"  ] ; then
