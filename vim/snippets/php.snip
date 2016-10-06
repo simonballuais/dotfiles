@@ -134,8 +134,41 @@ snippet     controller
     }
     ?>
 
+snippet     command
+    <?php
+    namespace AppBundle\Command;
+
+    use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+    use Symfony\Component\Console\Input\InputInterface;
+    use Symfony\Component\Console\Output\OutputInterface;
+
+    class ${1:MyCommand} extends Command
+    {
+        protected function configure()
+        {
+            $this
+                ->setName('${1}')
+                ->setDescription('${2}')
+                ->setHelp('${3}')
+                ;
+        }
+
+        protected function execute(InputInterface $input, OutputInterface $output)
+        {
+            ${0}
+        }
+    }
+
+
 snippet     entity
 options     indent
+    <?php
+
+    namespace AppBundle\Entity;
+
+    use Doctrine\ORM\Mapping as ORM;
+
+
     /**
      * @ORM\Entity
      * @ORM\Table(name="${1:tableName}")
