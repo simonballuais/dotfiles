@@ -138,6 +138,26 @@ snippet     controller
     }
     ?>
 
+snippet     form
+    <?php
+    namespace AppBundle\Form;
+
+    use Symfony\Component\Form\AbstractType;
+    use Symfony\Component\Form\FormBuilderInterface;
+    use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
+    class ${1} extends AbstractType
+    {
+        public function buildForm(FormBuilderInterface $builder, array $options)
+        {
+            $builder
+                ->add('${0}')
+                ->add('save', SubmitType::class)
+            ;
+        }
+    }
+    ?>
+
 snippet     command
     <?php
     namespace AppBundle\Command;
@@ -243,6 +263,10 @@ snippet     join
 
 snippet     udoctrine
     use Doctrine\ORM\Mapping as ORM;
+    ${0}
+
+snippet     upaginator
+    use Doctrine\ORM\Tools\Pagination\Paginator;
     ${0}
 
 snippet     uresponse
