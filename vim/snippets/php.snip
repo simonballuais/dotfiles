@@ -252,15 +252,20 @@ snippet     oto
 
 snippet     mtm
     /**
-     * @ManyToMany(targetEntity="${1}")
-     * @JoinTable(name="${2}",
-     *      joinColumns={@JoinColumn(name="${3:nous}", referencedColumnName="${4:nous}")},
-     *      inverseJoinColumns={@JoinColumn(name="${5:eux}", referencedColumnName="${6:eux}")}
-     *      )
+     * @ManyToMany(targetEntity="${1}", inversedBy="${2}")
+     * @JoinTable(name="${3}")
      */
-    private $${7};
+    private $${4};
 
-    $this->$7 = new ArrayCollection();${0}
+    $this->$4 = new ArrayCollection();${0}
+
+snippet     mtmm
+    /**
+     * @ManyToMany(targetEntity="${1}", mappedBy="${2}")
+     */
+    private $${3};
+
+    $this->$3 = new ArrayCollection();${0}
 
 snippet     join
      /**
