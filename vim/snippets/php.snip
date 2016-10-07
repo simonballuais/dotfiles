@@ -118,6 +118,18 @@ snippet     classe
         ${0}
     }
 
+snippet      repo
+    <?php
+    namespace AppBundle\Entity;
+
+    use Doctrine\ORM\EntityRepository;
+
+    class ${1}Repository extends EntityRepository
+    {
+        ${0}
+    }
+    ?>
+
 snippet     controller
     <?php
     namespace AppBundle\Controller;
@@ -145,8 +157,9 @@ snippet     form
     use Symfony\Component\Form\AbstractType;
     use Symfony\Component\Form\FormBuilderInterface;
     use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+    use Symfony\Component\OptionsResolver\OptionsResolver;
 
-    class ${1} extends AbstractType
+    class ${1}Type extends AbstractType
     {
         public function buildForm(FormBuilderInterface $builder, array $options)
         {
@@ -158,9 +171,7 @@ snippet     form
 
         public function configureOptions(OptionsResolver $resolver)
         {
-            $resolver->setDefaults(array(
-                'data_class' => 'AppBundle\Entity\${2}',
-            ));
+            $resolver->setDefaults([ 'data_class' => 'AppBundle\Entity\\'.'$1']);
         }
     }
     ?>
