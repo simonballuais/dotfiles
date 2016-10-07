@@ -118,7 +118,7 @@ snippet     classe
         ${0}
     }
 
-snippet      repo
+snippet      repository
     <?php
     namespace AppBundle\Entity;
 
@@ -362,7 +362,7 @@ options     indent
 snippet     repo
 options     indent
     $em = $this->getDoctrine()->getManager();
-    $repo = $em->getRepository("${0}");
+    $repo = $em->getRepository("AppBundle:${0}");
 
 snippet     **
 options     indent
