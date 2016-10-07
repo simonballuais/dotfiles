@@ -250,6 +250,18 @@ snippet     oto
     private $${3};
     ${0}
 
+snippet     mtm
+    /**
+     * @ManyToMany(targetEntity="${1}")
+     * @JoinTable(name="${2}",
+     *      joinColumns={@JoinColumn(name="${3:nous}", referencedColumnName="${4:nous}")},
+     *      inverseJoinColumns={@JoinColumn(name="${5:eux}", referencedColumnName="${6:eux}")}
+     *      )
+     */
+    private $${7};
+
+    $this->$7 = new ArrayCollection();${0}
+
 snippet     join
      /**
      * @OneToOne(targetEntity="${1}", inversedBy="${2}")
