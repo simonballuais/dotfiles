@@ -72,6 +72,33 @@ options     indent
         ${0}
     </table>
 
+snippet     datatable
+abbr        datatable
+options     indent
+    $('#${1}').DataTable( {
+        "pagingType": "full_numbers",
+        "ordering": "true",
+        "info": "true",
+        "searching": "true",
+    } );
+    <table id="$1" class="table table-bordered table-hover dataTable" role="grid">
+        <thead>
+            <tr role="row">
+                <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Id">Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="sorting_1">coincoin</td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <th rowspan="1" colspan="1"> </th>
+                </tr>
+            </tfoot>
+        </tbody>
+    </table>
+
 snippet     tr
 options     indent
     <tr>
