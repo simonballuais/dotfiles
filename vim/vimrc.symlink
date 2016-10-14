@@ -276,6 +276,9 @@ filetype plugin indent on    " required
     nnoremap yaé yaw
     nnoremap yié yis
     nnoremap É caw
+    nnoremap dÉ dW
+    nnoremap yÉ yW
+    nnoremap cÉ cW
 
     " To erase word with current yank
     nnoremap <leader>p viwp<esc>byw

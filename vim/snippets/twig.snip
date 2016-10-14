@@ -123,3 +123,83 @@ options     indent
 snippet     log
 options     indent
     $this->get('logger')->info('${0}');
+
+snippet     modal
+options     indent
+    <div id="${1}" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">${2}</h4>
+          </div>
+          <div class="modal-body">
+            ${0}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+snippet     clog
+options     indent
+    console.log(${0});
+
+snippet     ajax
+options     indent
+    $.ajax({
+        type: "POST",
+        url: Routing.generate(${1}),
+        data: {
+            ${2} },
+        success: function(data, dataType) {
+            ${0}
+            });
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+            });
+        } });
+
+snippet     container
+options     indent
+    <div class="container">
+        ${0}
+    </div>
+
+snippet     row
+options     indent
+    <div class="row">
+        ${0}
+    </div>
+
+snippet     col
+options     indent
+    <div class="col-${1}-${2}">${0}</div>
+
+snippet     box
+options     indent
+    <div class="box">
+        ${0}
+    </div>
+
+snippet     boxh
+options     indent
+    <div class="box-header">
+        ${0}
+    </div>
+
+snippet     boxt
+options     indent
+    <div class="box-title">
+        ${0}
+    </div>
+
+snippet     boxb
+options     indent
+    <div class="box-body">
+        ${0}
+    </div>

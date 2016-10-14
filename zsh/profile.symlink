@@ -35,8 +35,6 @@ alias ttt="tree -L 4 -C"
 alias m="mkdir"
 alias l="ls -al --color=auto"
 
-function rp { realpath "$1" | xclip -selection c; }
-export -f rp
 
 
 
