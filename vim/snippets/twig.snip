@@ -189,17 +189,19 @@ options     indent
 snippet     boxh
 options     indent
     <div class="box-header">
-        ${0}
+        <h3 class="box-title">${0}</h3>
     </div>
 
 snippet     boxt
 options     indent
-    <div class="box-title">
-        ${0}
-    </div>
+    <h3 class="box-title">${0}</h3>
 
 snippet     boxb
 options     indent
     <div class="box-body">
         ${0}
     </div>
+
+snippet     alert
+options     indent
+    <div class="alert alert-${1}" role="alert">${0}</div>

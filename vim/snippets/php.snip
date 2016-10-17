@@ -120,7 +120,7 @@ snippet     classe
 
 snippet      repository
     <?php
-    namespace AppBundle\Entity;
+    namespace AppBundle\Repository;
 
     use Doctrine\ORM\EntityRepository;
 
@@ -135,6 +135,7 @@ snippet     controller
     namespace AppBundle\Controller;
 
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
@@ -265,8 +266,14 @@ snippet     oto
     /**
      * @OneToOne(targetEntity="${1}", mappedBy="${2}")
      */
-    private $${3};
-    ${0}
+    private $${0};
+
+snippet     otoo
+    /**
+     * @OneToOne(targetEntity="${1}", inversedBy="${2}")
+     * @JoinColumn(name="${3}", referencedColumnName="id")
+     */
+    private $${0};
 
 snippet     mtm
     /**
@@ -377,3 +384,11 @@ options     indent
 snippet     exc
 options     indent
     throw new \Exception('${0}');
+
+snippet     otoo
+options     indent
+    /**
+     * @ORM\OneToOne(targetEntity="${1}")
+     * @ORM\JoinColumn(name="${2}", referencedColumnName="${3}")
+     */
+    private $${0};
