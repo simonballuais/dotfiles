@@ -252,9 +252,7 @@ filetype plugin indent on    " required
     " }
 
     " ctrlp {
-        let g:ctrlp_custom_ignore = {
-          \ 'dir':  'vendor',
-          \ }
+        set wildignore+=*/bin/*,*/vendor/*,*/cache/*
     " }
 
     nnoremap S <C-]>
