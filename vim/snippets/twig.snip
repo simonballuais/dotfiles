@@ -168,13 +168,13 @@ snippet     container
 options     indent
     <div class="container">
         ${0}
-    </div>
+    </div> <!-- container -->
 
 snippet     row
 options     indent
     <div class="row">
         ${0}
-    </div>
+    </div> <!-- row -->
 
 snippet     col
 options     indent
@@ -184,13 +184,13 @@ snippet     box
 options     indent
     <div class="box">
         ${0}
-    </div>
+    </div> <!-- box -->
 
 snippet     boxh
 options     indent
     <div class="box-header">
         <h3 class="box-title">${0}</h3>
-    </div>
+    </div> <!-- box-header -->
 
 snippet     boxt
 options     indent
@@ -200,8 +200,12 @@ snippet     boxb
 options     indent
     <div class="box-body">
         ${0}
-    </div>
+    </div> <!-- box-body -->
 
 snippet     alert
 options     indent
     <div class="alert alert-${1}" role="alert">${0}</div>
+
+snippet     !!
+options     indent
+    <!-- ${0} -->
