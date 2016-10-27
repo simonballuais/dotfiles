@@ -13,9 +13,6 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-function goToGitRoot {
-    cd `git rev-parse --show-toplevel`
-}
 
 alias vi="vim"
 alias v="vim"

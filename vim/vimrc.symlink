@@ -322,6 +322,9 @@ filetype plugin indent on    " required
     nnoremap [ F[
     nnoremap ] f]
 
+    nnoremap <c-c> <c-w>h
+    nnoremap <c-t> <c-w>l
+
     nnoremap E <c-]>
 
     nnoremap S F<
