@@ -350,8 +350,8 @@ options     indent
 snippet     flash
 options     indent
         $this->get('session')->getFlashBag()->add(
-            '${0}',
-            '${1}'
+            '${1}',
+            '${2}'
         );
 
 snippet     log
@@ -392,3 +392,50 @@ options     indent
      * @ORM\JoinColumn(name="${2}", referencedColumnName="${3}")
      */
     private $${0};
+
+snippet     testcase
+options     indent
+    <?php
+    namespace Tests\AppBundle\Controller;
+
+    use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+
+
+    class ${1} extends WebTestCase
+    {
+        ${0}
+    }
+    ?>
+
+snippet     crawler
+options      indent
+    $client = static::createClient();
+    $crawler = $client->request('GET', '${1}');
+
+snippet     basepage
+options     indent
+    <?php
+    class BasePage
+    {
+        public $client;
+        public $crawler;
+
+        public function __construct($client, $crawler)
+        {
+            $this->$client = $client;
+            $this->$crawler = $crawler;
+        }
+    }
+    ?>
+
+snippet     page
+options     indent
+    <?php
+    use AppBundle\Tests\Controller\BasePage;
+
+
+    class LoginPage extends BasePage
+    {
+        ${0}
+    }
+    ?>

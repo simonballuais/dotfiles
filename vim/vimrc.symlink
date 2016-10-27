@@ -328,6 +328,7 @@ filetype plugin indent on    " required
     nnoremap R f>
 
     set iskeyword-=-
+    set iskeyword-=-
 
     inoremap lkj <esc>
     inoremap gq <esc>
