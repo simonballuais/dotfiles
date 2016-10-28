@@ -34,7 +34,9 @@ alias tt="tree -L 3 -C"
 alias ttt="tree -L 4 -C"
 alias m="mkdir"
 alias l="ls -al --color=auto"
+
 alias gg="goToGitRoot"
+alias gp="cd ~/code/php"
 
 
 

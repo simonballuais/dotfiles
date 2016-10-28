@@ -381,6 +381,10 @@ snippet     404
 options     indent
     throw new NotFoundHttpException("${0}");
 
+snippet     200
+options     indent
+    $this->assertSame(200, $this->client->getResponse()->getStatusCode());
+
 snippet     exc
 options     indent
     throw new \Exception('${0}');

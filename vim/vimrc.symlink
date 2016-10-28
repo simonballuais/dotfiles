@@ -327,8 +327,8 @@ filetype plugin indent on    " required
 
     nnoremap E <c-]>
 
-    nnoremap S F<
-    nnoremap R f>
+    nnoremap S F>
+    nnoremap R f<
 
     set iskeyword-=-
     set iskeyword-=-
