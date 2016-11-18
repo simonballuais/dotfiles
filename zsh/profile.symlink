@@ -38,8 +38,3 @@ alias l="ls -al --color=auto"
 alias gg="goToGitRoot"
 alias gp="cd ~/code/php"
 
-
-
-if [ -d "$HOME/dropbox/py"  ] ; then
-    PATH="$PATH:$HOME/dropbox/py"
-fi
