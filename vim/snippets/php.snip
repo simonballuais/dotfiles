@@ -123,6 +123,7 @@ snippet      repository
     namespace AppBundle\Repository;
 
     use Doctrine\ORM\EntityRepository;
+    use Doctrine\Common\Collections\ArrayCollection;
 
     class ${1}Repository extends EntityRepository
     {
@@ -443,3 +444,9 @@ options     indent
         ${0}
     }
     ?>
+
+snippet     dp
+options     indent
+    /**
+     * @dataProvider ${0}
+     */

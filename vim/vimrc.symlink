@@ -24,6 +24,10 @@ Plugin 'Konfekt/FastFold'
 Plugin 'othree/xml.vim'
 Plugin 'Townk/vim-autoclose'
 Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'powerline/powerline'
+Plugin 'romainl/vim-cool'
+Plugin 'vim-syntastic/syntastic'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -255,6 +259,17 @@ filetype plugin indent on    " required
         set wildignore+=*/bin/*,*/vendor/*,*/cache/*
     " }
 
+    " ctrlp {
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
+
+        let g:syntastic_always_populate_loc_list = 1
+        let g:syntastic_auto_loc_list = 1
+        let g:syntastic_check_on_open = 1
+        let g:syntastic_check_on_wq = 0
+    " }
+
     nnoremap S <C-]>
 
     nnoremap t j
@@ -277,6 +292,7 @@ filetype plugin indent on    " required
     nnoremap dÉ dW
     nnoremap yÉ yW
     nnoremap cÉ cW
+    nnoremap vié viw
 
     " To erase word with current yank
     nnoremap <leader>p viwp<esc>byw
@@ -354,6 +370,13 @@ filetype plugin indent on    " required
     set wildmode=list:longest,full
     set scrolljump=5
     set scrolloff=3
+
+    set lazyredraw
+
+    set scrolloff=999
+
+    autocmd Filetype html setlocal ts=2 sts=2 sw=2
+    autocmd Filetype twig setlocal ts=2 sts=2 sw=2
 
     inoremap <c-r> <Plug>(snipMateNextOrTrigger)
     let g:spf13_no_omni_complete = 1

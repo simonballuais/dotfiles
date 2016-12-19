@@ -33,3 +33,6 @@
         default = simple
 [pager]
 	show = vim -R -
+[user]
+	name = Simon Balluais\n
+	email = sballuais@bocasay.com
