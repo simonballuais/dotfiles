@@ -211,6 +211,7 @@ options     indent
     namespace AppBundle\Entity;
 
     use Doctrine\ORM\Mapping as ORM;
+    use Symfony\Component\Validator\Constraints as Assert;
 
 
     /**
@@ -390,14 +391,6 @@ snippet     exc
 options     indent
     throw new \Exception('${0}');
 
-snippet     otoo
-options     indent
-    /**
-     * @ORM\OneToOne(targetEntity="${1}")
-     * @ORM\JoinColumn(name="${2}", referencedColumnName="${3}")
-     */
-    private $${0};
-
 snippet     testcase
 options     indent
     <?php
@@ -450,3 +443,41 @@ options     indent
     /**
      * @dataProvider ${0}
      */
+
+snippet     iterator
+options     indent
+    class ${1} implements Iterator
+    {
+        private $${2};
+        private $position;
+
+        public function __construct($$2)
+        {
+            $this->rows = $$2;
+        }
+
+        public function rewind()
+        {
+            $this->position = 0;
+        }
+
+        public function current()
+        {
+            return $this->$2[$this->position];
+        }
+
+        public function key()
+        {
+            return $this->position;
+        }
+
+        public function next()
+        {
+            $this->position++;
+        }
+
+        public function valid()
+        {
+            return isset($this->$2[$this->position]);
+        }
+    }
