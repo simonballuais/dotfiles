@@ -19,12 +19,10 @@ alias v="vim"
 alias py='python3'
 alias bat='upower -i /org/freedesktop/UPower/devices/battery_BAT0| grep -E "state|to\ full|percentage"'
 alias q="exit"
-alias gitl="git log --all --decorate --oneline --graph"
-alias gits="git status"
-alias gitc="git checkout"
 alias count="ls -l | wc -l"
 alias kek="ssh -p 80 simon@86.253.104.184"
 alias eb="vim ~/.profile"
+alias ebs="vim ~/.bashrc.sensitive"
 alias ev="vim ~/.vimrc"
 alias g="git"
 alias s="source ~/.bashrc"
@@ -34,6 +32,16 @@ alias tt="tree -L 3 -C"
 alias ttt="tree -L 4 -C"
 alias m="mkdir"
 alias l="ls -al --color=auto"
+
+# GIT
+alias gitl="git log --all --decorate --oneline --graph"
+alias gits="git status"
+alias gitc="git checkout"
+alias gc="git commit -m"
+
+# SF
+alias rmc="sudo rm -rf var/cache/*"
+alias con="./bin/console"
 
 alias gg='cd "$(git rev-parse --show-cdup)"'
 alias gp="cd ~/code/php"
