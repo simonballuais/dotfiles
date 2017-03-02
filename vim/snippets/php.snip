@@ -38,9 +38,7 @@ options     indent
 
 snippet     gs
 options     indent
-    private $${1};
-
-    public function get$1()
+    public function get${1}()
     {
         return $this->$1;
     }
@@ -101,11 +99,6 @@ options     indent
      * @Method({"GET"})
     */
 
-snippet     em
-options     indent
-    $em = $this->getDoctrine()->getManager();
-    ${0}
-
 snippet     class
     class ${1:className}
     {
@@ -147,6 +140,28 @@ snippet     controller
      * @package ${2:AppBundle\Controller\Admin}
      */
     class $1 extends Controller
+    {
+        ${0}
+    }
+    ?>
+
+snippet     restcontroller
+    <?php
+    namespace AppBundle\API\Controller;
+
+    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+ use JMS\Serializer\Annotation\Expose;   use FOS\RestBundle\Controller\FOSRestController;
+    use FOS\RestBundle\Controller\Annotations\RouteResource;
+    use Symfony\Component\HttpFoundation\Request;
+    use Symfony\Component\HttpFoundation\Response;
+
+
+    /**
+     * Class ${1:MyController}
+     * @package ${2:AppBundle\Controller\Admin}
+     */
+    class $1 extends FOSRestController
     {
         ${0}
     }
@@ -229,6 +244,7 @@ options     indent
      * @ORM\Column(type="${1:columnType}")
      */
     private $${2:attributeName};
+    ${0}
 
 snippet     scolumn
 options     indent
@@ -236,6 +252,7 @@ options     indent
      * @ORM\Column(type="string", length=${1})
      */
     private $${2:attributeName};
+    ${0}
 
 snippet     pk
 options     indent
@@ -254,6 +271,7 @@ options     indent
      * @ORM\JoinColumn(name="${3}", referencedColumnName="${4}")
      */
      private $${5};
+    ${0}
 
 snippet     otm
 options     indent
@@ -266,14 +284,14 @@ options     indent
 
 snippet     oto
     /**
-     * @OneToOne(targetEntity="${1}", mappedBy="${2}")
+     * @ORM\OneToOne(targetEntity="${1}", mappedBy="${2}")
      */
     private $${0};
 
 snippet     otoo
     /**
-     * @OneToOne(targetEntity="${1}", inversedBy="${2}")
-     * @JoinColumn(name="${3}", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="${1}", inversedBy="${2}")
+     * @ORM\JoinColumn(name="${3}", referencedColumnName="id")
      */
     private $${0};
 
@@ -371,7 +389,8 @@ options     indent
 snippet     repo
 options     indent
     $em = $this->getDoctrine()->getManager();
-    $repo = $em->getRepository("AppBundle:${0}");
+    $repo = $em->getRepository("AppBundle:${1}");
+    ${0}
 
 snippet     **
 options     indent
@@ -381,11 +400,15 @@ options     indent
 
 snippet     404
 options     indent
-    throw new NotFoundHttpException("${0}");
+    throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException("${0}");
 
 snippet     200
 options     indent
     $this->assertSame(200, $this->client->getResponse()->getStatusCode());
+
+snippet     403
+options     indent
+    throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException('${0}');
 
 snippet     exc
 options     indent
@@ -481,3 +504,7 @@ options     indent
             return isset($this->$2[$this->position]);
         }
     }
+
+snippet     critical
+options     indent
+    $this->get('logger')->critical(${0});

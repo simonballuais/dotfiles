@@ -38,12 +38,16 @@ alias gitl="git log --all --decorate --oneline --graph"
 alias gits="git status"
 alias gitc="git checkout"
 alias gc="git commit -m"
+alias gfiles="git diff-tree --no-commit-id --name-only -r"
+alias gmergespace="git merge -Xignore-all-space"
 
 # SF
-alias rmc="sudo rm -rf var/cache/*"
+alias rmc="sudo rm -rf var/cache/* || true; sudo chmod 777 var -R"
 alias con="./bin/console"
 
 alias gg='cd "$(git rev-parse --show-cdup)"'
 alias gp="cd ~/code/php"
+
+alias socks="export http_proxy=socks://localhost:8080 https_proxy=socks://localhost:8080;"
 
 source ~/.bashrc.sensitive

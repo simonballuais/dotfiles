@@ -17,6 +17,8 @@
 [core]
         excludesfile = ~/.gitignore
         editor = vim
+	autocrlf = input
+	whitespace = cr-at-eol
 [apply]
         whitespace = nowarn
 [mergetool]
