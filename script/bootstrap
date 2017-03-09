@@ -158,33 +158,6 @@ for D in ~/.gimp*; do
     ln -s ~/.dotfiles/gimp/menurc "$D/menurc" || true
 done
 
-# Packages
-sudo apt-get update
-
-sudo apt-get --assume-yes install\
-    curl\
-    git\
-    chromium-browser\
-    gksu\
-    leafpad\
-    vlc\
-    clementine\
-    pinta\
-    wine\
-    playonlinux\
-    sendmail\
-    iptables-persistent\
-    python3-pip\
-    dropbox\
-    python-gpgme\
-    htop\
-    nmap\
-    liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev mercurial libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev\
-    steam\
-    clementine\
-    audacity compiz compizconfig-settings-manager compiz-fusion-bcop compiz-plugins-default compiz-plugins-extra compiz-plugins-main compiz-plugins-main-default smart-notifier gsmartcontrol\
-    php-xml
-
 # Keyboard layout
 sudo cp ~/.dotfiles/keyboard/evdev.xml /usr/share/X11/xkb/rules | true
 sudo cp ~/.dotfiles/keyboard/fr /usr/share/X11/xkb/symbols | true
@@ -220,6 +193,33 @@ make distclean
             --enable-cscope 
 make
 sudo make install
+
+# Packages
+sudo apt-get update
+
+sudo apt-get --assume-yes install\
+    curl\
+    git\
+    chromium-browser\
+    gksu\
+    leafpad\
+    vlc\
+    clementine\
+    pinta\
+    wine\
+    playonlinux\
+    sendmail\
+    iptables-persistent\
+    python3-pip\
+    dropbox\
+    python-gpgme\
+    htop\
+    nmap\
+    liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev mercurial libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev\
+    steam\
+    clementine\
+    audacity compiz compizconfig-settings-manager compiz-fusion-bcop compiz-plugins-default compiz-plugins-extra compiz-plugins-main compiz-plugins-main-default smart-notifier gsmartcontrol\
+    php-xml
 
 # Purge
 sudo aptitude purge banshee brasero brasero-common brasero-cdrkit hexchat hexchat-common espaeak espeak-data libespeak1 libsonic0 libspeechd2 python3-speechd speech-dispatcher speech-dispatcher-audio-plugins gnome-orca virtualbox-guest-utils virtualbox-guest-dkms virtualbox-guest-x11 adobe-flash-properties-gtk mate-screensaver mate-screensaver-common  tomboy toshset brltty printer-driver-c2esp printer-driver-min12xxw printer-driver-ptouch printer-driver-sag-gdi printer-driver-splix printer-driver-brlaser mono-runtime-common avahi-daemon xscreensaver-data-extra xscreensaver-data xscreensaver-gl-extra xscreensaver-gl java-common xplayer pix pix-data | true
