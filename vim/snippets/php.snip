@@ -89,6 +89,15 @@ options     indent
      * @Route("${1:route/to/match}", name="${2:name}")
      * @Method({"GET"})
     */
+    ${0}
+
+snippet     nnroute
+options     indent
+    /**
+     * @Route("${1:route/to/match}", name="${2:name}")
+     * @Method({"${3}"})
+    */
+    ${0}
 
 snippet     eroute
 options     indent
@@ -126,7 +135,7 @@ snippet      repository
 
 snippet     controller
     <?php
-    namespace AppBundle\Controller;
+    namespace AppBundle\Controller${1};
 
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -135,11 +144,7 @@ snippet     controller
     use Symfony\Component\HttpFoundation\Response;
 
 
-    /**
-     * Class ${1:MyController}
-     * @package ${2:AppBundle\Controller\Admin}
-     */
-    class $1 extends Controller
+    class ${2} extends Controller
     {
         ${0}
     }
@@ -201,7 +206,7 @@ snippet     command
     use Symfony\Component\Console\Input\InputInterface;
     use Symfony\Component\Console\Output\OutputInterface;
 
-    class ${1:MyCommand} extends Command
+    class ${1:MyCommand} extends ContainerAwareCommand
     {
         protected function configure()
         {
@@ -214,6 +219,7 @@ snippet     command
 
         protected function execute(InputInterface $input, OutputInterface $output)
         {
+            $em = $this->getContainer()->get('doctrine')->getManager();
             ${0}
         }
     }
@@ -244,6 +250,14 @@ options     indent
      * @ORM\Column(type="${1:columnType}")
      */
     private $${2:attributeName};
+    ${0}
+
+snippet     ncol
+options     indent
+    /**
+     * @ORM\Column(type="${1:columnType}", name="${2:columnName}")
+     */
+    private $${3:attributeName};
     ${0}
 
 snippet     scolumn
@@ -388,9 +402,12 @@ options     indent
 
 snippet     repo
 options     indent
+    $repo${1} = $em->getRepository("AppBundle:$1");
+
+snippet     rrepo
+options     indent
     $em = $this->getDoctrine()->getManager();
-    $repo = $em->getRepository("AppBundle:${1}");
-    ${0}
+    $repo${1} = $em->getRepository("AppBundle:$1");
 
 snippet     **
 options     indent
@@ -508,3 +525,38 @@ options     indent
 snippet     critical
 options     indent
     $this->get('logger')->critical(${0});
+
+snippet     service
+options     indent
+    <?php
+
+    namespace AppBundle\Manager;
+
+    use Doctrine\Common\Persistence\ObjectManager;
+    use AppBundle\Manager\BaseManager;
+    use FOS\UserBundle\Model\UserInterface;
+    use FOS\UserBundle\Util\CanonicalFieldsUpdater;
+    use FOS\UserBundle\Util\PasswordUpdaterInterface;
+    use AppBundle\Services\Mailer;
+
+    class ${1}
+    {
+        const SERVICE_NAME = 'app.${2}';
+
+        public function __construct(EntityManagerInterface $entityManager)
+        {
+            $this->entityManager = $entityManager;
+        }
+    }
+
+snippet     constant
+options     indent
+    <?php
+    namespace AppBundle\Entity\Constants;
+
+
+    class ${1}
+    {
+        const ${0}
+    }
+    ?>

@@ -209,3 +209,12 @@ options     indent
 snippet     !!
 options     indent
     <!-- ${0} -->
+
+snippet     label
+options     indent
+    {{'label.${0}'|trans }}
+
+snippet     trans
+options     indent
+    {{ 'label.${1}'|trans(${2}) }}
+    ${0}

@@ -31,13 +31,12 @@ alias t="tree -L 2 -C"
 alias tt="tree -L 3 -C"
 alias ttt="tree -L 4 -C"
 alias m="mkdir"
-alias l="ls -al --color=auto"
+alias l="ls -altr --color=auto"
 
 # GIT
 alias gitl="git log --all --decorate --oneline --graph"
 alias gits="git status"
-alias gitc="git checkout"
-alias gc="git commit -m"
+alias gc="git checkout"
 alias gfiles="git diff-tree --no-commit-id --name-only -r"
 alias gmergespace="git merge -Xignore-all-space"
 
