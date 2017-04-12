@@ -152,15 +152,10 @@ then
   fi
 fi
 
-echo '  Linking GIMP shortcut file'
-for D in ~/.gimp*; do
-    rm "$D/menurc" || true
-    ln -s ~/.dotfiles/gimp/menurc "$D/menurc" || true
-done
-
 # Keyboard layout
 sudo cp ~/.dotfiles/keyboard/evdev.xml /usr/share/X11/xkb/rules | true
 sudo cp ~/.dotfiles/keyboard/fr /usr/share/X11/xkb/symbols | true
+echo '  Keyboard layout OK'
 
 # VIM
 sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common | true
@@ -194,6 +189,8 @@ make distclean
 make
 sudo make install
 
+echo '  Vim OK'
+
 # Packages
 sudo apt-get update
 
@@ -220,6 +217,8 @@ sudo apt-get --assume-yes install\
     clementine\
     audacity compiz compizconfig-settings-manager compiz-fusion-bcop compiz-plugins-default compiz-plugins-extra compiz-plugins-main compiz-plugins-main-default smart-notifier gsmartcontrol\
     php-xml
+
+echo '  Packages OK'
 
 # Purge
 sudo aptitude purge banshee brasero brasero-common brasero-cdrkit hexchat hexchat-common espaeak espeak-data libespeak1 libsonic0 libspeechd2 python3-speechd speech-dispatcher speech-dispatcher-audio-plugins gnome-orca virtualbox-guest-utils virtualbox-guest-dkms virtualbox-guest-x11 adobe-flash-properties-gtk mate-screensaver mate-screensaver-common  tomboy toshset brltty printer-driver-c2esp printer-driver-min12xxw printer-driver-ptouch printer-driver-sag-gdi printer-driver-splix printer-driver-brlaser mono-runtime-common avahi-daemon xscreensaver-data-extra xscreensaver-data xscreensaver-gl-extra xscreensaver-gl java-common xplayer pix pix-data | true

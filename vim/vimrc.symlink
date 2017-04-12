@@ -23,7 +23,7 @@ Plugin 'othree/xml.vim'
 Plugin 'powerline/powerline'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
-
+Plugin 'scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -104,7 +104,6 @@ filetype plugin indent on    " required
         set backspace=indent,eol,start  " Backspace for dummies
         set linespace=0                 " No extra spaces between rows
         set number                      " Line numbers on
-        set showmatch                   " Show matching brackets/parenthesis
         set incsearch                   " Find as you type search
         set hlsearch                    " Highlight search terms
         set winminheight=0              " Windows can be 0 line high
@@ -355,6 +354,9 @@ filetype plugin indent on    " required
     endfunction
 
     " }
+
+    " NerdTree
+    map <c-n> :NERDTreeToggle<CR>
 
     " Powerline
     set  rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
