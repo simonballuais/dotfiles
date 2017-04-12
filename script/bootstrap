@@ -158,21 +158,27 @@ sudo cp ~/.dotfiles/keyboard/fr /usr/share/X11/xkb/symbols | true
 echo '  Keyboard layout OK'
 
 # VIM
+echo '  Purging vim packages ...'
 sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common | true
+echo '  Build-dep vim-gnome ...'
 sudo apt-get build-dep vim-gnome | true
+echo '  Installing vim dependencies ...'
 sudo apt-get install liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev --assume-yes
 
+echo '  File structure ...'
 sudo rm -rf /usr/local/share/vim | true
 sudo rm /usr/bin/vim | true
 sudo mkdir /usr/include/lua5.1/include | true
 sudo mv /usr/include/lua5.1/*.h /usr/include/lua5.1/include/ | true
 sudo ln -s /usr/bin/luajit-2.0.0-beta9 /usr/bin/luajit | true
 
+echo '  Cloning vim sources ...'
 cd ~
 sudo rm vim -rf | true
 git clone https://github.com/vim/vim
 cd vim/src
 make distclean
+echo '  Configure ...'
 ./configure --with-features=huge \
             --enable-rubyinterp \
             --enable-largefile \
@@ -185,15 +191,19 @@ make distclean
             --enable-gui=auto \
             --enable-fail-if-missing \
             --with-lua-prefix=/usr/include/lua5.1 \
-            --enable-cscope 
+            --enable-cscope
+echo '  Make ...'
 make
+echo '  Make install ...'
 sudo make install
 
 echo '  Vim OK'
 
 # Packages
+echo '  Apt update ...'
 sudo apt-get update
 
+echo '  Apt install de tout le bordel ...'
 sudo apt-get --assume-yes install\
     curl\
     git\
@@ -221,6 +231,7 @@ sudo apt-get --assume-yes install\
 echo '  Packages OK'
 
 # Purge
+echo '  Apt purge de tout l''autre bordel ...'
 sudo aptitude purge banshee brasero brasero-common brasero-cdrkit hexchat hexchat-common espaeak espeak-data libespeak1 libsonic0 libspeechd2 python3-speechd speech-dispatcher speech-dispatcher-audio-plugins gnome-orca virtualbox-guest-utils virtualbox-guest-dkms virtualbox-guest-x11 adobe-flash-properties-gtk mate-screensaver mate-screensaver-common  tomboy toshset brltty printer-driver-c2esp printer-driver-min12xxw printer-driver-ptouch printer-driver-sag-gdi printer-driver-splix printer-driver-brlaser mono-runtime-common avahi-daemon xscreensaver-data-extra xscreensaver-data xscreensaver-gl-extra xscreensaver-gl java-common xplayer pix pix-data | true
 
 echo ''
