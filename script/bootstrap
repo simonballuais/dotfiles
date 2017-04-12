@@ -197,6 +197,9 @@ make
 echo '  Make install ...'
 sudo make install
 
+echo '  Installing vundle ...'
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 echo '  Vim OK'
 
 # Packages
