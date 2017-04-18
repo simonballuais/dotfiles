@@ -30,3 +30,5 @@ done
 unset config_files
 
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
+
+ZSH_THEME="agnoster"

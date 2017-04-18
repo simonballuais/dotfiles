@@ -24,6 +24,7 @@ Plugin 'powerline/powerline'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -357,6 +358,13 @@ filetype plugin indent on    " required
 
     " NerdTree
     map <c-n> :NERDTreeToggle<CR>
+    let g:NERDTreeMapActivateNode = '<space>'
+    let g:NERDTreeMapOpenInTab = '<c-T>'
+    let g:NERDTreeMapOpenInTabSilent = '<c-t>'
+    let g:NERDTreeMapJumpParent = '<c-g>'
+    let g:NERDTreeMapOpenVSplit = '<c-v>'
+    let g:NERDTreeMapJumpNextSibling = 'T'
+    let g:NERDTreeMapJumpPrevSibling = 'S'
 
     " Powerline
     set  rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
