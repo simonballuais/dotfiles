@@ -249,7 +249,7 @@ options     indent
     /**
      * @ORM\Column(type="${1:columnType}")
      */
-    private $${2:attributeName};
+    protected $${2:attributeName};
     ${0}
 
 snippet     ncol
@@ -257,7 +257,7 @@ options     indent
     /**
      * @ORM\Column(type="${1:columnType}", name="${2:columnName}")
      */
-    private $${3:attributeName};
+    protected $${3:attributeName};
     ${0}
 
 snippet     scolumn
@@ -265,7 +265,7 @@ options     indent
     /**
      * @ORM\Column(type="string", length=${1})
      */
-    private $${2:attributeName};
+    protected $${2:attributeName};
     ${0}
 
 snippet     pk
@@ -275,7 +275,7 @@ options     indent
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
     ${0}
 
 snippet     mto
@@ -284,7 +284,7 @@ options     indent
      * @ORM\ManyToOne(targetEntity="${1}", inversedBy="${2}", cascade={"persist"})
      * @ORM\JoinColumn(name="${3}", referencedColumnName="${4}")
      */
-     private $${5};
+     protected $${5};
     ${0}
 
 snippet     otm
@@ -292,7 +292,7 @@ options     indent
     /**
      * @ORM\OneToMany(targetEntity="${1}", mappedBy="${2}", cascade={"persist"})
      */
-    private $${3};
+    protected $${3};
     $this->$3 = new ArrayCollection();
     ${0}
 
@@ -300,21 +300,21 @@ snippet     oto
     /**
      * @ORM\OneToOne(targetEntity="${1}", mappedBy="${2}")
      */
-    private $${0};
+    protected $${0};
 
 snippet     otoo
     /**
      * @ORM\OneToOne(targetEntity="${1}", inversedBy="${2}")
      * @ORM\JoinColumn(name="${3}", referencedColumnName="id")
      */
-    private $${0};
+    protected $${0};
 
 snippet     mtm
     /**
      * @ORM\ManyToMany(targetEntity="${1}", inversedBy="${2}")
      * @ORM\JoinTable(name="${3}")
      */
-    private $${4};
+    protected $${4};
 
     $this->$4 = new ArrayCollection();${0}
 
@@ -322,7 +322,7 @@ snippet     mtmm
     /**
      * @ORM\ManyToMany(targetEntity="${1}", mappedBy="${2}")
      */
-    private $${3};
+    protected $${3};
 
     $this->$3 = new ArrayCollection();${0}
 
@@ -331,7 +331,7 @@ snippet     join
      * @OneToOne(targetEntity="${1}", inversedBy="${2}")
      * @JoinColumn(name="${3}", referencedColumnName="${4}")
      */
-    private $${5};
+    protected $${5};
     ${0}
 
 
