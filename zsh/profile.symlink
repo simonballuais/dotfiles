@@ -49,10 +49,4 @@ alias gp="cd ~/code/php"
 
 alias socks="export http_proxy=socks://localhost:8080 https_proxy=socks://localhost:8080;"
 
-# Powerline
-powerline-daemon -q
-POWERLINE_BASH_CONTINUATION=1
-POWERLINE_BASH_SELECT=1
-# . /usr/local/lib/python3.5/dist-packages/powerline/bindings/bash/powerline.sh
-
 source ~/.bashrc.sensitive
