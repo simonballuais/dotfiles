@@ -341,7 +341,7 @@ filetype plugin indent on    " required
 
     " Ack
     cnoreabbrev Ack Ack!
-    nnoremap <Leader>t :Ack!<Space>--php<Space>-i<Space>--ignore-dir=vendor<Space>
+    nnoremap <Leader>t :Ack!<Space>--php<Space>-i<Space>--ignore-dir={vendor,var}<Space>
 
     " Save & quit
     nnoremap <Leader>s :w<cr>
