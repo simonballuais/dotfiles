@@ -16,6 +16,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'kien/ctrlp.vim'
+Plugin 'spf13/PIV'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Konfekt/FastFold'
@@ -24,6 +25,8 @@ Plugin 'powerline/powerline'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'mileszs/ack.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -233,7 +236,7 @@ filetype plugin indent on    " required
     nnoremap <leader>ev :vsplit ~/.dotfiles/vim/vimrc.symlink<cr>
     nnoremap <leader>es :vsplit ~/.dotfiles/vim/snippets/php.snip<cr>
     nnoremap <leader>ets :vsplit ~/.dotfiles/vim/snippets/twig.snip<cr>
-    nnoremap <leader>sv :source ~/.dotfiles/vim/vimrc.symlink<cr>
+    nnoremap <leader>SV :source ~/.dotfiles/vim/vimrc.symlink<cr>
 
     iabbrev @@ simon.ballu@gmail.com
 
@@ -265,8 +268,10 @@ filetype plugin indent on    " required
     nnoremap [ F[
     nnoremap ] f]
 
+    " Déplacements intersplit
     nnoremap <c-c> <c-w>h
     nnoremap <c-t> <c-w>l
+    nnoremap Q <c-w>j
 
     nnoremap E <c-]>
 
@@ -294,9 +299,8 @@ filetype plugin indent on    " required
     au WinEnter * set nofen
     au WinLeave * set nofen
 
-    set foldmethod=syntax
-    set foldnestmax=1
-    set foldlevel=0
+    set nofoldenable
+    set foldmethod=manual
     set tags=./tags;/home/simon/Dropbox/codingZ/php/game/
     set wildmenu
     set wildmode=list:longest,full
@@ -321,46 +325,26 @@ filetype plugin indent on    " required
     " clear dirty endofline spaces
     nnoremap <leader>st :%s/ $//g<cr>
 
-    " wrapping {
-    noremap <silent> <leader>w :call ToggleWrap()<cr>
-
-    function ToggleWrap()
-      if &wrap
-        echo "Wrap OFF"
-        setlocal nowrap
-        set virtualedit=all
-        silent! nunmap <buffer> <Up>
-        silent! nunmap <buffer> <Down>
-        silent! nunmap <buffer> <Home>
-        silent! nunmap <buffer> <End>
-        silent! iunmap <buffer> <Up>
-        silent! iunmap <buffer> <Down>
-        silent! iunmap <buffer> <Home>
-        silent! iunmap <buffer> <End>
-      else
-        echo "Wrap ON"
-        setlocal wrap linebreak nolist
-        set virtualedit=
-        setlocal display+=lastline
-        noremap  <buffer> <silent> <Up>   gk
-        noremap  <buffer> <silent> <Down> gj
-        noremap  <buffer> <silent> <Home> g<Home>
-        noremap  <buffer> <silent> <End>  g<End>
-        inoremap <buffer> <silent> <Up>   <C-o>gk
-        inoremap <buffer> <silent> <Down> <C-o>gj
-        inoremap <buffer> <silent> <Home> <C-o>g<Home>
-        inoremap <buffer> <silent> <End>  <C-o>g<End>
-      endif
-    endfunction
-
-    " }
-
     " NerdTree
     map <c-n> :NERDTreeToggle<CR>
+    let g:NERDTreeMapActivateNode = '<space>'
+    let g:NERDTreeMapOpenInTab = '<c-T>'
+    let g:NERDTreeMapJumpParent = '<c-g>'
+    let g:NERDTreeMapOpenVSplit = '<c-v>'
+    let g:NERDTreeMapJumpNextSibling = 'T'
+    let g:NERDTreeMapJumpPrevSibling = 'S'
 
     " Powerline
     set  rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
     set laststatus=2
     set t_Co=256
+
+    " Ack
+    cnoreabbrev Ack Ack!
+    nnoremap <Leader>t :Ack!<Space>--php<Space>-i<Space>--ignore-dir={vendor,var}<Space>
+
+    " Save & quit
+    nnoremap <Leader>s :w<cr>
+    nnoremap <Leader>q :q<cr>
 " }
 

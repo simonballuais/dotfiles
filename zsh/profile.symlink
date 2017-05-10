@@ -49,5 +49,4 @@ alias gp="cd ~/code/php"
 
 alias socks="export http_proxy=socks://localhost:8080 https_proxy=socks://localhost:8080;"
 
-
 source ~/.bashrc.sensitive
