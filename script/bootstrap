@@ -158,8 +158,6 @@ sudo cp ~/.dotfiles/keyboard/fr /usr/share/X11/xkb/symbols | true
 echo '  Keyboard layout OK'
 
 # VIM
-echo '  Purging vim packages ...'
-sudo apt-get remove --purge vim vim-runtime vim-gnome vim-tiny vim-common vim-gui-common | true
 echo '  Build-dep vim-gnome ...'
 sudo apt-get build-dep vim-gnome | true
 echo '  Installing vim dependencies ...'
