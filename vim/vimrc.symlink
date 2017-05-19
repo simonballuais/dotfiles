@@ -307,7 +307,11 @@ filetype plugin indent on    " required
     set scrolljump=5
     set scrolloff=3
 
-    nnoremap   $
+    nnoremap   _
+    nnoremap _ $
+
+    vnoremap   _
+    vnoremap _ $
 
     " Tab navigation
     nnoremap <tab> gt;
@@ -321,6 +325,8 @@ filetype plugin indent on    " required
 
     inoremap <c-r> <Plug>(snipMateNextOrTrigger)
     let g:spf13_no_omni_complete = 1
+
+    nnoremap <leader>tr dit\{\{ \'\'\|trans \}\}<esc>F'i
 
     " clear dirty endofline spaces
     nnoremap <leader>st :%s/ $//g<cr>
@@ -341,7 +347,7 @@ filetype plugin indent on    " required
 
     " Ack
     cnoreabbrev Ack Ack!
-    nnoremap <Leader>t :Ack!<Space>--php<Space>-i<Space>--ignore-dir={vendor,var}<Space>
+    nnoremap <Leader>s :Ack!<Space>--twig<Space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var}<Space>
 
     " Save & quit
     nnoremap <Leader>s :w<cr>
