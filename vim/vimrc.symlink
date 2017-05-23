@@ -322,6 +322,9 @@ filetype plugin indent on    " required
     inoremap <c-r> <Plug>(snipMateNextOrTrigger)
     let g:spf13_no_omni_complete = 1
 
+    " quick sf translation
+    nnoremap <leader>l cit{{<space>''\|trans<space>}}<esc>F'i
+
     " clear dirty endofline spaces
     nnoremap <leader>st :%s/ $//g<cr>
 
