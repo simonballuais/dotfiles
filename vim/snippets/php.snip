@@ -567,3 +567,21 @@ options     indent
      * @G\Locale
      */
     protected $locale;
+
+snippet     fixture
+options     indent
+    <?php
+    namespace AppBundle\DataFixtures\ORM;
+
+    use Doctrine\Common\DataFixtures\FixtureInterface;
+    use Doctrine\Common\Persistence\ObjectManager;
+    use AppBundle\Entity\User;
+
+    class ${1} implements FixtureInterface
+    {
+        public function load(ObjectManager $manager)
+        {
+            ${0}
+        }
+    }
+    ?>

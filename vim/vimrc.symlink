@@ -27,6 +27,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mileszs/ack.vim'
+Plugin 'tpope/vim-unimpaired'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -42,6 +43,8 @@ filetype plugin indent on    " required
     set mouse=a                 " Automatically enable mouse usage
     set mousehide               " Hide the mouse cursor while typing
     scriptencoding utf-8
+
+    set relativenumber
 
     if has('clipboard')
         if has('unnamedplus')  " When possible use + register for copy-paste
@@ -82,6 +85,7 @@ filetype plugin indent on    " required
         set tabpagemax=15               " Only show 15 tabs
         set showmode                    " Display the current mode
         set cursorline                  " Highlight current line
+        set cursorcolumn                  " Highlight current column
 
         highlight clear SignColumn      " SignColumn should match background
         highlight clear LineNr          " Current line number row will have same background color in relative mode
@@ -341,6 +345,12 @@ filetype plugin indent on    " required
     set  rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
     set laststatus=2
     set t_Co=256
+
+    " unimpaired
+    nmap < [
+    nmap > ]
+    vmap e [y
+    vmap E ]y
 
     " Ack
     cnoreabbrev Ack Ack!
