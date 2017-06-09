@@ -190,12 +190,10 @@ sudo apt-get --assume-yes install\
     sendmail\
     iptables-persistent\
     python3-pip\
-    dropbox\
     python-gpgme\
     htop\
     nmap\
     liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev mercurial libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev\
-    steam\
     clementine\
     audacity compiz compizconfig-settings-manager compiz-fusion-bcop compiz-plugins-default compiz-plugins-extra compiz-plugins-main compiz-plugins-main-default smart-notifier gsmartcontrol\
     php-xml\
