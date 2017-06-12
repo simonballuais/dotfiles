@@ -349,8 +349,8 @@ filetype plugin indent on    " required
     " unimpaired
     nmap < [
     nmap > ]
-    vmap e [y
-    vmap E ]y
+    vmap q [y
+    vmap Q ]y
 
     " Ack
     cnoreabbrev Ack Ack!
