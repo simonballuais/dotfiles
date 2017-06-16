@@ -28,6 +28,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mileszs/ack.vim'
 Plugin 'docteurklein/php-getter-setter.vim'
+Plugin 'tpope/vim-unimpaired'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -43,6 +44,8 @@ filetype plugin indent on    " required
     set mouse=a                 " Automatically enable mouse usage
     set mousehide               " Hide the mouse cursor while typing
     scriptencoding utf-8
+
+    set relativenumber
 
     if has('clipboard')
         if has('unnamedplus')  " When possible use + register for copy-paste
@@ -83,6 +86,7 @@ filetype plugin indent on    " required
         set tabpagemax=15               " Only show 15 tabs
         set showmode                    " Display the current mode
         set cursorline                  " Highlight current line
+        set cursorcolumn                  " Highlight current column
 
         highlight clear SignColumn      " SignColumn should match background
         highlight clear LineNr          " Current line number row will have same background color in relative mode
@@ -327,10 +331,15 @@ filetype plugin indent on    " required
     inoremap <c-r> <Plug>(snipMateNextOrTrigger)
     let g:spf13_no_omni_complete = 1
 
+<<<<<<< HEAD
     nnoremap <leader>tr dit\{\{ \'\'\|trans \}\}<esc>F'i
 
     " rm char and go insert
     nnoremap X xi
+=======
+    " quick sf translation
+    nnoremap <leader>l cit{{<space>''\|trans<space>}}<esc>F'i
+>>>>>>> 7dd71e7ccdc0de38651e87b298c9dec55854e516
 
     " clear dirty endofline spaces
     nnoremap <leader>st :%s/ $//g<cr>
@@ -351,6 +360,12 @@ filetype plugin indent on    " required
     set  rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
     set laststatus=2
     set t_Co=256
+
+    " unimpaired
+    nmap < [
+    nmap > ]
+    vmap q [y
+    vmap Q ]y
 
     " Ack
     cnoreabbrev Ack Ack!
