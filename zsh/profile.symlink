@@ -33,6 +33,7 @@ alias tt="tree -L 3 -C"
 alias ttt="tree -L 4 -C"
 alias m="mkdir"
 alias l="ls -altr --color=auto"
+alias igrep="grep --exclude=\".*\""
 
 # GIT
 alias gitl="git log --all --decorate --oneline --graph"

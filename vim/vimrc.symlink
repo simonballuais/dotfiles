@@ -27,6 +27,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mileszs/ack.vim'
+Plugin 'docteurklein/php-getter-setter.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -328,8 +329,14 @@ filetype plugin indent on    " required
 
     nnoremap <leader>tr dit\{\{ \'\'\|trans \}\}<esc>F'i
 
+    " rm char and go insert
+    nnoremap X xi
+
     " clear dirty endofline spaces
     nnoremap <leader>st :%s/ $//g<cr>
+
+    " reindent php supercomments
+    nnoremap <leader>ts :%s/^ *\*/     */g<cr>
 
     " NerdTree
     map <c-n> :NERDTreeToggle<CR>
@@ -347,7 +354,24 @@ filetype plugin indent on    " required
 
     " Ack
     cnoreabbrev Ack Ack!
-    nnoremap <Leader>s :Ack!<Space>--twig<Space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var}<Space>
+    nnoremap <Leader>S :Ack!<Space>--twig<Space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var}<Space>
+
+    " Getter/Setter
+    let g:phpgetset_getterTemplate =
+      \ "\n" .
+      \ "    public function %funcname%()\n" .
+      \ "    {\n" .
+      \ "        return $this->%varname%;\n" .
+      \ "    }"
+
+    let g:phpgetset_setterTemplate =
+      \ "\n" .
+      \ "    public function %funcname%($%varname%)\n" .
+      \ "    {\n" .
+      \ "        $this->%varname% = $%varname%;\n" .
+      \ "\n" .
+      \ "        return $this;\n" .
+      \ "    }"
 
     " Save & quit
     nnoremap <Leader>s :w<cr>
