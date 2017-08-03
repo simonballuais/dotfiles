@@ -229,6 +229,10 @@ filetype plugin indent on    " required
     nnoremap cÉ cW
     nnoremap vié viw
 
+    " Var movement
+    nnoremap <c-É> f$
+    nnoremap <c-B> F$
+
     " To erase word with current yank
     nnoremap <leader>p viwp<esc>byw
 
