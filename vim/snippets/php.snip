@@ -3,6 +3,11 @@ snippet     php
     ${0}
     ?>
 
+snippet     //
+    /**
+    * ${0}
+     */
+
 snippet     pf
 options     indent
     public function ${1:functionName}(${2})
@@ -252,6 +257,17 @@ options     indent
     protected $${2:attributeName};
     ${0}
 
+snippet     fcolumn
+options     indent
+    /**
+     * @ORM\Column(type="${1:columnType}",
+     *             name="${2:columnName}",
+     *             nullable=${3:nullable}
+     * )
+     */
+    protected $${4:attributeName};
+    ${0}
+
 snippet     ncol
 options     indent
     /**
@@ -286,6 +302,19 @@ options     indent
      */
      protected $${5};
     ${0}
+
+snippet     mmto
+options     indent
+    /**
+     * @ORM\ManyToOne(targetEntity="${1}", inversedBy="${2}", cascade={"persist"})
+     * @ORM\JoinColumns({
+     *      @ORM\JoinColumn(name="${3}", referencedColumnName="${4}"),
+     *      @ORM\JoinColumn(name="${5}", referencedColumnName="${6}")
+     * })
+     */
+     protected $${7};
+    ${0}
+
 
 snippet     otm
 options     indent
@@ -558,5 +587,53 @@ options     indent
     class ${1}
     {
         const ${0}
+    }
+    ?>
+
+snippet     locale
+options     indent
+    /**
+     * @G\Locale
+     */
+    protected $locale;
+
+snippet      vdd
+options     indend
+    var_dump(${0});
+    die();
+
+snippet     sex
+options     indent
+     /**
+     * @Groups({"${1}"})
+     * @Expose
+     * @SerializedName("${2}")
+     */
+     ${0}
+
+snippet     svp
+options     indentation
+    /**
+     * @Groups({"${1}"})
+     * @VirtualProperty
+     * @SerializedName("${2}")
+     */
+     ${0}
+
+snippet     fixture
+options     indent
+    <?php
+    namespace AppBundle\DataFixtures\ORM;
+
+    use Doctrine\Common\DataFixtures\FixtureInterface;
+    use Doctrine\Common\Persistence\ObjectManager;
+    use AppBundle\Entity\User;
+
+    class ${1} implements FixtureInterface
+    {
+        public function load(ObjectManager $manager)
+        {
+            ${0}
+        }
     }
     ?>
