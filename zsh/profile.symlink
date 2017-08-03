@@ -14,6 +14,12 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 
+# The following three lines have been added by UDB DB2.
+if [ -f /home/db2inst1/sqllib/db2profile ]; then
+    . /home/db2inst1/sqllib/db2profile
+fi
+
+
 alias vi="vim"
 alias v="vim"
 alias py='python3'
