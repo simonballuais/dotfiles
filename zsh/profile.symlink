@@ -45,6 +45,7 @@ alias gmergespace="git merge -Xignore-all-space"
 # SF
 alias rmc="sudo rm -rf var/cache/* || true; sudo chmod 777 var -R"
 alias con="./bin/console"
+alias mage="./bin/magento"
 
 alias gg='cd "$(git rev-parse --show-cdup)"'
 alias gp="cd ~/code/php"

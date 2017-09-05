@@ -172,3 +172,5 @@ function put_spacing() {
 PROMPT='$reset_color $fg[cyan]%m: $fg[yellow]$(get_pwd)$(put_spacing)$(git_prompt_info)
 > '
 
+bindkey ";5D" backward-word
+bindkey ";5C" forward-word
