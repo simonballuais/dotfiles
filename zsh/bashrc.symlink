@@ -1,2 +1,3 @@
+[ -z "$PS1" ] && return
 source ~/.profile
 zsh
