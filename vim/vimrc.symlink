@@ -17,6 +17,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'spf13/PIV'
+Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Konfekt/FastFold'
@@ -241,6 +242,9 @@ filetype plugin indent on    " required
 
     inoremap <c-U> <esc>viwUea
     nnoremap <c-U> <esc>bveUel
+
+    " Pour les bépo vanilla
+    inoremap » >
 
     nnoremap <leader>ev :vsplit ~/.dotfiles/vim/vimrc.symlink<cr>
     nnoremap <leader>es :vsplit ~/.dotfiles/vim/snippets/php.snip<cr>
