@@ -30,6 +30,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mileszs/ack.vim'
 Plugin 'docteurklein/php-getter-setter.vim'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'nelsyeung/twig.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -79,7 +80,7 @@ filetype plugin indent on    " required
                 \ '\[example pattern\]'
                 \ ]
         endif
-    " }
+    " }'
 
     " Vim UI {
 
