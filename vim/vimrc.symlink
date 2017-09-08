@@ -17,6 +17,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'spf13/PIV'
+Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Konfekt/FastFold'
@@ -29,6 +30,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mileszs/ack.vim'
 Plugin 'docteurklein/php-getter-setter.vim'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'nelsyeung/twig.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -78,7 +80,7 @@ filetype plugin indent on    " required
                 \ '\[example pattern\]'
                 \ ]
         endif
-    " }
+    " }'
 
     " Vim UI {
 
@@ -242,6 +244,9 @@ filetype plugin indent on    " required
     inoremap <c-U> <esc>viwUea
     nnoremap <c-U> <esc>bveUel
 
+    " Pour les bépo vanilla
+    inoremap » >
+
     nnoremap <leader>ev :vsplit ~/.dotfiles/vim/vimrc.symlink<cr>
     nnoremap <leader>es :vsplit ~/.dotfiles/vim/snippets/php.snip<cr>
     nnoremap <leader>ets :vsplit ~/.dotfiles/vim/snippets/twig.snip<cr>
@@ -316,11 +321,9 @@ filetype plugin indent on    " required
     set scrolljump=5
     set scrolloff=3
 
-    nnoremap   _
-    nnoremap _ $
+    nnoremap   $
 
-    vnoremap   _
-    vnoremap _ $
+    vnoremap   $
 
     " Tab navigation
     nnoremap <tab> gt;
@@ -389,6 +392,18 @@ filetype plugin indent on    " required
       \ "\n" .
       \ "        return $this;\n" .
       \ "    }"
+
+    " Tabs
+    nnoremap <c-"> :tabm<space>1
+    nnoremap <c-<> :tabm<space>2
+    nnoremap <c->> :tabm<space>3
+    nnoremap <c-(> :tabm<space>4
+    nnoremap <c-)> :tabm<space>5
+    nnoremap <c-@> :tabm<space>6
+    nnoremap <c-+> :tabm<space>7
+    nnoremap <c--> :tabm<space>8
+    nnoremap <c-/> :tabm<space>9
+    nnoremap <c-*> :tabm<space>0
 
     " Save & quit
     nnoremap <Leader>s :w<cr>

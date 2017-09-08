@@ -3,22 +3,18 @@
 # exists.
 # see /usr/share/doc/bash/examples/startup-files for examples.
 # the files are located in the bash-doc package.
-
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
-
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-
 # The following three lines have been added by UDB DB2.
 if [ -f /home/db2inst1/sqllib/db2profile ]; then
     . /home/db2inst1/sqllib/db2profile
 fi
-
 
 alias vi="vim"
 alias v="vim"
@@ -39,22 +35,19 @@ alias tt="tree -L 3 -C"
 alias ttt="tree -L 4 -C"
 alias m="mkdir"
 alias l="ls -altr --color=auto"
+alias l="ls -altr"
 alias igrep="grep --exclude=\".*\""
-
 # GIT
 alias gitl="git log --all --decorate --oneline --graph"
 alias gits="git status"
 alias gc="git checkout"
 alias gfiles="git diff-tree --no-commit-id --name-only -r"
 alias gmergespace="git merge -Xignore-all-space"
-
 # SF
 alias rmc="sudo rm -rf var/cache/* || true; sudo chmod 777 var -R"
 alias con="./bin/console"
-
+alias mage="./bin/magento"
 alias gg='cd "$(git rev-parse --show-cdup)"'
 alias gp="cd ~/code/php"
-
 alias socks="export http_proxy=socks://localhost:8080 https_proxy=socks://localhost:8080;"
-
 source ~/.bashrc.sensitive

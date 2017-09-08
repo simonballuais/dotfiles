@@ -155,14 +155,15 @@ options     indent
         type: "POST",
         url: Routing.generate(${1}),
         data: {
-            ${2} },
+            ${2}
+        },
+        dataType: 'HTML',
         success: function(data, dataType) {
             ${0}
-            });
         },
         error: function(XMLHttpRequest, textStatus, errorThrown){
-            });
-        } });
+        }
+    });
 
 snippet     container
 options     indent
