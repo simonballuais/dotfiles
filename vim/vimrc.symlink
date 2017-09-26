@@ -275,12 +275,13 @@ filetype plugin indent on    " required
 
     nnoremap T i<cr><esc>
 
-    nnoremap ( F(
-    nnoremap ) f)
-    nnoremap { F{
-    nnoremap } f}
-    nnoremap [ F[
-    nnoremap ] f]
+    " Navigation parenthèses
+    nnoremap ( ?(<cr>
+    nnoremap ) /)<cr>
+    nnoremap { ?{<cr>
+    nnoremap } /}<cr>
+    nnoremap [ ?[<cr>
+    nnoremap ] /]<cr>
 
     " Déplacements intersplit
     nnoremap <c-c> <c-w>h
@@ -293,7 +294,7 @@ filetype plugin indent on    " required
     nnoremap R f<
 
     set iskeyword-=-
-    set iskeyword-=-
+    set iskeyword-=:
 
     inoremap lkj <esc>
     inoremap gq <esc>
@@ -347,10 +348,16 @@ filetype plugin indent on    " required
     nnoremap <leader>l cit{{<space>''\|trans<space>}}<esc>F'i
 
     " clear dirty endofline spaces
-    nnoremap <leader>st :%s/ $//g<cr>
+    nnoremap <leader>st :%s/ *$//g<cr>/qxg<cr><c-o>
+
+    " change all tabs by 4 spaces
+    nnoremap <leader>ts :%s/\t/    /g<cr>
+
+    " autocomplete
+    inoremap <s-tab> <c-p>
 
     " reindent php supercomments
-    nnoremap <leader>ts :%s/^ *\*/     */g<cr>
+    " nnoremap <leader>ts :%s/^ *\*/     */g<cr>
 
     " NerdTree
     map <c-n> :NERDTreeToggle<CR>
