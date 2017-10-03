@@ -250,6 +250,7 @@ filetype plugin indent on    " required
     nnoremap <leader>ev :vsplit ~/.dotfiles/vim/vimrc.symlink<cr>
     nnoremap <leader>es :vsplit ~/.dotfiles/vim/snippets/php.snip<cr>
     nnoremap <leader>ets :vsplit ~/.dotfiles/vim/snippets/twig.snip<cr>
+    nnoremap <leader>ebs :vsplit ~/.dotfiles/vim/snippets/sh.snip<cr>
     nnoremap <leader>SV :source ~/.dotfiles/vim/vimrc.symlink<cr>
 
     iabbrev @@ simon.ballu@gmail.com
