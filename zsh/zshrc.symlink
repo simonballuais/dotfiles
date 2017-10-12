@@ -19,7 +19,7 @@ done
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
-compinit
+compinit -i
 
 # load every completion after autocomplete loads
 for file in ${(M)config_files:#*/completion.zsh}
@@ -169,7 +169,20 @@ function put_spacing() {
     echo ${spacing}
 }
 
-PROMPT='$reset_color $fg[cyan]%m: $fg[yellow]$(get_pwd)$(put_spacing)$(git_prompt_info)
+function put_separator() {
+    local terminal_width
+    (( terminal_width = ${COLUMNS} - 3 ))
+
+    local separator="--"
+    for i in {1..$terminal_width}; do
+        separator="${separator}-"
+    done
+
+    echo ${separator}
+}
+
+PROMPT='$reset_color $fg[white]$(put_separator)
+$reset_color $fg[cyan]%m: $fg[yellow]$(get_pwd)$(put_spacing)$(git_prompt_info)
 > '
 
 bindkey ";5D" backward-word

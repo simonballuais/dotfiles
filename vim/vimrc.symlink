@@ -17,6 +17,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'kien/ctrlp.vim'
 Plugin 'spf13/PIV'
+Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Konfekt/FastFold'
@@ -29,6 +30,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mileszs/ack.vim'
 Plugin 'docteurklein/php-getter-setter.vim'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'nelsyeung/twig.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -60,6 +62,7 @@ filetype plugin indent on    " required
     set iskeyword-=.                    " '.' is an end of word designator
     set iskeyword-=#                    " '#' is an end of word designator
     set iskeyword-=-                    " '-' is an end of word designator
+    set iskeyword=65-90,95,97-122,48-57
 
     " Setting up the directories {
         set backup                  " Backups are nice ...
@@ -78,7 +81,7 @@ filetype plugin indent on    " required
                 \ '\[example pattern\]'
                 \ ]
         endif
-    " }
+    " }'
 
     " Vim UI {
 
@@ -242,9 +245,13 @@ filetype plugin indent on    " required
     inoremap <c-U> <esc>viwUea
     nnoremap <c-U> <esc>bveUel
 
+    " Pour les bépo vanilla
+    inoremap » >
+
     nnoremap <leader>ev :vsplit ~/.dotfiles/vim/vimrc.symlink<cr>
     nnoremap <leader>es :vsplit ~/.dotfiles/vim/snippets/php.snip<cr>
     nnoremap <leader>ets :vsplit ~/.dotfiles/vim/snippets/twig.snip<cr>
+    nnoremap <leader>ebs :vsplit ~/.dotfiles/vim/snippets/sh.snip<cr>
     nnoremap <leader>SV :source ~/.dotfiles/vim/vimrc.symlink<cr>
 
     iabbrev @@ simon.ballu@gmail.com
@@ -270,12 +277,13 @@ filetype plugin indent on    " required
 
     nnoremap T i<cr><esc>
 
-    nnoremap ( F(
-    nnoremap ) f)
-    nnoremap { F{
-    nnoremap } f}
-    nnoremap [ F[
-    nnoremap ] f]
+    " Navigation parenthèses
+    nnoremap ( ?(<cr>
+    nnoremap ) /)<cr>
+    nnoremap { ?{<cr>
+    nnoremap } /}<cr>
+    nnoremap [ ?[<cr>
+    nnoremap ] /]<cr>
 
     " Déplacements intersplit
     nnoremap <c-c> <c-w>h
@@ -288,7 +296,7 @@ filetype plugin indent on    " required
     nnoremap R f<
 
     set iskeyword-=-
-    set iskeyword-=-
+    set iskeyword-=:
 
     inoremap lkj <esc>
     inoremap gq <esc>
@@ -342,10 +350,16 @@ filetype plugin indent on    " required
     nnoremap <leader>l cit{{<space>''\|trans<space>}}<esc>F'i
 
     " clear dirty endofline spaces
-    nnoremap <leader>st :%s/ $//g<cr>
+    nnoremap <leader>st :%s/ *$//g<cr>/qxg<cr><c-o>
+
+    " change all tabs by 4 spaces
+    nnoremap <leader>ts :%s/\t/    /g<cr>
+
+    " autocomplete
+    inoremap <s-tab> <c-p>
 
     " reindent php supercomments
-    nnoremap <leader>ts :%s/^ *\*/     */g<cr>
+    " nnoremap <leader>ts :%s/^ *\*/     */g<cr>
 
     " NerdTree
     map <c-n> :NERDTreeToggle<CR>
