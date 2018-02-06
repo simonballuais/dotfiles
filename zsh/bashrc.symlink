@@ -1,4 +1,6 @@
+[ -z "$PS1" ] && return
 [[ $- == *i* ]] || return
+
 source ~/.profile
 fortune | cowsay
 zsh

@@ -10,12 +10,10 @@
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
-
 # The following three lines have been added by UDB DB2.
 if [ -f /home/db2inst1/sqllib/db2profile ]; then
     . /home/db2inst1/sqllib/db2profile
 fi
-
 alias vi="vim"
 alias v="vim"
 alias py='python3'
@@ -37,6 +35,7 @@ alias m="mkdir"
 alias ll="ls -altr --color=auto"
 alias l="ls -altr"
 alias igrep="grep --exclude=\".*\""
+alias f="vifm"
 # GIT
 alias gitl="git log --all --decorate --oneline --graph"
 alias gits="git status"
@@ -48,13 +47,13 @@ alias rmc="sudo rm -rf var/cache/* || true; sudo chmod 777 var -R"
 alias con="./bin/console"
 alias mage="php7.0 ./bin/magento"
 alias magec="yes | rm -rf var/cache/*;yes | rm -rf var/di/*;yes | rm -rf var/generation/*;yes | rm -rf var/page_cache/*;"
-
 alias gg='cd "$(git rev-parse --show-cdup)"'
 alias ggg='gg;cd ..;gg'
 alias gp="cd ~/code/php"
 alias socks="export http_proxy=socks://localhost:8080 https_proxy=socks://localhost:8080;"
-
 alias qt="~/qutebrowser/qutebrowser.sh"
 alias qtd="~/qutebrowser/qutebrowser.sh --debug"
-
+alias mysqldump="/Applications/MAMP/Library/bin/mysqldump"
+export TZ="Africa/Nairobi"
+export PATH="/Applications/MAMP/bin/php/php7.1.6/bin:$PATH"
 source ~/.bashrc.sensitive
