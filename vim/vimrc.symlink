@@ -33,7 +33,7 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'nelsyeung/twig.vim'
 Plugin 'stephpy/vim-php-cs-fixer'
 Plugin 'vim-airline/vim-airline'
-
+Plugin 'leafgarland/typescript-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -197,7 +197,7 @@ filetype plugin indent on    " required
     " }
 
     " ctrlp {
-        set wildignore+=*/bin/*,*/vendor/*,*/cache/*
+        set wildignore+=*/bin/*,*/vendor/*,*/cache/*,*/node_modules/*
     " }
 
     " ctrlp {

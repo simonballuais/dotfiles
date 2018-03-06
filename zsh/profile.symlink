@@ -54,6 +54,11 @@ alias socks="export http_proxy=socks://localhost:8080 https_proxy=socks://localh
 alias qt="~/qutebrowser/qutebrowser.sh"
 alias qtd="~/qutebrowser/qutebrowser.sh --debug"
 alias mysqldump="/Applications/MAMP/Library/bin/mysqldump"
+
+alias lassieserv="cd ~/code/php/winlassie/winlassie-ihm;ng serve --host=\"winlassie.local\" --port=8080"
+
+export LEADERBOX="146.185.162.194"
 export TZ="Africa/Nairobi"
 export PATH="/Applications/MAMP/bin/php/php7.1.6/bin:$PATH"
 source ~/.bashrc.sensitive
+
