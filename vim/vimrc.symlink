@@ -32,7 +32,6 @@ Plugin 'docteurklein/php-getter-setter.vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'nelsyeung/twig.vim'
 Plugin 'stephpy/vim-php-cs-fixer'
-Plugin 'vim-airline/vim-airline'
 Plugin 'leafgarland/typescript-vim'
 
 " All of your Plugins must be added before the following line
@@ -392,6 +391,9 @@ filetype plugin indent on    " required
     let g:php_cs_fixer_enable_default_mapping = 1   " Enable the mapping by default (<leader>pcd)
     let g:php_cs_fixer_dry_run = 0                  " Call command with dry-run option
     let g:php_cs_fixer_verbose = 0                  " Return the output of command if 1, else an inline information.
+
+    " Fugitive git
+    autocmd QuickFixCmdPost *grep* cwindow
 
     " Ack
     cnoreabbrev Ack Ack!
