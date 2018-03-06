@@ -31,6 +31,9 @@ Plugin 'mileszs/ack.vim'
 Plugin 'docteurklein/php-getter-setter.vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'nelsyeung/twig.vim'
+Plugin 'stephpy/vim-php-cs-fixer'
+Plugin 'vim-airline/vim-airline'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -381,9 +384,18 @@ filetype plugin indent on    " required
     vmap q [y
     vmap Q ]y
 
+    " php-cs-fixer
+    let g:php_cs_fixer_level = "all"
+    let g:php_cs_fixer_config_= "default"
+    let g:php_cs_fixer_php_path = "php"
+    let g:php_cs_fixer_fixers_list = "linefeed,indentation,trailing_spaces,unused_use,php_closing_tag,return,visibility,braces,phpdoc_params,eof_ending,extra_empty_lines,controls_spaces,elseif"             " List of fixers
+    let g:php_cs_fixer_enable_default_mapping = 1   " Enable the mapping by default (<leader>pcd)
+    let g:php_cs_fixer_dry_run = 0                  " Call command with dry-run option
+    let g:php_cs_fixer_verbose = 0                  " Return the output of command if 1, else an inline information.
+
     " Ack
     cnoreabbrev Ack Ack!
-    nnoremap <Leader>S :Ack!<Space>--twig<Space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var}<Space>
+    nnoremap <Leader>S :Ack!<Space>--twig<Space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache}<Space>
 
     " Getter/Setter
     let g:phpgetset_getterTemplate =

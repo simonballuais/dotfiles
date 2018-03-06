@@ -19,6 +19,7 @@
         editor = vim
 	autocrlf = input
 	whitespace = cr-at-eol
+	compression = 9
 [apply]
         whitespace = nowarn
 [mergetool]
