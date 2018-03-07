@@ -25,6 +25,7 @@ Plugin 'othree/xml.vim'
 Plugin 'powerline/powerline'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mileszs/ack.vim'
@@ -40,8 +41,7 @@ filetype plugin indent on    " required
 
 " }
 
-" Caca {
-
+" Misc {
     set background=dark
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " Syntax highlighting
@@ -86,12 +86,11 @@ filetype plugin indent on    " required
     " }'
 
     " Vim UI {
-
         color monokai
         set tabpagemax=15               " Only show 15 tabs
         set showmode                    " Display the current mode
         set cursorline                  " Highlight current line
-        set cursorcolumn                  " Highlight current column
+        set cursorcolumn                " Highlight current column
 
         highlight clear SignColumn      " SignColumn should match background
         highlight clear LineNr          " Current line number row will have same background color in relative mode
@@ -110,7 +109,6 @@ filetype plugin indent on    " required
             set statusline=%<%f\                     " Filename
             set statusline+=%w%h%m%r                 " Options
             set statusline+=\ [%{&ff}/%Y]            " Filetype
-            set statusline+=\ [%{getcwd()}]          " Current dir
             set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
         endif
 
@@ -125,15 +123,11 @@ filetype plugin indent on    " required
         set wildmenu                    " Show list instead of just completing
         set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
         set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-        set scrolljump=5                " Lines to scroll when cursor leaves screen
-        set scrolloff=3                 " Minimum lines to keep above and below cursor
         set list
         set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
-
     " }
 
     " Formatting {
-
         set nowrap                      " Do not wrap long lines
         set autoindent                  " Indent at the same level of the previous line
         set shiftwidth=4                " Use indents of 4 spaces
@@ -147,10 +141,6 @@ filetype plugin indent on    " required
         set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
         " Remove trailing whitespaces and ^M chars
-        " To disable the stripping of whitespace, add the following to your
-        " .vimrc.before.local file:
-        "   let g:spf13_keep_trailing_whitespace = 1
-        "autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
         "autocmd FileType go autocmd BufWritePre <buffer> Fmt
         autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
         autocmd FileType haskell,puppet,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
@@ -172,7 +162,6 @@ filetype plugin indent on    " required
     cmap w!! w !sudo tee % >/dev/null
 
     " NeoSnippet {
-
         " Plugin key-mappings.
         imap <C-t>     <Plug>(neosnippet_expand_or_jump)
         smap <C-t>     <Plug>(neosnippet_expand_or_jump)
@@ -192,14 +181,10 @@ filetype plugin indent on    " required
         endif
 
         let g:neosnippet#snippets_directory='~/.dotfiles/vim/snippets'
-
     " }
 
     " ctrlp {
         set wildignore+=*/bin/*,*/vendor/*,*/cache/*,*/node_modules/*
-    " }
-
-    " ctrlp {
         set statusline+=%#warningmsg#
         set statusline+=%{SyntasticStatuslineFlag()}
         set statusline+=%*
@@ -212,11 +197,13 @@ filetype plugin indent on    " required
 
     nnoremap S <C-]>
 
+    " Basic movement in bépo
     nnoremap t j
     nnoremap s k
     vnoremap t j
     vnoremap s k
 
+    " Word movement in bépo + basic words
     nnoremap é w
     nnoremap É W
     nnoremap dé dw
@@ -291,6 +278,7 @@ filetype plugin indent on    " required
     nnoremap <c-c> <c-w>h
     nnoremap <c-t> <c-w>l
     nnoremap Q <c-w>j
+    nnoremap QQ <c-w>k
 
     nnoremap E <c-]>
 
@@ -320,33 +308,34 @@ filetype plugin indent on    " required
 
     set nofoldenable
     set foldmethod=manual
-    set tags=./tags;/home/simon/Dropbox/codingZ/php/game/
+    set tags=./tags
     set wildmenu
     set wildmode=list:longest,full
     set scrolljump=5
     set scrolloff=3
 
-    nnoremap   $
-
-    vnoremap   $
+    " Start/End of line navigation
+    nnoremap l $
+    vnoremap l $
+    nnoremap L _
+    vnoremap L _
 
     " Tab navigation
     nnoremap <tab> gt;
     nnoremap <s-tab> gT;
 
     set lazyredraw
+
+    " Always have focus in the middle of the screen
     set scrolloff=999
 
     autocmd Filetype html setlocal ts=2 sts=2 sw=2
     autocmd Filetype twig setlocal ts=2 sts=2 sw=2
 
-    inoremap <c-r> <Plug>(snipMateNextOrTrigger)
     let g:spf13_no_omni_complete = 1
 
-    nnoremap <leader>tr dit\{\{ \'\'\|trans \}\}<esc>F'i
-
     " rm char and go insert
-    nnoremap X xi
+    noremap X xi
 
     " quick sf translation
     nnoremap <leader>l cit{{<space>''\|trans<space>}}<esc>F'i
@@ -427,6 +416,10 @@ filetype plugin indent on    " required
     nnoremap <c--> :tabm<space>8
     nnoremap <c-/> :tabm<space>9
     nnoremap <c-*> :tabm<space>0
+
+    " Color for the 80th column
+    highlight ColorColumn ctermbg=233
+    set cc=81
 
     " Save & quit
     nnoremap <Leader>s :w<cr>
