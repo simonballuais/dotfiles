@@ -185,6 +185,9 @@ filetype plugin indent on    " required
 
     " ctrlp {
         set wildignore+=*/bin/*,*/vendor/*,*/cache/*,*/node_modules/*
+    " }
+
+    " syntastic {
         set statusline+=%#warningmsg#
         set statusline+=%{SyntasticStatuslineFlag()}
         set statusline+=%*
@@ -193,6 +196,8 @@ filetype plugin indent on    " required
         let g:syntastic_auto_loc_list = 1
         let g:syntastic_check_on_open = 1
         let g:syntastic_check_on_wq = 0
+        let g:syntastic_php_checkers = ['php', 'phpcs']
+        let g:syntastic_php_phpcs_args="--standard=PSR2 --report=csv --warning-severity=6"
     " }
 
     nnoremap S <C-]>
