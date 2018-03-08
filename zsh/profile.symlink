@@ -57,6 +57,10 @@ alias mysqldump="/Applications/MAMP/Library/bin/mysqldump"
 
 alias lassieserv="cd ~/code/php/winlassie/winlassie-ihm;ng serve --host=\"winlassie.local\" --port=8080"
 
+# Used to customize fzf input (and therefore fzf in vim)
+export FZF_DEFAUT_COMMAND='fd --type f --hidden --exclude vendor --follow'
+alias ff="fzf"
+
 export LEADERBOX="146.185.162.194"
 export TZ="Africa/Nairobi"
 export PATH="/Applications/MAMP/bin/php/php7.1.6/bin:$PATH"
