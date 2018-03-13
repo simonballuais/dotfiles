@@ -2,6 +2,11 @@ let mapleader = ","
 let maplocalleader = "à"
 
 " Vundle {
+" If vundle is not installed, do it first
+if (!isdirectory(expand('$HOME/.vim/repos/github.com/Shougo/dein.vim')))
+    call system(expand('mkdir -p $HOME/.vim/repos/github.com'))
+    call system(expand('git clone https://github.com/Shougo/dein.vim $HOME/.vim/repos/github.com/Shougo/dein.vim'))
+endif
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -15,14 +20,12 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'spf13/PIV'
-Plugin 'Shougo/neocomplete'
+"Plugin 'spf13/PIV'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'Konfekt/FastFold'
 Plugin 'othree/xml.vim'
 Plugin 'powerline/powerline'
-Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
@@ -31,9 +34,33 @@ Plugin 'mileszs/ack.vim'
 Plugin 'docteurklein/php-getter-setter.vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'nelsyeung/twig.vim'
-Plugin 'stephpy/vim-php-cs-fixer'
-Plugin 'leafgarland/typescript-vim'
+Plugin 'stephpy/vim-php-cs-nixer'
 Plugin 'junegunn/fzf.vim'
+Plugin 'w0rp/ale'
+Plugin 'yosiat/oceanic-next-vim'
+
+" Typescript {
+    Plugin 'leafgarland/typescript-vim'
+    Plugin 'Valloric/YouCompleteMe'
+    Plugin 'Quramy/tsuquyomi'
+
+    "autocmd FileType typescript setlocal completeopt-=menu
+    autocmd FileType typescript setlocal completeopt+=menu,preview
+
+    let g:ycm_semantic_triggers =  {
+    \   'c' : ['->', '.'],
+    \   'ocaml' : ['.', '#'],
+    \   'cpp,objcpp' : ['->', '.', '::'],
+    \   'perl' : ['->'],
+    \   'php' : ['->', '::'],
+    \ 'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+    \   'ruby' : ['.', '::'],
+    \   'lua' : ['.', ':'],
+    \   'erlang' : [':'],
+\ }
+
+    nnoremap <leader>i :TsuImport<cr>
+" }
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -86,7 +113,7 @@ filetype plugin indent on    " required
     " }'
 
     " Vim UI {
-        color monokai
+        color OceanicNext
         set tabpagemax=15               " Only show 15 tabs
         set showmode                    " Display the current mode
         set cursorline                  " Highlight current line
@@ -191,6 +218,14 @@ filetype plugin indent on    " required
         nnoremap <c-p> :Files<cr>
     " }
 
+    " ALE {
+        let g:ale_fixers = {
+        \   'php': ['php_cs_fixer'],
+        \}
+
+        let g:ale_fix_on_save = 1
+    " }
+
     " syntastic {
         set statusline+=%#warningmsg#
         set statusline+=%{SyntasticStatuslineFlag()}
@@ -249,6 +284,8 @@ filetype plugin indent on    " required
     nnoremap <leader>ev :vsplit ~/.dotfiles/vim/vimrc.symlink<cr>
     nnoremap <leader>es :vsplit ~/.dotfiles/vim/snippets/php.snip<cr>
     nnoremap <leader>ets :vsplit ~/.dotfiles/vim/snippets/twig.snip<cr>
+    nnoremap <leader>ehs :vsplit ~/.dotfiles/vim/snippets/html.snip<cr>
+    nnoremap <leader>etss :vsplit ~/.dotfiles/vim/snippets/ts.snip<cr>
     nnoremap <leader>ebs :vsplit ~/.dotfiles/vim/snippets/sh.snip<cr>
     nnoremap <leader>SV :source ~/.dotfiles/vim/vimrc.symlink<cr>
 
@@ -284,10 +321,10 @@ filetype plugin indent on    " required
     nnoremap ] /]<cr>
 
     " Déplacements intersplit
-    nnoremap <c-c> <c-w>h
-    nnoremap <c-t> <c-w>l
-    nnoremap Q <c-w>j
-    nnoremap QQ <c-w>k
+    nnoremap <Left> <c-w>h
+    nnoremap <Right> <c-w>l
+    nnoremap <Down> <c-w>j
+    nnoremap <Up> <c-w>k
 
     nnoremap E <c-]>
 
@@ -340,8 +377,6 @@ filetype plugin indent on    " required
 
     autocmd Filetype html setlocal ts=2 sts=2 sw=2
     autocmd Filetype twig setlocal ts=2 sts=2 sw=2
-
-    let g:spf13_no_omni_complete = 1
 
     " rm char and go insert
     noremap X xi

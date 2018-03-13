@@ -63,6 +63,7 @@ alias ff="fzf"
 
 export LEADERBOX="146.185.162.194"
 export TZ="Africa/Nairobi"
-export PATH="/Applications/MAMP/bin/php/php7.1.6/bin:$PATH"
+export PATH="/Applications/MAMP/bin/php/php7.1.6/bin:/home/simon/matterhorn:$PATH"
+export LANG="en_US.utf8"
 source ~/.bashrc.sensitive
 
