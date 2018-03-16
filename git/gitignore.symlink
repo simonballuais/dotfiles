@@ -1,3 +1,6 @@
 .DS_Store
 *~
 *.swp
+*.un~
+tags
+.php_cs.cache
