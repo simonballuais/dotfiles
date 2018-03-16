@@ -199,7 +199,7 @@ filetype plugin indent on    " required
         " \ pumvisible() ? "\<C-n>" :
         " \ neosnippet#expandable_or_jumpable() ?
         " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-        imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+        imap <expr><F5> neosnippet#expandable_or_jumpable() ?
         \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
         " For conceal markers.
