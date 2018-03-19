@@ -461,6 +461,10 @@ filetype plugin indent on    " required
     nnoremap <c-/> :tabm<space>9
     nnoremap <c-*> :tabm<space>0
 
+    " Attribute navigation
+    nnoremap <leader>n /private\\|protected\\|public<cr>
+    nnoremap <leader>N ?private\\|protected\\|public<cr>
+
     " Color for the 80th column
     highlight ColorColumn ctermbg=233
     set cc=81
