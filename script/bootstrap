@@ -152,24 +152,30 @@ then
   fi
 fi
 
+sudo apt install --assume-yes php
+
 # Keyboard layout
 sudo cp ~/.dotfiles/keyboard/evdev.xml /usr/share/X11/xkb/rules | true
 sudo cp ~/.dotfiles/keyboard/fr /usr/share/X11/xkb/symbols | true
 echo '  Keyboard layout OK'
 
-echo '  Installing vundle ...'
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim | true
+if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+    echo '  Installing vundle ...'
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim | true
+    echo '  Vundle OK'
+fi
 
-echo '  Vundle OK'
-echo ''
-echo '  Installing composer ...'
-sudo apt install --assume-yes php
+if [ ! -f /usr/local/bin/composer ]; then
+    echo '  Installing composer ...'
 
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-php -r "if (hash_file('SHA384', 'composer-setup.php') === '669656bab3166a7aff8a7506b8cb2d1c292f042046c5a994c43155c0be6190fa0355160742ab2e1c88d40d5be660b410') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-sudo mv composer.phar /usr/local/bin/composer
+    cd ~
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    php -r "if (hash_file('SHA384', 'composer-setup.php') === '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+    php composer-setup.php
+    php -r "unlink('composer-setup.php');"
+    sudo mv composer.phar /usr/local/bin/composer
+    cd -
+fi
 
 # Packages
 echo '  Apt update ...'
@@ -183,8 +189,9 @@ sudo apt-get --assume-yes install\
     gksu\
     leafpad\
     vlc\
+    cowsay\
+    fortune\
     clementine\
-    pinta\
     sendmail\
     iptables-persistent\
     python3-pip\
@@ -192,7 +199,6 @@ sudo apt-get --assume-yes install\
     htop\
     nmap\
     liblua5.1-dev luajit libluajit-5.1 python-dev ruby-dev libperl-dev mercurial libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev\
-    audacity compiz compizconfig-settings-manager compiz-fusion-bcop compiz-plugins-default compiz-plugins-extra compiz-plugins-main compiz-plugins-main-default smart-notifier gsmartcontrol\
     php-xml\
     php-curl\
     php-mbstring\
@@ -200,7 +206,6 @@ sudo apt-get --assume-yes install\
     phpmyadmin\
     apache2\
     libapache2-mod-php
-
 
 echo '  Packages OK'
 
