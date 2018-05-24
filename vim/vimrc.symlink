@@ -229,13 +229,23 @@ filetype plugin indent on    " required
     " syntastic {
         set statusline+=%#warningmsg#
         set statusline+=%*
+        "set statusline+=%#warningmsg#
+        "set statusline+=%{SyntasticStatuslineFlag()}
+        "set statusline+=%*
+
+        "let g:syntastic_always_populate_loc_list = 1
+        "let g:syntastic_auto_loc_list = 1
+        "let g:syntastic_check_on_open = 1
+        "let g:syntastic_check_on_wq = 0
+        "let g:syntastic_php_checkers = ['php', 'phpcs']
+        "let g:syntastic_php_phpcs_args="--standard=PSR2 --report=csv --warning-severity=6"
     " }
 
     nnoremap S <C-]>
 
     " Basic movement in bépo
-    nnoremap t j
-    nnoremap s k
+    nnoremap t gj
+    nnoremap s gk
     vnoremap t j
     vnoremap s k
 
@@ -309,8 +319,6 @@ filetype plugin indent on    " required
     nnoremap ) /)<cr>
     nnoremap { ?{<cr>
     nnoremap } /}<cr>
-    nnoremap [ ?[<cr>
-    nnoremap ] /]<cr>
 
     " Déplacements intersplit
     nnoremap <Left> <c-w>h
@@ -452,6 +460,10 @@ filetype plugin indent on    " required
     nnoremap <c--> :tabm<space>8
     nnoremap <c-/> :tabm<space>9
     nnoremap <c-*> :tabm<space>0
+
+    " Attribute navigation
+    nnoremap <leader>n /^\s*\(const\\|private\\|protected\\|public\)<cr>
+    nnoremap <leader>N ?^\s*\(const\\|private\\|protected\\|public\)<cr>
 
     " Color for the 80th column
     highlight ColorColumn ctermbg=233

@@ -533,7 +533,7 @@ xkb_symbols "bepo" {
     key <SPCE> { [           space, nobreakspace,     underscore,          U202F ] }; // ␣ (espace insécable) _ (espace insécable fin)
 };
 
-// Custom bépo with swapping of «» and <>
+// Custom bépo with swapping of «» / <>
 partial alphanumeric_keys
 xkb_symbols "yolo" {
 
