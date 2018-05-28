@@ -3,3 +3,8 @@ remove Lock = Caps_Lock
 keysym Escape = Caps_Lock
 keysym Caps_Lock = Escape
 add Lock = Caps_Lock
+
+keycode 133 = Control_R NoSymbol Control_R
+keycode 134 = Control_R NoSymbol Control_R
+keycode 37 = Control_R NoSymbol Control_R
+keycode 34 = Control_R NoSymbol Control_R

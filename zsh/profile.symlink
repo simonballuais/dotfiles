@@ -37,7 +37,7 @@ alias l="ls -altr"
 alias igrep="grep --exclude=\".*\""
 alias f="vifm"
 # GIT
-alias gitl="git log --all --decorate --oneline --graph --tags"
+alias gitl="git log --all --decorate --oneline --graph --tags --pretty=format:\"%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cd)%Creset %C(green)%ce%Creset %s\""
 alias gits="git status"
 alias gc="git checkout"
 alias gfiles="git diff-tree --no-commit-id --name-only -r"
