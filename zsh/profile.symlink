@@ -56,9 +56,10 @@ alias qtd="~/qutebrowser/qutebrowser.sh --debug"
 alias mysqldump="/Applications/MAMP/Library/bin/mysqldump"
 
 alias lassieserv="cd ~/code/php/winlassie/winlassie-ihm;ng serve --host=\"winlassie.local\" --port=8080"
+alias planeo="cd /mnt/c/xampp/htdocs/planeo"
 
 # Used to customize fzf input (and therefore fzf in vim)
-export FZF_DEFAUT_COMMAND='fd --type f --hidden --exclude vendor --follow'
+export FZF_DEFAULT_COMMAND='fd --hidden --exclude "{**/vendor,**/node_modules,.git}"'
 alias ff="fzf"
 
 export LEADERBOX="146.185.162.194"

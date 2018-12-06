@@ -39,3 +39,5 @@
 [user]
 	name = Simon Balluais\n
 	email = sballuais@bocasay.com
+[http]
+	proxy = http://10.24.18.18:8080
