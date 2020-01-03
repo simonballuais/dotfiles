@@ -27,13 +27,12 @@ alias eis="vim ~/.dotfiles/script/bootstrap"
 alias ev="vim ~/.vimrc"
 alias g="git"
 alias s="source ~/.bashrc"
-alias ct="ctags -R --fields=+aimlS --languages=php"
 alias t="tree -L 2 -C"
 alias tt="tree -L 3 -C"
 alias ttt="tree -L 4 -C"
-alias m="mkdir"
-alias ll="ls -altr --color=auto"
-alias l="ls -altr"
+alias m="mkdir -p"
+alias ll="ls -altrh --color=auto"
+alias l="ls -altrh"
 alias igrep="grep --exclude=\".*\""
 alias f="vifm"
 # GIT
@@ -54,13 +53,16 @@ alias socks="export http_proxy=socks://localhost:8080 https_proxy=socks://localh
 alias qt="~/qutebrowser/qutebrowser.sh"
 alias qtd="~/qutebrowser/qutebrowser.sh --debug"
 alias mysqldump="/Applications/MAMP/Library/bin/mysqldump"
+alias vendorctags="ctags -R --PHP-kinds=cfi -f `git rev-parse --git-dir`/tags.vendors app/vendor > /dev/null 2>&1 &"
 
 alias lassieserv="cd ~/code/php/winlassie/winlassie-ihm;ng serve --host=\"winlassie.local\" --port=8080"
-alias planeo="cd /mnt/c/xampp/htdocs/planeo"
 
 # Used to customize fzf input (and therefore fzf in vim)
-export FZF_DEFAULT_COMMAND='fd --hidden --exclude "{**/vendor,**/node_modules,.git}"'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude "{**/vendor,**/node_modules,.git}"'
 alias ff="fzf"
+
+alias gstats="git log --shortstat --pretty=\"%cE\" | sed 's/\(.*\)@.*/\1/' | grep -v \"^$\" | awk 'BEGIN { line=\"\"; } !/^ / { if (line==\"\" || !match(line, $0)) {line = $0 \",\" line }} /^ / { print line \" # \" $0; line=\"\"}' | sort | sed -E 's/# //;s/ files? changed,//;s/([0-9]+) ([0-9]+ deletion)/\1 0 insertions\(+\), \2/;s/\(\+\)$/\(\+\), 0 deletions\(-\)/;s/insertions?\(\+\), //;s/ deletions?\(-\)//' | awk 'BEGIN {name=\"\"; files=0; insertions=0; deletions=0;} {if ($1 != name && name != \"\") { print name \": \" files \" files changed, \" insertions \" insertions(+), \" deletions \" deletions(-), \" insertions-deletions \" net\"; files=0; insertions=0; deletions=0; name=$1; } name=$1; files+=$2; insertions+=$3; deletions+=$4} END {print name \": \" files \" files changed, \" insertions \" insertions(+), \" deletions \" deletions(-), \" insertions-deletions \" net\";}'"
+
 
 export LEADERBOX="146.185.162.194"
 export TZ="Africa/Nairobi"

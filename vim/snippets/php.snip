@@ -10,14 +10,21 @@ snippet     //
 
 snippet     pf
 options     indent
-    public function ${1:functionName}(${2})
+    public function ${1:functionName}(${2}): ${3}
+    {
+        ${0}
+    }
+
+snippet     ppf
+options     indent
+    private function ${1:functionName}(${2}): ${3}
     {
         ${0}
     }
 
 snippet     psf
 options     indent
-    public static function ${1:functionName}(${2})
+    public static function ${1:functionName}(${2}): ${3}
     {
         ${0}
     }
@@ -40,20 +47,6 @@ options     indent
 snippet     pr
 options     indent
     private $${0};
-
-snippet     gs
-options     indent
-    public function get${1}()
-    {
-        return $this->$1;
-    }
-
-    public function set$1($$1)
-    {
-        $this->$1 = $$1;
-        return $this;
-    }
-    ${0}
 
 snippet     for
 options     indent
@@ -109,7 +102,8 @@ options     indent
     /**
      * @Route("${1:route/to/match}",
      *        options = { "expose": true },
-     *        name="${2:name}")
+     *        name="${2:name}"
+     * )
      * @Method({"GET"})
     */
 
