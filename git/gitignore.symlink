@@ -3,4 +3,5 @@
 *.swp
 *.un~
 tags
+tags.vendors
 .php_cs.cache

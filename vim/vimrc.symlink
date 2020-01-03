@@ -1,7 +1,7 @@
 let mapleader = ","
 let maplocalleader = "à"
 
-" Vundle {
+" Vundle {{{
 " If vundle is not installed, do it first
 if (!isdirectory(expand('$HOME/.vim/repos/github.com/Shougo/dein.vim')))
     call system(expand('mkdir -p $HOME/.vim/repos/github.com'))
@@ -20,68 +20,43 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-"Plugin 'spf13/PIV'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
-Plugin 'Konfekt/FastFold'
-Plugin 'othree/xml.vim'
 Plugin 'powerline/powerline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-repeat'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mileszs/ack.vim'
 Plugin 'docteurklein/php-getter-setter.vim'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'nelsyeung/twig.vim'
-Plugin 'stephpy/vim-php-cs-nixer'
 Plugin 'junegunn/fzf.vim'
-Plugin 'w0rp/ale'
 Plugin 'yosiat/oceanic-next-vim'
 Plugin 'mechatroner/rainbow_csv'
+Plugin 'craigemery/vim-autotag'
+Plugin 'arnaud-lb/vim-php-namespace'
 
-Plugin 'alvan/vim-dicts'
+"Plugin 'joonty/vim-phpqa'
 
-Plugin 'posva/vim-vue'
-
-" Typescript {
-    Plugin 'leafgarland/typescript-vim'
-    Plugin 'Valloric/YouCompleteMe'
-    Plugin 'Quramy/tsuquyomi'
-
-    "autocmd FileType typescript setlocal completeopt-=menu
-    autocmd FileType typescript setlocal completeopt+=menu,preview
-
-    let g:ycm_semantic_triggers =  {
-    \   'c' : ['->', '.'],
-    \   'ocaml' : ['.', '#'],
-    \   'cpp,objcpp' : ['->', '.', '::'],
-    \   'perl' : ['->'],
-    \   'php' : ['->', '::'],
-    \ 'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-    \   'ruby' : ['.', '::'],
-    \   'lua' : ['.', ':'],
-    \   'erlang' : [':'],
-\ }
-
-    nnoremap <leader>i :TsuImport<cr>
-" }
+Plugin 'tobyS/vmustache'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" }
+" }}}
 
-" Misc {
+" Misc {{{
     set background=dark
     filetype plugin indent on   " Automatically detect file types.
     syntax on                   " Syntax highlighting
     set mouse=a                 " Automatically enable mouse usage
     set mousehide               " Hide the mouse cursor while typing
     scriptencoding utf-8
-
-    set relativenumber
 
     if has('clipboard')
         if has('unnamedplus')  " When possible use + register for copy-paste
@@ -97,6 +72,7 @@ filetype plugin indent on    " required
     set iskeyword-=#                    " '#' is an end of word designator
     set iskeyword-=-                    " '-' is an end of word designator
     set iskeyword=65-90,95,97-122,48-57
+    set iskeyword-=:
 
     " Setting up the directories {
         set backup                  " Backups are nice ...
@@ -115,9 +91,9 @@ filetype plugin indent on    " required
                 \ '\[example pattern\]'
                 \ ]
         endif
-    " }'
+    " }}}
 
-    " Vim UI {
+    " Vim UI {{{
         color OceanicNext
         set tabpagemax=15               " Only show 15 tabs
         set showmode                    " Display the current mode
@@ -146,7 +122,6 @@ filetype plugin indent on    " required
 
         set backspace=indent,eol,start  " Backspace for dummies
         set linespace=0                 " No extra spaces between rows
-        set number                      " Line numbers on
         set incsearch                   " Find as you type search
         set hlsearch                    " Highlight search terms
         set winminheight=0              " Windows can be 0 line high
@@ -157,9 +132,9 @@ filetype plugin indent on    " required
         set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
         set list
         set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
-    " }
+    " }}}
 
-    " Formatting {
+    " Formatting {{{
         set nowrap                      " Do not wrap long lines
         set autoindent                  " Indent at the same level of the previous line
         set shiftwidth=4                " Use indents of 4 spaces
@@ -175,12 +150,12 @@ filetype plugin indent on    " required
         " Remove trailing whitespaces and ^M chars
         "autocmd FileType go autocmd BufWritePre <buffer> Fmt
         autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
+        autocmd BufNewFile,BufRead *.js.twig set filetype=javascript
         autocmd FileType haskell,puppet,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
         " preceding line best in a plugin but here for now.
 
         autocmd BufNewFile,BufRead *.coffee set filetype=coffee
-
-    " }
+    " }}}
 
     " Visual shifting (does not exit Visual mode)
     vnoremap < <gv
@@ -193,7 +168,7 @@ filetype plugin indent on    " required
     " For when you forget to sudo.. Really Write the file.
     cmap w!! w !sudo tee % >/dev/null
 
-    " NeoSnippet {
+    " NeoSnippet {{{
         " Plugin key-mappings.
         imap <C-t>     <Plug>(neosnippet_expand_or_jump)
         smap <C-t>     <Plug>(neosnippet_expand_or_jump)
@@ -213,68 +188,47 @@ filetype plugin indent on    " required
         endif
 
         let g:neosnippet#snippets_directory='~/.dotfiles/vim/snippets'
-    " }
+    " }}}
 
-    " ctrlp {
-        " set wildignore+=*/bin/*,*/vendor/*,*/cache/*,*/node_modules/*
-    " }
-
-    " fzf {
+    " fzf {{{
         nnoremap <c-p> :Files<cr>
-    " }
-
-    " ALE {
-        let g:ale_fixers = {
-        \   'php': ['php_cs_fixer'],
-        \}
-
-        let g:ale_fix_on_save = 1
-    " }
-
-    " syntastic {
-        set statusline+=%#warningmsg#
-        set statusline+=%*
-        "set statusline+=%#warningmsg#
-        "set statusline+=%{SyntasticStatuslineFlag()}
-        "set statusline+=%*
-
-        "let g:syntastic_always_populate_loc_list = 1
-        "let g:syntastic_auto_loc_list = 1
-        "let g:syntastic_check_on_open = 1
-        "let g:syntastic_check_on_wq = 0
-        "let g:syntastic_php_checkers = ['php', 'phpcs']
-        "let g:syntastic_php_phpcs_args="--standard=PSR2 --report=csv --warning-severity=6"
-    " }
+    " }}}
 
     nnoremap S <C-]>
 
-    " Basic movement in bépo
-    nnoremap t gj
-    nnoremap s gk
-    vnoremap t j
-    vnoremap s k
+    " BÉPO remaps {{{
+        " Basic movement in bépo
+        nnoremap t gj
+        nnoremap s gk
+        vnoremap t j
+        vnoremap s k
 
-    " Word movement in bépo + basic words
-    nnoremap é w
-    nnoremap É W
-    nnoremap dé dw
-    nnoremap yé yw
-    nnoremap cé cw
-    nnoremap caé caw
-    nnoremap cié cis
-    nnoremap daé daw
-    nnoremap dié dis
-    nnoremap yaé yaw
-    nnoremap yié yis
-    nnoremap É caw
-    nnoremap dÉ dW
-    nnoremap yÉ yW
-    nnoremap cÉ cW
-    nnoremap vié viw
+        " Word movement in bépo + basic words
+        nnoremap é w
+        nnoremap É W
+        nnoremap dé dw
+        nnoremap yé yw
+        nnoremap cé cw
+        nnoremap caé caw
+        nnoremap cié ciw
+        nnoremap daé daw
+        nnoremap dié diw
+        nnoremap yaé yaw
+        nnoremap yié yiw
+        nnoremap É caw
+        nnoremap dÉ dW
+        nnoremap yÉ yW
+        nnoremap cÉ cW
+        nnoremap vié viw
+        nnoremap vaé vaw
 
-    " Var movement
-    nnoremap <c-É> f$
-    nnoremap <c-B> F$
+        " Var movement
+        nnoremap <c-É> f$
+        nnoremap <c-B> F$
+
+        " Pour les bépo vanilla
+        inoremap » >
+    " }}}
 
     " To erase word with current yank
     nnoremap <leader>p viwp<esc>byw
@@ -285,37 +239,28 @@ filetype plugin indent on    " required
     inoremap <c-U> <esc>viwUea
     nnoremap <c-U> <esc>bveUel
 
-    " Pour les bépo vanilla
-    inoremap » >
+    " Quick configuration/snippet files access {{{
+        nnoremap <leader>ev :vsplit ~/.dotfiles/vim/vimrc.symlink<cr>
+        nnoremap <leader>es :vsplit ~/.dotfiles/vim/snippets/php.snip<cr>
+        nnoremap <leader>ets :vsplit ~/.dotfiles/vim/snippets/twig.snip<cr>
+        nnoremap <leader>ehs :vsplit ~/.dotfiles/vim/snippets/html.snip<cr>
+        nnoremap <leader>etss :vsplit ~/.dotfiles/vim/snippets/ts.snip<cr>
+        nnoremap <leader>ebs :vsplit ~/.dotfiles/vim/snippets/sh.snip<cr>
+        nnoremap <leader>SV :source ~/.dotfiles/vim/vimrc.symlink<cr>
+    " }}}
 
-    nnoremap <leader>ev :vsplit ~/.dotfiles/vim/vimrc.symlink<cr>
-    nnoremap <leader>es :vsplit ~/.dotfiles/vim/snippets/php.snip<cr>
-    nnoremap <leader>ets :vsplit ~/.dotfiles/vim/snippets/twig.snip<cr>
-    nnoremap <leader>ehs :vsplit ~/.dotfiles/vim/snippets/html.snip<cr>
-    nnoremap <leader>etss :vsplit ~/.dotfiles/vim/snippets/ts.snip<cr>
-    nnoremap <leader>ebs :vsplit ~/.dotfiles/vim/snippets/sh.snip<cr>
-    nnoremap <leader>SV :source ~/.dotfiles/vim/vimrc.symlink<cr>
-
-    iabbrev @@ simon.ballu@gmail.com
-
-
-    nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
-    nnoremap <leader>' viw<esc>a'<esc>hbi'<esc>lel
-
-    autocmd FileType javascript nnoremap <buffer> <leader>c I//<esc>
-    autocmd FileType python     nnoremap <buffer> <leader>c I#<esc>
-
-    onoremap p i(
-    onoremap ib i(
-
-    onoremap lp :<c-u>normal! F)vi(<cr>
-    onoremap np :<c-u>normal! f(vi)<cr>
-    onoremap lb :<c-u>normal! F]vi[<cr>
-    onoremap nb :<c-u>normal! f[vi]<cr>
-    onoremap lc :<c-u>normal! F}vi{<cr>
-    onoremap nc :<c-u>normal! f{vi}<cr>
-    onoremap l' :<c-u>normal! F'vi'<cr>
-    onoremap n' :<c-u>normal! f'vi'<cr>
+    " In parentheses/brackets shortcuts {{{
+        onoremap p i(
+        onoremap ib i(
+        onoremap lp :<c-u>normal! F)vi(<cr>
+        onoremap np :<c-u>normal! f(vi)<cr>
+        onoremap lb :<c-u>normal! F]vi[<cr>
+        onoremap nb :<c-u>normal! f[vi]<cr>
+        onoremap lc :<c-u>normal! F}vi{<cr>
+        onoremap nc :<c-u>normal! f{vi}<cr>
+        onoremap l' :<c-u>normal! F'vi'<cr>
+        onoremap n' :<c-u>normal! f'vi'<cr>
+    " }}}
 
     nnoremap T i<cr><esc>
 
@@ -331,13 +276,11 @@ filetype plugin indent on    " required
     nnoremap <Down> <c-w>j
     nnoremap <Up> <c-w>k
 
+
     nnoremap E <c-]>
 
     nnoremap S F>
     nnoremap R f<
-
-    set iskeyword-=-
-    set iskeyword-=:
 
     inoremap lkj <esc>
     inoremap gq <esc>
@@ -357,9 +300,18 @@ filetype plugin indent on    " required
     au WinEnter * set nofen
     au WinLeave * set nofen
 
-    set nofoldenable
-    set foldmethod=manual
-    set tags=./tags
+    set tags=.git/tags.vendors
+
+    " PhpNamespace {
+        function! IPhpInsertUse()
+            call PhpInsertUse()
+            call feedkeys('a',  'n')
+        endfunction
+
+        autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+        autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>1<CR><cr>
+    " }
+
     set wildmenu
     set wildmode=list:longest,full
     set scrolljump=5
@@ -380,10 +332,11 @@ filetype plugin indent on    " required
     " Always have focus in the middle of the screen
     set scrolloff=999
 
-    autocmd Filetype html setlocal ts=2 sts=2 sw=2
     autocmd Filetype js setlocal ts=2 sts=2 sw=2
     autocmd Filetype vue setlocal ts=2 sts=2 sw=2
     autocmd Filetype twig setlocal ts=2 sts=2 sw=2
+    autocmd Filetype html setlocal ts=4 sts=4 sw=4
+    autocmd Filetype twig setlocal ts=4 sts=4 sw=4
 
     " rm char and go insert
     noremap X xi
@@ -400,8 +353,8 @@ filetype plugin indent on    " required
     " autocomplete
     inoremap <s-tab> <c-p>
 
-    " reindent php supercomments
-    " nnoremap <leader>ts :%s/^ *\*/     */g<cr>
+    " parentheses selection
+    nnoremap - vi(
 
     " NerdTree
     map <c-n> :NERDTreeToggle<CR>
@@ -411,11 +364,6 @@ filetype plugin indent on    " required
     let g:NERDTreeMapOpenVSplit = '<c-v>'
     let g:NERDTreeMapJumpNextSibling = 'T'
     let g:NERDTreeMapJumpPrevSibling = 'S'
-
-    " Powerline
-    set  rtp+=/usr/local/lib/python3.5/dist-packages/powerline/bindings/vim/
-    set laststatus=2
-    set t_Co=256
 
     " unimpaired
     nmap < [
@@ -437,7 +385,7 @@ filetype plugin indent on    " required
 
     " Ack
     cnoreabbrev Ack Ack!
-    nnoremap <Leader>S :Ack!<Space>--twig<Space>--php<Space>--vue<Space>--js<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache}<Space>
+    nnoremap <Leader>S :Ack!<Space>--twig<Space>--js<space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space>
 
     " Getter/Setter
     let g:phpgetset_getterTemplate =
@@ -511,6 +459,8 @@ filetype plugin indent on    " required
         inoremap <c-o> <c-x><c-o>
     " }
 
+    set foldmethod=manual
+
     " Tabs
     nnoremap <c-"> :tabm<space>1
     nnoremap <c-<> :tabm<space>2
@@ -530,6 +480,18 @@ filetype plugin indent on    " required
     nnoremap <leader>n /^\s*\(const\\|private\\|protected\\|public\)<cr>
     nnoremap <leader>N ?^\s*\(const\\|private\\|protected\\|public\)<cr>
 
+    " Conflict markers
+    nnoremap <leader>m /[<>=]\{7\}<cr>
+    nnoremap <leader>M ?[<>=]\{7\}<cr>
+    vnoremap <leader>m /[<>=]\{7\}<cr>
+    vnoremap <leader>M ?[<>=]\{7\}<cr>
+
+    " Diff navigation
+    nnoremap >> <leader>>c
+    nnoremap << <leader><c
+
+    set mouse=""
+
     " Color for the 80th column
     highlight ColorColumn ctermbg=233
     set cc=81
@@ -538,5 +500,17 @@ filetype plugin indent on    " required
     nnoremap <Leader>s :w<cr>
     nnoremap <Leader>q :q<cr>
     nnoremap <c-w> :q<cr>
+    nnoremap <c-s> :w<cr>
+
+    " PhpMd
+    let g:phpqa_messdetector_ruleset = "~/.dotfiles/phpmd/rules.xml"
+
+    " PhpCs
+    let g:phpqa_codesniffer_autorun = 0
+    let g:php_cs_fixer_rules = "PEAR"
+
+    map <F4> <Esc>:EnableFastPHPFolds<Cr>
+    map <F3> <Esc>:DisablePHPFolds<Cr>
 " }
+
 

@@ -17,9 +17,9 @@
 [core]
         excludesfile = ~/.gitignore
         editor = vim
-	autocrlf = input
-	whitespace = cr-at-eol
-	compression = 9
+    autocrlf = input
+    whitespace = cr-at-eol
+    compression = 9
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -35,7 +35,11 @@
         # Setting to git 2.0 default to suppress warning message
         default = simple
 [pager]
-	show = vim -R -
+    show = vim -R -
 [user]
-	name = Simon Balluais\n
-	email = simon.ballu@gmail.com
+    name = Simon Balluais\n
+    email = simon.ballu@gmail.com
+[credential]
+    helper = cache --timeout=99999
+[init]
+    templatedir = ~/.dotfiles/git_template

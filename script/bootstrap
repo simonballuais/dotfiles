@@ -130,7 +130,7 @@ install_dotfiles () {
 
   local overwrite_all=false backup_all=false skip_all=false
 
-  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 5 -name '*.symlink' -not -path '*.git*')
   do
     dst="$HOME/.$(basename "${src%.*}")"
     link_file "$src" "$dst"
@@ -178,10 +178,10 @@ if [ ! -f /usr/local/bin/composer ]; then
 fi
 
 # Packages
-echo '  Apt update ...'
+echo '  Apt update'
 sudo apt-get update
 
-echo '  Apt install de tout le bordel ...'
+echo '  Apt install'
 sudo apt-get --assume-yes install\
     curl\
     git\
@@ -210,7 +210,7 @@ sudo apt-get --assume-yes install\
 echo '  Packages OK'
 
 # Purge
-echo '  Apt purge de tout l''autre bordel ...'
+echo '  Apt purge''autre bordel ...'
 sudo aptitude purge banshee brasero brasero-common brasero-cdrkit hexchat hexchat-common espaeak espeak-data libespeak1 libsonic0 libspeechd2 python3-speechd speech-dispatcher speech-dispatcher-audio-plugins gnome-orca virtualbox-guest-utils virtualbox-guest-dkms virtualbox-guest-x11 adobe-flash-properties-gtk mate-screensaver mate-screensaver-common  tomboy toshset brltty printer-driver-c2esp printer-driver-min12xxw printer-driver-ptouch printer-driver-sag-gdi printer-driver-splix printer-driver-brlaser mono-runtime-common avahi-daemon xscreensaver-data-extra xscreensaver-data xscreensaver-gl-extra xscreensaver-gl java-common xplayer pix pix-data | true
 
 echo ''
