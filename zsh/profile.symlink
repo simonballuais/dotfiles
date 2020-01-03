@@ -53,7 +53,7 @@ alias socks="export http_proxy=socks://localhost:8080 https_proxy=socks://localh
 alias qt="~/qutebrowser/qutebrowser.sh"
 alias qtd="~/qutebrowser/qutebrowser.sh --debug"
 alias mysqldump="/Applications/MAMP/Library/bin/mysqldump"
-alias vendorctags="ctags -R --PHP-kinds=cfi -f `git rev-parse --git-dir`/tags.vendors app/vendor > /dev/null 2>&1 &"
+alias vendorctags="ctags --tag-relative -R --PHP-kinds=cfi -f `git rev-parse --git-dir`/tags.vendors app/vendor > /dev/null 2>&1 &"
 
 alias lassieserv="cd ~/code/php/winlassie/winlassie-ihm;ng serve --host=\"winlassie.local\" --port=8080"
 

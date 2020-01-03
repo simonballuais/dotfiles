@@ -324,7 +324,7 @@ filetype plugin indent on    " required
     au WinEnter * set nofen
     au WinLeave * set nofen
 
-    set tags=tags.vendors
+    set tags=.git/tags.vendors
 
     " PhpNamespace {
         function! IPhpInsertUse()
