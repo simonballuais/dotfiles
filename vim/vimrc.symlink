@@ -40,6 +40,10 @@ Plugin 'w0rp/ale'
 Plugin 'yosiat/oceanic-next-vim'
 Plugin 'mechatroner/rainbow_csv'
 
+Plugin 'alvan/vim-dicts'
+
+Plugin 'posva/vim-vue'
+
 " Typescript {
     Plugin 'leafgarland/typescript-vim'
     Plugin 'Valloric/YouCompleteMe'
@@ -377,6 +381,8 @@ filetype plugin indent on    " required
     set scrolloff=999
 
     autocmd Filetype html setlocal ts=2 sts=2 sw=2
+    autocmd Filetype js setlocal ts=2 sts=2 sw=2
+    autocmd Filetype vue setlocal ts=2 sts=2 sw=2
     autocmd Filetype twig setlocal ts=2 sts=2 sw=2
 
     " rm char and go insert
@@ -431,7 +437,7 @@ filetype plugin indent on    " required
 
     " Ack
     cnoreabbrev Ack Ack!
-    nnoremap <Leader>S :Ack!<Space>--twig<Space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache}<Space>
+    nnoremap <Leader>S :Ack!<Space>--twig<Space>--php<Space>--vue<Space>--js<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache}<Space>
 
     " Getter/Setter
     let g:phpgetset_getterTemplate =
@@ -501,6 +507,10 @@ filetype plugin indent on    " required
         vnoremap <C-H> :<C-U>Hexmode<CR>
     " }
 
+    " Syntax based autocomplete {
+        inoremap <c-o> <c-x><c-o>
+    " }
+
     " Tabs
     nnoremap <c-"> :tabm<space>1
     nnoremap <c-<> :tabm<space>2
@@ -513,6 +523,9 @@ filetype plugin indent on    " required
     nnoremap <c-/> :tabm<space>9
     nnoremap <c-*> :tabm<space>0
 
+    " No more accidental ex mode
+    nnoremap Q <nop>
+
     " Attribute navigation
     nnoremap <leader>n /^\s*\(const\\|private\\|protected\\|public\)<cr>
     nnoremap <leader>N ?^\s*\(const\\|private\\|protected\\|public\)<cr>
@@ -524,5 +537,6 @@ filetype plugin indent on    " required
     " Save & quit
     nnoremap <Leader>s :w<cr>
     nnoremap <Leader>q :q<cr>
+    nnoremap <c-w> :q<cr>
 " }
 

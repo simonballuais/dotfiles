@@ -53,12 +53,11 @@ alias gp="cd ~/code/php"
 alias socks="export http_proxy=socks://localhost:8080 https_proxy=socks://localhost:8080;"
 alias qt="~/qutebrowser/qutebrowser.sh"
 alias qtd="~/qutebrowser/qutebrowser.sh --debug"
-alias mysqldump="/Applications/MAMP/Library/bin/mysqldump"
 
 alias lassieserv="cd ~/code/php/winlassie/winlassie-ihm;ng serve --host=\"winlassie.local\" --port=8080"
 
 # Used to customize fzf input (and therefore fzf in vim)
-export FZF_DEFAUT_COMMAND='fd --type f --hidden --exclude vendor --follow'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude={vendor,node_modules}'
 alias ff="fzf"
 
 export LEADERBOX="146.185.162.194"
