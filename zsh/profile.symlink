@@ -56,7 +56,7 @@ alias mysqldump="/Applications/MAMP/Library/bin/mysqldump"
 alias vendorctags="ctags --tag-relative -R --PHP-kinds=cfi -f `git rev-parse --git-dir`/tags.vendors app/vendor > /dev/null 2>&1 &"
 
 # Used to customize fzf input (and therefore fzf in vim)
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude "{**/vendor,**/node_modules,.git}"'
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --no-ignore --exclude "{**/vendor,**/node_modules,.git}"'
 alias ff="fzf"
 
 alias gstats="git log --shortstat --pretty=\"%cE\" | sed 's/\(.*\)@.*/\1/' | grep -v \"^$\" | awk 'BEGIN { line=\"\"; } !/^ / { if (line==\"\" || !match(line, $0)) {line = $0 \",\" line }} /^ / { print line \" # \" $0; line=\"\"}' | sort | sed -E 's/# //;s/ files? changed,//;s/([0-9]+) ([0-9]+ deletion)/\1 0 insertions\(+\), \2/;s/\(\+\)$/\(\+\), 0 deletions\(-\)/;s/insertions?\(\+\), //;s/ deletions?\(-\)//' | awk 'BEGIN {name=\"\"; files=0; insertions=0; deletions=0;} {if ($1 != name && name != \"\") { print name \": \" files \" files changed, \" insertions \" insertions(+), \" deletions \" deletions(-), \" insertions-deletions \" net\"; files=0; insertions=0; deletions=0; name=$1; } name=$1; files+=$2; insertions+=$3; deletions+=$4} END {print name \": \" files \" files changed, \" insertions \" insertions(+), \" deletions \" deletions(-), \" insertions-deletions \" net\";}'"
