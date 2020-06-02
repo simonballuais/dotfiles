@@ -40,6 +40,7 @@ Plugin 'yosiat/oceanic-next-vim'
 Plugin 'mechatroner/rainbow_csv'
 Plugin 'craigemery/vim-autotag'
 Plugin 'arnaud-lb/vim-php-namespace'
+Plugin 'neomake/neomake'
 
 "Plugin 'joonty/vim-phpqa'
 
@@ -96,7 +97,7 @@ filetype plugin indent on    " required
 
     " Vim UI {{{
         color OceanicNext
-        set tabpagemax=15               " Only show 15 tabs
+        set tabpagemax=100               " Only show 15 tabs
         set showmode                    " Display the current mode
         set cursorline                  " Highlight current line
         set cursorcolumn                " Highlight current column
@@ -192,10 +193,10 @@ filetype plugin indent on    " required
     " }}}
 
     " fzf {{{
-        nnoremap <c-p> :Files<cr>
+        execute "set <M-p>=\ep"
+        nnoremap <m-p> :Files<cr>
+        nnoremap <c-p> :GFiles<cr>
     " }}}
-
-    nnoremap S <C-]>
 
     " BÉPO remaps {{{
         " Basic movement in bépo
@@ -498,17 +499,15 @@ filetype plugin indent on    " required
     set cc=81
 
     " Save & quit
-    nnoremap <Leader>s :w<cr>
-    nnoremap <Leader>q :q<cr>
     nnoremap <c-w> :q<cr>
     nnoremap <c-s> :w<cr>
 
-    " PhpMd
-    let g:phpqa_messdetector_ruleset = "~/.dotfiles/phpmd/rules.xml"
+    " Sort
+    vnoremap <Leader>s :sort<cr>
 
-    " PhpCs
-    let g:phpqa_codesniffer_autorun = 0
-    let g:php_cs_fixer_rules = "PEAR"
+    " Neomak,
+    call neomake#configure#automake('nrwi', 500)
+    let g:neomake_php_phpcs_args_standard = 'PSR12'
 
     map <F4> <Esc>:EnableFastPHPFolds<Cr>
     map <F3> <Esc>:DisablePHPFolds<Cr>
