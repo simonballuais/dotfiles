@@ -387,7 +387,7 @@ filetype plugin indent on    " required
 
     " Ack
     cnoreabbrev Ack Ack!
-    nnoremap <Leader>S :Ack!<Space>--twig<Space>--js<space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space>.<Space>
+    nnoremap <Leader>S :Ack!<Space>--twig<Space>--js<space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space>
 
     " Getter/Setter
     let g:phpgetset_getterTemplate =
@@ -508,6 +508,13 @@ filetype plugin indent on    " required
     " Neomak,
     call neomake#configure#automake('nrwi', 500)
     let g:neomake_php_phpcs_args_standard = 'PSR12'
+
+    " Bépo on mac uses an actual french apostrophe. I want a simple quote
+    inoremap ’ '
+
+    " Ack the currently hovered word
+    nnoremap <leader>q "nyaw :Ack!<Space>--twig<Space>--js<space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space><c-r>n<cr>
+    vnoremap <leader>q "ny :Ack!<Space>--twig<Space>--js<space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space><c-r>n<cr>
 
     map <F4> <Esc>:EnableFastPHPFolds<Cr>
     map <F3> <Esc>:DisablePHPFolds<Cr>
