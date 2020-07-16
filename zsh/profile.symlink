@@ -66,5 +66,11 @@ export LEADERBOX="146.185.162.194"
 export TZ="Africa/Nairobi"
 export PATH="/Applications/MAMP/bin/php/php7.1.6/bin:/home/simon/matterhorn:$PATH"
 export LANG="en_US.utf8"
+
+# ack perl stuff I don't understand
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 source ~/.bashrc.sensitive
 

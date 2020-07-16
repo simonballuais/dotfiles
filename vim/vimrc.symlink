@@ -194,7 +194,7 @@ filetype plugin indent on    " required
 
     " fzf {{{
         execute "set <M-p>=\ep"
-        nnoremap <m-p> :Files<cr>
+        nnoremap <c-q> :Files<cr>
         nnoremap <c-p> :GFiles<cr>
     " }}}
 
@@ -509,15 +509,85 @@ filetype plugin indent on    " required
     call neomake#configure#automake('nrwi', 500)
     let g:neomake_php_phpcs_args_standard = 'PSR12'
 
-    " Bépo on mac uses an actual french apostrophe. I want a simple quote
+    " Bépo on mac uses an actual french curvy apostrophe. I want a simple straight quote
     inoremap ’ '
+    nnoremap vi’ vi'
+    nnoremap dt’ dt'
+    nnoremap df’ df'
+    nnoremap dT’ dT'
+    nnoremap dF’ dF'
+    nnoremap ci’ ci'
+    nnoremap di’ di'
 
     " Ack the currently hovered word
     nnoremap <leader>q "nyaw :Ack!<Space>--twig<Space>--js<space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space><c-r>n<cr>
     vnoremap <leader>q "ny :Ack!<Space>--twig<Space>--js<space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space><c-r>n<cr>
 
+    " Quick brackets
+    iabbrev pc []<esc>F]i
+    iabbrev pa {}<esc>F}i
+    iabbrev pp ()<esc>F)i
+    iabbrev pt <><esc>F>i
+
     map <F4> <Esc>:EnableFastPHPFolds<Cr>
     map <F3> <Esc>:DisablePHPFolds<Cr>
+
+    " very magic search
+    nnoremap / /\v
+    nnoremap ? ?\v
+
+    " Marker folding for vimscript {{{
+    augroup filetype_vim
+        autocmd!
+        autocmd FileType vim setlocal foldmethod=marker
+    augroup END
+    " }}}
+
+    " Highlight unused php imports {{{
+    function FetchImportedClasses()
+        let file = readfile(expand("%:p"))
+        let importedClasses = []
+
+        for line in file
+            let mainClassDeclaration = matchstr(line, '\v^class')
+
+            if (!empty(mainClassDeclaration))
+                break
+            endif
+
+            let matches = matchlist(line, '\v^use .*\\(\w+);')
+            let className = get(matches, 1, '0')
+
+            if (className != '0')
+                :call add(importedClasses, className)
+            endif
+        endfor
+
+        return importedClasses
+    endfunction
+
+    function HighlightUnusedClasses(classes)
+        :highlight UnusedImportsGroup ctermbg=brown guibg=brown
+        :call clearmatches('UnusedImportsGroup')
+
+        for class in a:classes
+            if (
+                \ [0, 0] == searchpos('\vnew +' . class)
+                \ && [0, 0] == searchpos('\v' . class . '::')
+                \ && [0, 0] == searchpos('\v' . class . ' +\$\w*')
+                \ && [0, 0] == searchpos('\v\@' . class)
+                \ && [0, 0] == searchpos('\vclass.*(extends|implements).*' . class)
+                \ )
+                :call matchadd('UnusedImportsGroup', '\v^use .*' . class . ';')
+            endif
+        endfor
+    endfunction
+
+    function HighlightUnusedUses()
+        let importedClasses = FetchImportedClasses()
+        :call HighlightUnusedClasses(importedClasses)
+    endfunction
+    " }}}
 " }
 
 
