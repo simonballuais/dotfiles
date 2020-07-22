@@ -1,0 +1,46 @@
+" Highlight unused php imports {{{
+    function FetchImportedClasses()
+        let file = readfile(expand("%:p"))
+        let importedClasses = []
+
+        for line in file
+            let mainClassDeclaration = matchstr(line, '\v^class')
+
+            if (!empty(mainClassDeclaration))
+                break
+            endif
+
+            let matches = matchlist(line, '\v^use .*\\(\w+);')
+            let className = get(matches, 1, '0')
+
+            if (className != '0')
+                :call add(importedClasses, className)
+            endif
+        endfor
+
+        return importedClasses
+    endfunction
+
+    function HighlightUnusedUses()
+        normal! mq
+        let importedClasses = FetchImportedClasses()
+        :highlight UnusedImportsGroup ctermbg=brown guibg=brown
+        :call clearmatches('UnusedImportsGroup')
+
+        for class in importedClasses
+            if (
+                \ [0, 0] == searchpos('\vnew +' . class)
+                \ && [0, 0] == searchpos('\v' . class . '::')
+                \ && [0, 0] == searchpos('\v' . class . ' +\$\w*')
+                \ && [0, 0] == searchpos('\v\@' . class)
+                \ && [0, 0] == searchpos('\vclass.*(extends|implements).*' . class)
+                \ )
+                :call matchadd('UnusedImportsGroup', '\v^use .*' . class . ';')
+            endif
+        endfor
+
+        normal! 'q
+    endfunction
+
+    autocmd BufWritePost *.php call HighlightUnusedUses()
+" }}}

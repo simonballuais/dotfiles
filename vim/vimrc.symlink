@@ -387,7 +387,7 @@ filetype plugin indent on    " required
 
     " Ack
     cnoreabbrev Ack Ack!
-    nnoremap <Leader>S :Ack!<Space>--twig<Space>--js<space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space>
+    nnoremap <Leader>S :Ack!<Space>--twig<Space>--js<space>--php<Space>--ts<space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space>
 
     " Getter/Setter
     let g:phpgetset_getterTemplate =
@@ -516,8 +516,14 @@ filetype plugin indent on    " required
     nnoremap df’ df'
     nnoremap dT’ dT'
     nnoremap dF’ dF'
+    nnoremap ct’ ct'
+    nnoremap cf’ cf'
+    nnoremap cT’ cT'
+    nnoremap cF’ cF'
     nnoremap ci’ ci'
     nnoremap di’ di'
+    nnoremap ca’ ca'
+    nnoremap da’ da'
 
     " Ack the currently hovered word
     nnoremap <leader>q "nyaw :Ack!<Space>--twig<Space>--js<space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space><c-r>n<cr>
@@ -566,26 +572,83 @@ filetype plugin indent on    " required
         return importedClasses
     endfunction
 
-    function HighlightUnusedClasses(classes)
+    function HighlightUnusedUses()
+        normal! mq
+        let importedClasses = FetchImportedClasses()
         :highlight UnusedImportsGroup ctermbg=brown guibg=brown
         :call clearmatches('UnusedImportsGroup')
 
-        for class in a:classes
+        for class in importedClasses
             if (
                 \ [0, 0] == searchpos('\vnew +' . class)
                 \ && [0, 0] == searchpos('\v' . class . '::')
                 \ && [0, 0] == searchpos('\v' . class . ' +\$\w*')
                 \ && [0, 0] == searchpos('\v\@' . class)
                 \ && [0, 0] == searchpos('\vclass.*(extends|implements).*' . class)
+                \ && [0, 0] == searchpos('\vuse *' . class)
                 \ )
                 :call matchadd('UnusedImportsGroup', '\v^use .*' . class . ';')
             endif
         endfor
+
+        normal! 'q
     endfunction
 
-    function HighlightUnusedUses()
-        let importedClasses = FetchImportedClasses()
-        :call HighlightUnusedClasses(importedClasses)
+    autocmd BufWritePost *.php call HighlightUnusedUses()
+    " }}}
+
+    " Highlight classes whose import can't be found {{{
+    function HighlightUnimportedClasses()
+        let classNameRegex = '[A-Z][a-zA-Z0-9_]*'
+        :highlight Classes ctermbg=red guibg=red
+        :call clearmatches('Classes')
+
+        let file = readfile(expand("%:p"))
+        let usedClasses = {}
+        let mainClassFound = 0
+        let lineIndex = 0
+
+        for line in file
+            let lineIndex += 1
+            let mainClassDeclaration = matchstr(line, '\v^class')
+
+            if (!empty(mainClassDeclaration))
+                let mainClassFound = 1
+            endif
+
+            if !mainClassFound
+                continue
+            endif
+
+            for classPattern in [
+                        \ '\C\v(new +)@<=' . classNameRegex,
+                        \ '\C\v' . classNameRegex . '(::)@=',
+                        \ '\C\v([\\a-z])@<!' . classNameRegex . '( +\$\w*)@=',
+                        \ '\C\v\@@<=' . classNameRegex,
+                        \ '\C\v(class.*(extends|implements) *)@<=' . classNameRegex,
+                        \ '\C\v(use *)@<=' . classNameRegex . ';',
+                        \ ]
+
+                let matchPos = matchstrpos(line, classPattern)
+
+                if matchPos[0] != ''
+                    let className = matchPos[0]
+
+                    if !has_key(usedClasses, className)
+                        let usedClasses[className] = []
+                    endif
+
+                    call add(
+                        \ usedClasses[className],
+                        \ [lineIndex, matchPos[1] + 1, matchPos[2] - matchPos[1]]
+                    \ )
+                endif
+            endfor
+        endfor
+
+        for [className, classPositions] in items(usedClasses)
+            :call matchaddpos('Classes', classPositions)
+        endfor
     endfunction
     " }}}
 " }
