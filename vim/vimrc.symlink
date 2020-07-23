@@ -561,7 +561,7 @@ filetype plugin indent on    " required
                 break
             endif
 
-            let matches = matchlist(line, '\v^use .*\\(\w+);')
+            let matches = matchlist(line, '\v^use .*\\%(\w+ +as +)?(\w+);')
             let className = get(matches, 1, '0')
 
             if (className != '0')
