@@ -411,8 +411,8 @@ filetype plugin indent on    " required
 
         function ToggleHex()
           " hex mode should be considered a read-only operation
-          "   " save values for modified and read-only for restoration later,
-          "     " and clear the read-only flag for now
+          " save values for modified and read-only for restoration later,
+          " and clear the read-only flag for now
           let l:modified=&mod
           let l:oldreadonly=&readonly
           let &readonly=0
@@ -572,11 +572,11 @@ filetype plugin indent on    " required
         return importedClasses
     endfunction
 
-    function HighlightUnusedUses()
+    function HighlightUnusedUses(timer)
         normal! mq
         let importedClasses = FetchImportedClasses()
         :highlight UnusedImportsGroup ctermbg=brown guibg=brown
-        :call clearmatches('UnusedImportsGroup')
+        :call ClearMatchGroup('UnusedImportsGroup')
 
         for class in importedClasses
             if (
@@ -593,15 +593,13 @@ filetype plugin indent on    " required
 
         normal! 'q
     endfunction
-
-    autocmd BufWritePost *.php call HighlightUnusedUses()
     " }}}
 
     " Highlight classes whose import can't be found {{{
-    function HighlightUnimportedClasses()
+    function HighlightUnimportedClasses(timer)
         let classNameRegex = '[A-Z][a-zA-Z0-9_]*'
         :highlight Classes ctermbg=red guibg=red
-        :call clearmatches('Classes')
+        :call ClearMatchGroup('Classes')
 
         let file = readfile(expand("%:p"))
         let usedClasses = {}
@@ -610,7 +608,7 @@ filetype plugin indent on    " required
 
         for line in file
             let lineIndex += 1
-            let mainClassDeclaration = matchstr(line, '\v^class')
+            let mainClassDeclaration = matchstr(line, '\v^(class|trait|interface)')
 
             if (!empty(mainClassDeclaration))
                 let mainClassFound = 1
@@ -623,15 +621,19 @@ filetype plugin indent on    " required
             for classPattern in [
                 \ '\C\v(new +)@<=' . classNameRegex,
                 \ '\C\v' . classNameRegex . '(::)@=',
-                \ '\C\v([\\a-z])@<!' . classNameRegex . '( +\$\w*)@=',
+                \ '\C\v' . classNameRegex . '( +\$\w*)@=',
                 \ '\C\v\@@<=' . classNameRegex,
                 \ '\C\v(class.*(extends|implements) *)@<=' . classNameRegex,
                 \ '\C\v(use *)@<=' . classNameRegex . ';',
+                \ '\C\v(\) *: *)@<=' . classNameRegex,
+                \ '\C\v^( *: *)@<=' . classNameRegex,
             \ ]
-                let matchPos = matchstrpos(line, classPattern)
+                let reducedLine = line
+                let matchPos = matchstrpos(reducedLine, classPattern)
 
-                if matchPos[0] != ''
+                while matchPos[0] != ''
                     let className = matchPos[0]
+                    let classNameLength = strlen(className)
 
                     if !has_key(usedClasses, className)
                         let usedClasses[className] = []
@@ -639,9 +641,17 @@ filetype plugin indent on    " required
 
                     call add(
                         \ usedClasses[className],
-                        \ [lineIndex, matchPos[1] + 1, matchPos[2] - matchPos[1]]
+                        \ [lineIndex, matchPos[1] + 1, classNameLength]
                     \ )
-                endif
+
+                    let blanks = repeat(' ', strlen(className))
+                    let reducedLine =
+                        \ strpart(reducedLine, 0, matchPos[1])
+                        \ . blanks
+                        \ . strpart(reducedLine, matchPos[1] + classNameLength)
+
+                    let matchPos = matchstrpos(reducedLine, classPattern)
+                endwhile
             endfor
         endfor
 
@@ -661,10 +671,10 @@ filetype plugin indent on    " required
         let potentialNeighbourClassFile = currentPath . '/' . a:className . '.php'
 
         if filereadable(potentialNeighbourClassFile)
-            let file = readfile(expand("%:p"))
+            let file = readfile(expand(potentialNeighbourClassFile))
 
             for line in file
-                if (!empty(matchstr(line, '\v^class +' . a:className)))
+                if (!empty(matchstr(line, '\v^(abstract +)?(class|interface|trait) +' . a:className)))
                     return 1
                 endif
             endfor
@@ -673,7 +683,24 @@ filetype plugin indent on    " required
         return 0
     endfunction
 
-    autocmd BufWritePost *.php call HighlightUnimportedClasses()
+    function RunAsyncFunctionIfPossible(functionName)
+        if v:version < 800
+            :call a:functionName()
+            return
+        endif
+
+        :call timer_start(1, a:functionName)
+    endfunction
+
+    function ClearMatchGroup(groupName)
+        for m in filter(getmatches(), { i, v -> l:v.group is? a:groupName})
+            :call matchdelete(m.id)
+        endfor
+    endfunction
+
+    autocmd BufWritePost *.php
+        \ call RunAsyncFunctionIfPossible('HighlightUnusedUses')
+        \ | call RunAsyncFunctionIfPossible('HighlightUnimportedClasses')
     " }}}
 " }
 
