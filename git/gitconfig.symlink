@@ -43,3 +43,5 @@
     helper = cache --timeout=99999
 [init]
     templatedir = ~/.dotfiles/git_template
+[fetch]
+	prune = true
