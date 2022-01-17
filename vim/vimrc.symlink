@@ -41,6 +41,9 @@ Plugin 'mechatroner/rainbow_csv'
 Plugin 'craigemery/vim-autotag'
 Plugin 'arnaud-lb/vim-php-namespace'
 Plugin 'neomake/neomake'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'shumphrey/fugitive-gitlab.vim'
+
 Plugin 'FatalCaca/vim-php-import-checker'
 
 "Plugin 'joonty/vim-phpqa'
@@ -76,6 +79,7 @@ filetype plugin indent on    " required
     set iskeyword-=-                    " '-' is an end of word designator
     set iskeyword=65-90,95,97-122,48-57
     set iskeyword-=:
+    set iskeyword-=\$
 
     " Setting up the directories {
         set backup                  " Backups are nice ...
@@ -302,7 +306,7 @@ filetype plugin indent on    " required
     au WinEnter * set nofen
     au WinLeave * set nofen
 
-    set tags=.git/tags.vendors
+    set tags=.git/tags.vendors,.git/tags
 
     " PhpNamespace {
         function! IPhpInsertUse()
@@ -387,7 +391,7 @@ filetype plugin indent on    " required
 
     " Ack
     cnoreabbrev Ack Ack!
-    nnoremap <Leader>S :Ack!<Space>--twig<Space>--js<space>--php<Space>--ts<space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space>
+    nnoremap <Leader>S :Ack!<Space>--twig<Space>--js<space>--php<Space>--ts<space>--html<space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space>
 
     " Getter/Setter
     let g:phpgetset_getterTemplate =
@@ -399,7 +403,7 @@ filetype plugin indent on    " required
 
     let g:phpgetset_setterTemplate =
       \ "\n" .
-      \ "    public function %funcname%($%varname%)\n" .
+      \ "    public function %funcname%($%varname%): self\n" .
       \ "    {\n" .
       \ "        $this->%varname% = $%varname%;\n" .
       \ "\n" .
@@ -479,8 +483,8 @@ filetype plugin indent on    " required
     nnoremap Q <nop>
 
     " Attribute navigation
-    nnoremap <leader>n /^\s*\(const\\|private\\|protected\\|public\)<cr>
-    nnoremap <leader>N ?^\s*\(const\\|private\\|protected\\|public\)<cr>
+    nnoremap <leader>n /^\s*\(private\\|protected\\|public\) *\([^ ]* \\|\$\)/e+1<cr>
+    nnoremap <leader>N ?^\s*\(private\\|protected\\|public\) *\([^ ]* \\|\$\)?e+1<cr>
 
     " Conflict markers
     nnoremap <leader>m /[<>=]\{7\}<cr>
@@ -527,8 +531,8 @@ filetype plugin indent on    " required
     nnoremap yi’ yi'
 
     " Ack the currently hovered word
-    nnoremap <leader>q "nyaw :Ack!<Space>--twig<Space>--js<space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space><c-r>n<cr>
-    vnoremap <leader>q "ny :Ack!<Space>--twig<Space>--js<space>--php<Space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space><c-r>n<cr>
+    nnoremap <leader>q "nyaw :Ack!<Space>--twig<Space>--js<space>--php<Space>--html<space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space><c-r>n<cr>
+    vnoremap <leader>q "ny :Ack!<Space>--twig<Space>--js<space>--php<Space>--html<space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space><c-r>n<cr>
 
     " Quick brackets
     iabbrev pc []<esc>F]i
@@ -540,7 +544,7 @@ filetype plugin indent on    " required
     nnoremap gc gg/^class<cr>w
     nnoremap <silent> <Plug>ChangePhpArray %r]<c-o>viwc[<esc><space>x:silent! call repeat#set("\<Plug>ChangePhpArray", v:count)<cr>
     nmap <leader>a <Plug>ChangePhpArray
-CR
+
     map <F4> <Esc>:EnableFastPHPFolds<Cr>
     map <F3> <Esc>:DisablePHPFolds<Cr>
 
@@ -557,6 +561,13 @@ CR
 
     " select what just got pasted
     nnoremap gp `[v`]
+
+    " easy align
+    xmap \| :EasyAlign<space>*\|<cr>
+
+    " Gitlab for GBrowse
+    let g:fugitive_gitlab_domains = ['https://git.staffmatch.it/']
+
 " }
 
 
