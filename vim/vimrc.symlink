@@ -11,6 +11,8 @@ endif
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim,~/.fzf
 call vundle#begin()
@@ -28,6 +30,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-dadbod'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mileszs/ack.vim'
@@ -43,6 +46,9 @@ Plugin 'arnaud-lb/vim-php-namespace'
 Plugin 'neomake/neomake'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'shumphrey/fugitive-gitlab.vim'
+Plugin 'kristijanhusak/vim-dadbod-completion'
+Plugin 'kristijanhusak/vim-dadbod-ui'
+"Plugin 'vimsence/vimsence'
 
 Plugin 'FatalCaca/vim-php-import-checker'
 
@@ -391,7 +397,7 @@ filetype plugin indent on    " required
 
     " Ack
     cnoreabbrev Ack Ack!
-    nnoremap <Leader>S :Ack!<Space>--twig<Space>--js<space>--php<Space>--ts<space>--html<space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space>
+    nnoremap <Leader>S :Ack!<Space>--twig<Space>--js<space>--php<Space>--ts<space>--html<space>--type-set=twig=.twig<Space>--yaml<Space><Space>--json<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space>
 
     " Getter/Setter
     let g:phpgetset_getterTemplate =
@@ -568,6 +574,92 @@ filetype plugin indent on    " required
     " Gitlab for GBrowse
     let g:fugitive_gitlab_domains = ['https://git.staffmatch.it/']
 
+    " CP current file path to clipboard
+    nnoremap <leader>y :let<space>@+<space>=<space>expand("%")<cr>
+
+    " Vdiff with development
+    nnoremap <leader>dd :Gvdiff development<cr>
+
+    " Quicklist navigation
+    nnoremap <leader><PageUp> :cprevious<cr>
+    nnoremap <leader><PageDown> :cnext<cr>
+
+    " DB quick query
+    nnoremap <leader>mysql :DB mysql://root@localhost/staffmatch 
+
+    let g:vimsence_client_id = '439476230543245312'
+    let g:vimsence_small_text = 'Vim'
+    let g:vimsence_small_image = 'vim'
+    let g:vimsence_editing_details = 'Editing: {}'
+    let g:vimsence_editing_state = 'Working on: {}'
+    let g:vimsence_file_explorer_text = 'In NERDTree'
+    let g:vimsence_file_explorer_details = 'Looking for files'
 " }
 
+nnoremap ’ '
+
+function InsertNewArgInCurrentFunction()
+    normal! ma
+    let [lnum, col] = searchpos('^\s*\(public\|private\|protected\).*function', 'bz')
+
+    if ! lnum && ! col
+        return
+    endif
+
+    call setpos('.', [0, lnum, col, 0])
+    let singleLineArgList = match(getline('.'), ')')
+
+    if -1 != singleLineArgList
+        let lineLength = strlen(getline('.'))
+
+        if lineLength <= 40
+            let [lnum, col] = searchpos(')', 'z')
+
+            if ! lnum && ! col
+                return
+            endif
+
+            execute "normal! i, "
+            execute "normal! f)"
+            startinsert
+            return
+        else
+            execute "normal! f("
+            execute "normal! l"
+            execute "normal i\n"
+
+            while -1 != match(getline('.'), ',')
+                execute "normal! f,"
+                execute "normal! l"
+                execute "normal! i\n"
+            endwhile
+
+            execute "normal! f)"
+            execute "normal! i,\n"
+            normal! J
+            normal! O
+            execute "normal! i        "
+            startinsert!
+            return
+        endif
+    else
+        let [lnum, col] = searchpos(')', 'z')
+
+        if ! lnum && ! col
+            return
+        endif
+
+        call setpos('.', [0, lnum - 1, col, 0])
+        execute "normal! A,"
+        normal o
+        execute "normal! i        "
+        startinsert!
+        return
+    endif
+endfunction
+
+nnoremap <leader>f :call InsertNewArgInCurrentFunction()<cr>
+
+syntax match nonascii "[^\x00-\x7F]"
+highlight nonascii guibg=Red ctermbg=2
 
