@@ -1,3 +1,7 @@
+
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+
 export ZSH=$HOME/.dotfiles
 export PROJECTS=~/Dropbox/codingZ
 
@@ -193,3 +197,16 @@ bindkey ";5C" forward-word
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export PATH="/opt/homebrew/mysql@5.7/bin:$PATH"
+export PATH="/opt/homebrew/Cellar/mysql@5.7/5.7.36/bin/:$PATH"
+export PATH="$(pyenv root)/shims:$PATH"
+
+setopt nocorrectall;
+unsetopt correct_all
+
+
+
+# Kiro CLI post block. Keep at the bottom of this file.
+# [[ -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"

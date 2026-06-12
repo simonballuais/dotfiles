@@ -1,6 +1,10 @@
+
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.pre.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.pre.bash"
+
 [ -z "$PS1" ] && return
 [[ $- == *i* ]] || return
-
+PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 source ~/.profile
 fortune | cowsay
 zsh
@@ -10,3 +14,11 @@ zsh
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+alias java=/opt/homebrew/Cellar/openjdk/17.0.2/bin/java
+
+export PATH="$(pyenv root)/shims:$PATH"
+
+
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bashrc.post.bash"

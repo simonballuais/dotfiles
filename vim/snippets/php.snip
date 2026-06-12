@@ -233,11 +233,8 @@ options     indent
     use Doctrine\ORM\Mapping as ORM;
     use Symfony\Component\Validator\Constraints as Assert;
 
-
-    /**
-     * @ORM\Entity
-     * @ORM\Table(name="${1:tableName}")
-     */
+    #[ORM\Entity]
+    #[ORM\Table(name: '${1:tableName}')]
     class ${2:className}
     {
         ${0}
@@ -245,115 +242,84 @@ options     indent
 
 snippet     column
 options     indent
-    /**
-     * @ORM\Column(type="${1:columnType}")
-     */
+    #[ORM\Column(type: '${1:columnType}')]
     protected $${2:attributeName};
     ${0}
 
 snippet     fcolumn
 options     indent
-    /**
-     * @ORM\Column(type="${1:columnType}",
-     *             name="${2:columnName}",
-     *             nullable=${3:nullable}
-     * )
-     */
+    #[ORM\Column(type: '${1:columnType}', name: '${2:columnName}', nullable=${3:nullable})]
     protected $${4:attributeName};
     ${0}
 
 snippet     ncol
 options     indent
-    /**
-     * @ORM\Column(type="${1:columnType}", name="${2:columnName}")
-     */
+    #[ORM\Column(type: '${1:columnType}', name: '${2:columnName}')]
     protected $${3:attributeName};
     ${0}
 
 snippet     scolumn
 options     indent
-    /**
-     * @ORM\Column(type="string", length=${1})
-     */
+    #[ORM\Column(type: 'string', length: ${1})]
     protected $${2:attributeName};
     ${0}
 
 snippet     pk
 options     indent
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
+    #[OA\Property(type: 'integer')]
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
     protected $id;
     ${0}
 
 snippet     mto
 options     indent
-    /**
-     * @ORM\ManyToOne(targetEntity="${1}", inversedBy="${2}", cascade={"persist"})
-     * @ORM\JoinColumn(name="${3}", referencedColumnName="${4}")
-     */
+     #[ORM\ManyToOne(targetEntity: ${1}::class, inversedBy: '${2}', cascade: ['persist'])]
+     #[ORM\JoinColumn(name: '${3}', referencedColumnName: '${4}')]
      protected $${5};
     ${0}
 
 snippet     mmto
 options     indent
-    /**
-     * @ORM\ManyToOne(targetEntity="${1}", inversedBy="${2}", cascade={"persist"})
-     * @ORM\JoinColumns({
-     *      @ORM\JoinColumn(name="${3}", referencedColumnName="${4}"),
-     *      @ORM\JoinColumn(name="${5}", referencedColumnName="${6}")
-     * })
-     */
+     #[ORM\ManyToOne(targetEntity: ${1}::class, inversedBy: '${2}', cascade: ['persist'])]
+     #[ORM\JoinColumns([ORM\JoinColumn(name: '${3}', referencedColumnName: '${4}'), ORM\JoinColumn(name: '${5}', referencedColumnName: '${6}')])]
      protected $${7};
     ${0}
 
 
 snippet     otm
 options     indent
-    /**
-     * @ORM\OneToMany(targetEntity="${1}", mappedBy="${2}", cascade={"persist"})
-     */
+    #[ORM\OneToMany(targetEntity: ${1}::class, mappedBy: '${2}', cascade: ['persist'])]
     protected $${3};
     $this->$3 = new ArrayCollection();
     ${0}
 
 snippet     oto
-    /**
-     * @ORM\OneToOne(targetEntity="${1}", mappedBy="${2}")
-     */
+    #[ORM\OneToOne(targetEntity: ${1}::class, mappedBy: '${2}')]
     protected $${0};
 
 snippet     otoo
-    /**
-     * @ORM\OneToOne(targetEntity="${1}", inversedBy="${2}")
-     * @ORM\JoinColumn(name="${3}", referencedColumnName="id")
-     */
+    #[ORM\OneToOne(targetEntity: ${1}::class, inversedBy: '${2}')]
+    #[ORM\JoinColumn(name: '${3}', referencedColumnName: 'id')]
     protected $${0};
 
 snippet     mtm
-    /**
-     * @ORM\ManyToMany(targetEntity="${1}", inversedBy="${2}")
-     * @ORM\JoinTable(name="${3}")
-     */
+    #[ORM\ManyToMany(targetEntity: ${1}::class, inversedBy: '${2}')]
+    #[ORM\JoinTable(name: '${3}')]
     protected $${4};
 
     $this->$4 = new ArrayCollection();${0}
 
 snippet     mtmm
-    /**
-     * @ORM\ManyToMany(targetEntity="${1}", mappedBy="${2}")
-     */
+    [ORM\ManyToMany(targetEntity: ${1}::class, mappedBy: '${2}')]
     protected $${3};
 
     $this->$3 = new ArrayCollection();${0}
 
 snippet     join
-     /**
-     * @OneToOne(targetEntity="${1}", inversedBy="${2}")
-     * @JoinColumn(name="${3}", referencedColumnName="${4}")
-     */
+    #[ORM\OneToOne(targetEntity: ${1}::class, inversedBy: '${2}')]
+    #[ORM\JoinColumn(name: '${3}', referencedColumnName: '${4}')]
     protected $${5};
     ${0}
 

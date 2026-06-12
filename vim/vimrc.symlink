@@ -24,7 +24,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
-Plugin 'powerline/powerline'
+"Plugin 'powerline/powerline'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-commentary'
@@ -40,17 +40,18 @@ Plugin 'nelsyeung/twig.vim'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'yosiat/oceanic-next-vim'
-Plugin 'mechatroner/rainbow_csv'
+"Plugin 'mechatroner/rainbow_csv'
 Plugin 'craigemery/vim-autotag'
 Plugin 'arnaud-lb/vim-php-namespace'
 Plugin 'neomake/neomake'
+Plugin 'stephpy/vim-php-cs-nixer'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'shumphrey/fugitive-gitlab.vim'
-Plugin 'kristijanhusak/vim-dadbod-completion'
-Plugin 'kristijanhusak/vim-dadbod-ui'
+"Plugin 'kristijanhusak/vim-dadbod-completion'
+"Plugin 'kristijanhusak/vim-dadbod-ui'
 "Plugin 'vimsence/vimsence'
 
-Plugin 'FatalCaca/vim-php-import-checker'
+"Plugin 'FatalCaca/vim-php-import-checker'
 
 "Plugin 'joonty/vim-phpqa'
 
@@ -110,8 +111,8 @@ filetype plugin indent on    " required
         color OceanicNext
         set tabpagemax=100               " Only show 15 tabs
         set showmode                    " Display the current mode
-        set cursorline                  " Highlight current line
-        set cursorcolumn                " Highlight current column
+        set cursorline                  " Highlight current line, well actually no because it's super slow sometimes :s
+        set nocursorcolumn                " Highlight current column, well actually no because it's super slow sometimes :s
 
         highlight clear SignColumn      " SignColumn should match background
         highlight clear LineNr          " Current line number row will have same background color in relative mode
@@ -158,7 +159,6 @@ filetype plugin indent on    " required
         set splitright                  " Puts new vsplit windows to the right of the current
         set splitbelow                  " Puts new split windows to the bottom of the current
         set matchpairs+=<:>             " Match, to be used with %
-        set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
         " Remove trailing whitespaces and ^M chars
         "autocmd FileType go autocmd BufWritePre <buffer> Fmt
@@ -307,7 +307,6 @@ filetype plugin indent on    " required
 
     set nobackup
     set noswapfile
-    set pastetoggle=F12
 
     au WinEnter * set nofen
     au WinLeave * set nofen
@@ -369,7 +368,7 @@ filetype plugin indent on    " required
     nnoremap - vi(
 
     " NerdTree
-    map <c-n> :NERDTreeToggle<CR>
+    map <c-n> :NERDTreeFind<CR>
     let g:NERDTreeMapActivateNode = '<space>'
     let g:NERDTreeMapOpenInTab = '<c-T>'
     let g:NERDTreeMapJumpParent = '<c-g>'
@@ -397,7 +396,7 @@ filetype plugin indent on    " required
 
     " Ack
     cnoreabbrev Ack Ack!
-    nnoremap <Leader>S :Ack!<Space>--twig<Space>--js<space>--php<Space>--ts<space>--html<space>--type-set=twig=.twig<Space>--yaml<Space><Space>--json<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space>
+    nnoremap <Leader>S :Ack!<Space>--twig<Space>--js<space>--php<Space>--ts<space>--html<space>--type-set=twig=.twig<Space>--yaml<Space><Space>--json<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space>--ignore-file=is:composer<Space>""<Left>
 
     " Getter/Setter
     let g:phpgetset_getterTemplate =
@@ -516,8 +515,13 @@ filetype plugin indent on    " required
     vnoremap <Leader>s :sort u<cr>
 
     " Neomak,
-    call neomake#configure#automake('nrwi', 500)
-    let g:neomake_php_phpcs_args_standard = 'PSR12'
+    " call neomake#configure#automake('nrwi', 500)
+    " let g:neomake_php_phpcs_args_standard = 'PSR12'
+
+    " php cs fixer
+    " autocmd BufWritePost *.php silent! call PhpCsFixerFixFile()
+    let g:php_cs_fixer_config = ".php-cs-fixer.dist.php"
+    nnoremap <leader>= :call PhpCsFixerFixFile()<enter>
 
     " Bépo on mac uses an actual french curvy apostrophe. I want a simple straight quote
     inoremap ’ '
@@ -536,15 +540,11 @@ filetype plugin indent on    " required
     nnoremap di’ di'
     nnoremap yi’ yi'
 
-    " Ack the currently hovered word
-    nnoremap <leader>q "nyaw :Ack!<Space>--twig<Space>--js<space>--php<Space>--html<space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space><c-r>n<cr>
-    vnoremap <leader>q "ny :Ack!<Space>--twig<Space>--js<space>--php<Space>--html<space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space><c-r>n<cr>
+    vnoremap <leader>j :'<,'>!jq<enter>
 
-    " Quick brackets
-    iabbrev pc []<esc>F]i
-    iabbrev pa {}<esc>F}i
-    iabbrev pp ()<esc>F)i
-    iabbrev pt <><esc>F>i
+    " Ack the currently hovered word
+    nnoremap <leader>q "nyaw :Ack!<Space>--twig<Space>--js<space>--php<Space>--html<space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space>--ignore-file=is:composer<Space><c-r>n<cr>
+    vnoremap <leader>q "ny :Ack!<Space>--twig<Space>--js<space>--php<Space>--html<space>--type-set=twig=.twig<Space>--yaml<Space>-i<Space>--ignore-dir={vendor,var,app/cache,cache,app/public/build}<Space>--ignore-file=is:composer<Space><c-r>n<cr>
 
     " php
     nnoremap gc gg/^class<cr>w
@@ -585,7 +585,7 @@ filetype plugin indent on    " required
     nnoremap <leader><PageDown> :cnext<cr>
 
     " DB quick query
-    nnoremap <leader>mysql :DB mysql://root@localhost/staffmatch 
+    nnoremap <leader>mysql :DB mysql://root@localhost/staffmatch
 
     let g:vimsence_client_id = '439476230543245312'
     let g:vimsence_small_text = 'Vim'
@@ -608,18 +608,22 @@ function InsertNewArgInCurrentFunction()
 
     call setpos('.', [0, lnum, col, 0])
     let singleLineArgList = match(getline('.'), ')')
+    let emptyArgList = match(getline('.'), '()')
 
     if -1 != singleLineArgList
         let lineLength = strlen(getline('.'))
 
-        if lineLength <= 40
+        if lineLength <= 50
             let [lnum, col] = searchpos(')', 'z')
 
             if ! lnum && ! col
                 return
             endif
 
-            execute "normal! i, "
+            if emptyArgList == -1
+                execute "normal! i, "
+            endif
+
             execute "normal! f)"
             startinsert
             return
@@ -635,7 +639,11 @@ function InsertNewArgInCurrentFunction()
             endwhile
 
             execute "normal! f)"
-            execute "normal! i,\n"
+
+            if emptyArgList == -1
+                execute "normal! i,\n"
+            endif
+
             normal! J
             normal! O
             execute "normal! i        "
@@ -658,7 +666,150 @@ function InsertNewArgInCurrentFunction()
     endif
 endfunction
 
+function InjectNewServiceDependency()
+    normal! ma
+    let className = input("Which service ? ")
+
+    let className = toupper(className[0:0]) . className[1:-1]
+    let varName = tolower(className[0:0]) . className[1:-1]
+
+    if className == "Em"
+        let className = "EntityManagerInterface"
+        let varName = "em"
+    endif
+
+    if className == "Logger"
+        let className = "LoggerInterface"
+        let varName = "logger"
+    endif
+
+    if className == "Clock"
+        let className = "ClockInterface"
+        let varName = "clock"
+    endif
+
+    let [lnum, col] = searchpos('^\s*\(private\|protected\|public\).*\$' . varName, 'bz')
+
+    if lnum && col
+        return
+    endif
+
+    let [lnum, col] = searchpos('^\(final \|abstract \)\?class', 'bz')
+    let classIsAbstract = match(getline('.'), '^abstract *class')
+    let attributePrivacy = "private"
+
+    if classIsAbstract != -1
+        let attributePrivacy = "protected"
+    endif
+
+    if ! lnum && ! col
+        return
+    endif
+
+    call setpos('.', [0, lnum + 1, col, 0])
+    let [lnum, col] = searchpos('^\s*\(public\|private\|protected\)\? \?\(const\)', 'bz')
+
+    if lnum && col
+        call setpos('.', [0, lnum, col, 0])
+        let [lnum, col] = searchpos(';', 'z')
+
+        if lnum && col
+            call setpos('.', [0, lnum, col, 0])
+        endif
+
+        normal! j
+
+        if strlen(getline('.')) != 0
+            normal! O
+        endif
+    endif
+
+    normal! o
+    execute "normal! i    " . attributePrivacy . " " . className . " $" . varName . ";"
+    normal! 0ww
+    call feedkeys('1',  "\n")
+    call PhpInsertUse()
+
+    let [lnum, col] = searchpos('public function __construct', 'bz')
+
+    if ! lnum && ! col
+        normal! o
+        execute "normal! i\npublic function __construct()\n{\n}\n"
+        let [lnum, col] = searchpos('__construct', 'bz')
+    endif
+
+    call setpos('.', [0, lnum, col, 0])
+
+    let singleLineArgList = match(getline('.'), ')')
+    let emptyArgList = match(getline('.'), '()')
+
+    if -1 != singleLineArgList
+        let lineLength = strlen(getline('.'))
+
+        if lineLength <= 50
+            let [lnum, col] = searchpos(')', 'z')
+
+            if ! lnum && ! col
+                return
+            endif
+
+            if emptyArgList == -1
+                execute "normal! i,
+            endif
+
+            execute "normal! i" . className . " $" . varName
+        else
+            execute "normal! f("
+            execute "normal! l"
+            execute "normal i\n"
+
+            while -1 != match(getline('.'), ',')
+                execute "normal! f,"
+                execute "normal! l"
+                execute "normal! i\n"
+            endwhile
+
+            normal! f)
+            execute "normal! i\n"
+            normal! J0%o
+            execute "normal! i        " . className . " $" . varName
+
+            if emptyArgList == -1
+                execute "normal! A,"
+            endif
+        endif
+    else
+        normal! o
+        execute "normal! i        " . className . " $" . varName . ","
+    endif
+
+    let [lnum, col] = searchpos('{', 'z')
+
+    if ! lnum && ! col
+        return
+    endif
+
+    call setpos('.', [0, lnum, col, 0])
+
+    execute "normal! o$this->" . varName . " = $" . varName . ";"
+
+    normal! 'a
+endfunction
+
 nnoremap <leader>f :call InsertNewArgInCurrentFunction()<cr>
+nnoremap <leader>F :call InjectNewServiceDependency()<cr>
+
+function! SelectMarkdownTable()
+  call search('^\s*[^| ]', 'bW')
+  normal! j
+  normal! V
+  call search('^\s*[^| ]', 'W')
+  normal! k
+endfunction
+
+xnoremap it :<C-u>call SelectMarkdownTable()<CR>
+onoremap it :normal vit<CR>
+nnoremap \|\| ma:<C-u>call SelectMarkdownTable()<CR>:EasyAlign<space>*\|<cr>'a
 
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=2

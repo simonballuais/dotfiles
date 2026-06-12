@@ -45,3 +45,5 @@
     templatedir = ~/.dotfiles/git_template
 [fetch]
 	prune = true
+[pull]
+	rebase = false
